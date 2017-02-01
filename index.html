@@ -1,0 +1,3035 @@
+<!doctype html>
+<html>
+    <head>
+        <title>maps</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="mapContainer"></div>
+        <input type="text" class="addressInput" placeholder="address">
+        <script>
+            var geocoder;
+            function init() {
+                var position = {
+                    lat: 37.790704,
+                    lng:-122.418769
+                };
+                var mapContainer = document.querySelector('.mapContainer');
+                var mapOptions = {
+                    zoom: 10,
+                    center: position
+                };
+                
+                window.map = new google.maps.Map(mapContainer, mapOptions);
+
+                var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                var locations = {
+    "555 Market St.": {
+        "lat": 37.7899844,
+        "lng": -122.3999366
+    },
+    "Embarcadero Freeway": {
+        "lat": 37.7489402,
+        "lng": -122.3928481
+    },
+    "Randall Museum": {
+        "lat": 37.7582073,
+        "lng": -122.4130598
+    },
+    "200 block Market Street": {
+        "lat": 37.7931217,
+        "lng": -122.3965472
+    },
+    "Epic Roasthouse (399 Embarcadero)": {
+        "lat": 37.7908379,
+        "lng": -122.3893566
+    },
+    "Justin Herman Plaza": {
+        "lat": 37.7951195,
+        "lng": -122.3952007
+    },
+    "Mason & California Streets (Nob Hill)": {
+        "lat": 37.7918421,
+        "lng": -122.4108428
+    },
+    "City Hall": {
+        "lat": 37.7792597,
+        "lng": -122.4192646
+    },
+    "Fairmont Hotel (950 Mason Street, Nob Hill)": {
+        "lat": 37.7924257,
+        "lng": -122.4106032
+    },
+    "San Francisco Chronicle (901 Mission Street at 15th Street)": {
+        "lat": 37.7824374,
+        "lng": -122.4063456
+    },
+    "Broadway (North Beach)": {
+        "lat": 37.7984385,
+        "lng": -122.4022479
+    },
+    "Crissy Field": {
+        "lat": 37.8039069,
+        "lng": -122.4640618
+    },
+    "California @ Montgomery": {
+        "lat": 37.7928648,
+        "lng": -122.40279
+    },
+    "Pier 50- end of the pier": {
+        "lat": 37.77389429999999,
+        "lng": -122.3848019
+    },
+    "Driving various SF Streets": {
+        "lat": 37.78279819999999,
+        "lng": -122.3897154
+    },
+    "Romolo Place @ Fresno St.": {
+        "lat": 37.7986013,
+        "lng": -122.4063965
+    },
+    "St. Francis Episcopal Church (399 San Fernando Way)": {
+        "lat": 37.7303135,
+        "lng": -122.4698163
+    },
+    "Coit Tower": {
+        "lat": 37.8023949,
+        "lng": -122.4058222
+    },
+    "Palace of Fine Arts": {
+        "lat": 37.8020645,
+        "lng": -122.4487662
+    },
+    "Treasure Island": {
+        "lat": 37.8235515,
+        "lng": -122.370648
+    },
+    "John Shelley Drive John McLaren Park": {
+        "lat": 37.719309,
+        "lng": -122.4193742
+    },
+    "The San Francisco School (300 Gavin St.)": {
+        "lat": 37.7327817,
+        "lng": -122.4113534
+    },
+    "3232 Jackson Ave.": {
+        "lat": 37.790931,
+        "lng": -122.448797
+    },
+    "Bernal Heights Park": {
+        "lat": 37.7433416,
+        "lng": -122.4139903
+    },
+    "679 Madrid St": {
+        "lat": 37.718722,
+        "lng": -122.434653
+    },
+    "Laguna Honda Hospital; 375 Laguna Honda Blvd.": {
+        "lat": 37.7473116,
+        "lng": -122.4590615
+    },
+    "Jackson St. at Spruce": {
+        "lat": 37.7899861,
+        "lng": -122.4541352
+    },
+    "Roxie Theater (3117 16th St.)": {
+        "lat": 37.7647772,
+        "lng": -122.4224035
+    },
+    "33 Spruce St": {
+        "lat": 37.7903215,
+        "lng": -122.4543691
+    },
+    "Foreign Cinema (2534 Mission)": {
+        "lat": 37.7564574,
+        "lng": -122.4192867
+    },
+    "Variety Preview Room (582 Market St.)": {
+        "lat": 37.7894639,
+        "lng": -122.401621
+    },
+    "Coi Restaurant (373 Broadway)": {
+        "lat": 37.7980647,
+        "lng": -122.4034273
+    },
+    "Lombard at Hyde": {
+        "lat": 37.8020045,
+        "lng": -122.4196371
+    },
+    "Conzelman Rd at McCollough Rd and down Conzelman Rd.": {
+        "lat": 37.8277082,
+        "lng": -122.4996353
+    },
+    "601 Buena Vista Ave West at Java St.": {
+        "lat": 37.7669535,
+        "lng": -122.4439685
+    },
+    "Market between Stuart and Van Ness": {
+        "lat": 37.7876564,
+        "lng": -122.4229813
+    },
+    "420 Jones St. at Ellis St.": {
+        "lat": 37.7851232,
+        "lng": -122.4126633
+    },
+    "Intersection of Broadway at Kearney": {
+        "lat": 37.7980203,
+        "lng": -122.4055234
+    },
+    "Ocean Beach": {
+        "lat": 37.75939210000001,
+        "lng": -122.510734
+    },
+    "Intersection of California at Polk": {
+        "lat": 37.8043727,
+        "lng": -122.4234796
+    },
+    "Grant between Bush and Broadway": {
+        "lat": 37.7897897,
+        "lng": -122.4096207
+    },
+    "Tosca Café (242 Columbus Avenue)": {
+        "lat": 37.7976266,
+        "lng": -122.4058736
+    },
+    "Yerba Buena Center for the Arts": {
+        "lat": 37.7856437,
+        "lng": -122.4021904
+    },
+    "Hyde Street Cable Car": {
+        "lat": 37.7907044,
+        "lng": -122.4187692
+    },
+    "Steinhart Aquarium (California Academy of Sciences, Golden Gate Park)": {
+        "lat": 37.7698646,
+        "lng": -122.4660947
+    },
+    "Transbay Terminal (Mission Street at 1st Street)": {
+        "lat": 37.7893387,
+        "lng": -122.3924805
+    },
+    "Treasure Island, Building #1, Ave of the Palms": {
+        "lat": 37.8171008,
+        "lng": -122.371205
+    },
+    "2930 Vallejo Street": {
+        "lat": 37.794164,
+        "lng": -122.445704
+    },
+    "2104 Broadway": {
+        "lat": 37.7946531,
+        "lng": -122.4320443
+    },
+    "1158-70 Montgomery Street": {
+        "lat": 37.799987,
+        "lng": -122.403972
+    },
+    "Kearney Street (Telegraph Hill)": {
+        "lat": 37.79755919999999,
+        "lng": -122.4054381
+    },
+    "Hall of Justice (850 Bryant Street)": {
+        "lat": 37.775471,
+        "lng": -122.4037169
+    },
+    "Pier 7 (The Embarcadero)": {
+        "lat": 37.7993901,
+        "lng": -122.3955956
+    },
+    "Chinatown": {
+        "lat": 37.7941378,
+        "lng": -122.4077914
+    },
+    "1155 Filbert Street at Hyde": {
+        "lat": 37.7999164,
+        "lng": -122.4183705
+    },
+    "Washington Square Park (Filbert, between Stockton and Powell)": {
+        "lat": 37.8008473,
+        "lng": -122.4099791
+    },
+    "5546 Geary Ave": {
+        "lat": 37.780586,
+        "lng": -122.4791515
+    },
+    "Postcard Row, Alamo Square, Hayes Valley": {
+        "lat": 37.7762593,
+        "lng": -122.432758
+    },
+    "Nobles Alley": {
+        "lat": 37.8010161,
+        "lng": -122.4071519
+    },
+    "Montgomery & Market Streets": {
+        "lat": 37.7894069,
+        "lng": -122.4010673
+    },
+    "Vaillancourt Fountain (Justin Herman Plaza)": {
+        "lat": 37.7955212,
+        "lng": -122.3953556
+    },
+    "Golden Gate Bridge": {
+        "lat": 37.8199286,
+        "lng": -122.4782551
+    },
+    "Grace Cathedral Episcopal Church (1100 California Street)": {
+        "lat": 37.7918581,
+        "lng": -122.4134328
+    },
+    "1101 Filbert St. ": {
+        "lat": 37.8002042,
+        "lng": -122.4178309
+    },
+    "Caffe Trieste": {
+        "lat": 37.7986567,
+        "lng": -122.4072951
+    },
+    "Saints Peter & Paul Church": {
+        "lat": 37.80159099999999,
+        "lng": -122.4101982
+    },
+    "Filbert St. & Leavenworth": {
+        "lat": 37.8003487,
+        "lng": -122.4176339
+    },
+    "Green St. & Grant Ave.": {
+        "lat": 37.79971219999999,
+        "lng": -122.4074155
+    },
+    "Tosca Café (242 Columbus Avenue, North Beach)": {
+        "lat": 37.7976266,
+        "lng": -122.4058736
+    },
+    "Pine St. & Grant": {
+        "lat": 37.7915062,
+        "lng": -122.4057618
+    },
+    "Harry's Bar on Fillmore": {
+        "lat": 37.7883499,
+        "lng": -122.4334685
+    },
+    "Way Faire Inn on Leidesdorff": {
+        "lat": 37.793997,
+        "lng": -122.4023388
+    },
+    "Jones & Pacific": {
+        "lat": 37.7958902,
+        "lng": -122.4150305
+    },
+    "Motel Capri": {
+        "lat": 37.79918500000001,
+        "lng": -122.433029
+    },
+    "Pacific & Divisadero": {
+        "lat": 37.7925186,
+        "lng": -122.44136
+    },
+    "Lombard & Hyde": {
+        "lat": 37.8020045,
+        "lng": -122.4196371
+    },
+    "330 Santa Clara Ave.": {
+        "lat": 37.734209,
+        "lng": -122.466499
+    },
+    "Ocean Beach at Lincoln": {
+        "lat": 37.75939210000001,
+        "lng": -122.510734
+    },
+    "Marina Green": {
+        "lat": 37.8062419,
+        "lng": -122.4349436
+    },
+    "Heald College": {
+        "lat": 37.7819286,
+        "lng": -122.4041764
+    },
+    "2898 Broadway": {
+        "lat": 37.793335,
+        "lng": -122.44471
+    },
+    "3563 20th St.": {
+        "lat": 37.7584616,
+        "lng": -122.420399
+    },
+    "2179 48th Ave": {
+        "lat": 37.745553,
+        "lng": -122.507258
+    },
+    "1138 Alabama St": {
+        "lat": 37.75367,
+        "lng": -122.4112992
+    },
+    "200 Post St. ": {
+        "lat": 37.788804,
+        "lng": -122.4053893
+    },
+    "2934 24th St.": {
+        "lat": 37.7527167,
+        "lng": -122.4106862
+    },
+    "Grant & Washington St.": {
+        "lat": 37.7951547,
+        "lng": -122.4065011
+    },
+    "South Park": {
+        "lat": 37.7815501,
+        "lng": -122.3940353
+    },
+    "303-305 S. Van Ness": {
+        "lat": 37.7682683,
+        "lng": -122.4176369
+    },
+    "The Ramp Restaurant": {
+        "lat": 37.7641206,
+        "lng": -122.3867726
+    },
+    "Taylor & Green St.": {
+        "lat": 37.7989091,
+        "lng": -122.4139396
+    },
+    "2178 Palou Ave.": {
+        "lat": 37.7406288,
+        "lng": -122.4015231
+    },
+    "1122 Folsom Street": {
+        "lat": 37.7764013,
+        "lng": -122.4087109
+    },
+    "2915 16th St.": {
+        "lat": 37.7650165,
+        "lng": -122.4179625
+    },
+    "Real Guitars": {
+        "lat": 37.7734127,
+        "lng": -122.4174864
+    },
+    "SFO International Airport Terminal 3": {
+        "lat": 37.6213129,
+        "lng": -122.3789554
+    },
+    "Aub Zam Zam Bar": {
+        "lat": 37.769619,
+        "lng": -122.449291
+    },
+    "790 Ulloa ": {
+        "lat": 37.7408258,
+        "lng": -122.4646626
+    },
+    "Trolley Car from Market and 11th": {
+        "lat": 37.7722481,
+        "lng": -122.414743
+    },
+    "St. Peter & Paul's Church (666 Filbert Street, Washington Square)": {
+        "lat": 37.80159099999999,
+        "lng": -122.4101982
+    },
+    "Alcatraz Island": {
+        "lat": 37.8269775,
+        "lng": -122.4229555
+    },
+    "628 Cole Street": {
+        "lat": 37.769226,
+        "lng": -122.4504325
+    },
+    "Duboce Park": {
+        "lat": 37.7695613,
+        "lng": -122.4324905
+    },
+    "Lombard Street": {
+        "lat": 37.802139,
+        "lng": -122.41874
+    },
+    "Fisherman's Wharf": {
+        "lat": 37.8079996,
+        "lng": -122.4177434
+    },
+    "Ferry Building": {
+        "lat": 37.7955469,
+        "lng": -122.3934177
+    },
+    "Ina Coolbrith Park (1700 Taylor Street)": {
+        "lat": 37.7982629,
+        "lng": -122.4134525
+    },
+    "Aquatic Park (Jefferson Street)": {
+        "lat": 37.8099475,
+        "lng": -122.4264453
+    },
+    "0-100 block Halleck Street": {
+        "lat": 37.8034832,
+        "lng": -122.4542958
+    },
+    "1458 33rd Ave.": {
+        "lat": 37.759951,
+        "lng": -122.491592
+    },
+    "3639 Taraval St": {
+        "lat": 37.7415828,
+        "lng": -122.5053758
+    },
+    "Lyon at Chestnut St.": {
+        "lat": 37.7993888,
+        "lng": -122.4475098
+    },
+    "420 Mason St.": {
+        "lat": 37.7875663,
+        "lng": -122.4095949
+    },
+    "1601 Lane St.": {
+        "lat": 37.7318275,
+        "lng": -122.3898156
+    },
+    "812 22nd St. and Tennessee": {
+        "lat": 37.7578889,
+        "lng": -122.3892762
+    },
+    "119 Utah": {
+        "lat": 37.7674506,
+        "lng": -122.4070031
+    },
+    "100 Alemany Blvd.": {
+        "lat": 37.7357188,
+        "lng": -122.4099429
+    },
+    "Twin Peaks": {
+        "lat": 37.7525098,
+        "lng": -122.4475683
+    },
+    "Bix Restaurant (56 Gold Street)": {
+        "lat": 37.7968712,
+        "lng": -122.4029298
+    },
+    "Sound Factory (1st and Harrison Streets)": {
+        "lat": 37.7809889,
+        "lng": -122.40026
+    },
+    "Java House (Pier 40, Embarcadero)": {
+        "lat": 37.7813805,
+        "lng": -122.3877693
+    },
+    "Mission Dolores (3321 16th Street, Mission District)": {
+        "lat": 37.7643856,
+        "lng": -122.4275673
+    },
+    "The Castro": {
+        "lat": 37.7609082,
+        "lng": -122.4350043
+    },
+    "Filbert St. from Hyde to Leavenworth": {
+        "lat": 37.8002388,
+        "lng": -122.4193474
+    },
+    "Webster Street": {
+        "lat": 37.7877034,
+        "lng": -122.4319239
+    },
+    "Alioto Park": {
+        "lat": 37.7588666,
+        "lng": -122.4181453
+    },
+    "Alta Plaza Park": {
+        "lat": 37.7911417,
+        "lng": -122.4376241
+    },
+    "Columbus & Pacific Ave": {
+        "lat": 37.7970734,
+        "lng": -122.4055576
+    },
+    "University Club": {
+        "lat": 37.792301,
+        "lng": -122.409067
+    },
+    "California & Powell ": {
+        "lat": 37.8058416,
+        "lng": -122.4119788
+    },
+    "California St from Mason to Kearny": {
+        "lat": 37.792062,
+        "lng": -122.4037148
+    },
+    "2107 Union Street": {
+        "lat": 37.7971178,
+        "lng": -122.4340934
+    },
+    "Larkin & Hyde Streets": {
+        "lat": 37.7822605,
+        "lng": -122.4130207
+    },
+    "Gabbiano's Restaurant (Ferry Building)": {
+        "lat": 37.7961831,
+        "lng": -122.3937001
+    },
+    "Telegraph Hill Blvd (Telegraph Hill)": {
+        "lat": 37.8027862,
+        "lng": -122.4060487
+    },
+    "2100 Green Street": {
+        "lat": 37.7965625,
+        "lng": -122.4339368
+    },
+    "California & Grant Streets": {
+        "lat": 37.7924638,
+        "lng": -122.405954
+    },
+    "Fort Point (Presidio, Golden Gate National Recreation Area)": {
+        "lat": 37.8105867,
+        "lng": -122.4771066
+    },
+    "Postcard Row (Alamo Square, Hayes Valley)": {
+        "lat": 37.7762593,
+        "lng": -122.432758
+    },
+    "War Memorial Building (401 Van Ness Avenue)": {
+        "lat": 37.778583,
+        "lng": -122.4208774
+    },
+    "Presidio, Golden Gate National Recreation Area": {
+        "lat": 37.7988737,
+        "lng": -122.4661937
+    },
+    "Palace of Fine Arts (3301 Lyon Street)": {
+        "lat": 37.8020645,
+        "lng": -122.4487662
+    },
+    "Public Health Service Hospital (Presidio, Golden Gate National Recreation Area)": {
+        "lat": 37.788612,
+        "lng": -122.474714
+    },
+    "Westin St. Francis Hotel (335 Powell Street, Union Square)": {
+        "lat": 37.787802,
+        "lng": -122.408812
+    },
+    "755 Vallejo Street": {
+        "lat": 37.7984707,
+        "lng": -122.4097926
+    },
+    "Café Trieste (609 Vallejo)": {
+        "lat": 37.7986567,
+        "lng": -122.4072951
+    },
+    "Neiman Marcus (150 Stockton Street, Union Square)": {
+        "lat": 37.78746,
+        "lng": -122.406435
+    },
+    "Bay Bridge": {
+        "lat": 37.7982799,
+        "lng": -122.3778182
+    },
+    "The Walden House, Buena Vista Park": {
+        "lat": 37.7693647,
+        "lng": -122.4431875
+    },
+    "First Bank (550 Montgomery Street at Commercial)": {
+        "lat": 37.7935837,
+        "lng": -122.4026419
+    },
+    "Broadway & Sansome": {
+        "lat": 37.7984385,
+        "lng": -122.4022479
+    },
+    "Stockton & Clay St": {
+        "lat": 37.7940644,
+        "lng": -122.4079215
+    },
+    "Sacramento & Front St.": {
+        "lat": 37.7942967,
+        "lng": -122.3989876
+    },
+    "Mason Street at Jackson": {
+        "lat": 37.7954211,
+        "lng": -122.4115607
+    },
+    "Pine St. & Davis St": {
+        "lat": 37.792584,
+        "lng": -122.3974392
+    },
+    "Post & Jones St.": {
+        "lat": 37.78768170000001,
+        "lng": -122.4133747
+    },
+    "California & Davis St": {
+        "lat": 37.7935225,
+        "lng": -122.3976275
+    },
+    "Kearney & Pine St.": {
+        "lat": 37.7916933,
+        "lng": -122.4042585
+    },
+    "Broadway & Columbus": {
+        "lat": 37.7978749,
+        "lng": -122.4067162
+    },
+    "Bush & Kearny": {
+        "lat": 37.7907632,
+        "lng": -122.4040735
+    },
+    "Embarcadero & Washington": {
+        "lat": 37.7966899,
+        "lng": -122.3956093
+    },
+    "Eddy & Taylor St.": {
+        "lat": 37.7841597,
+        "lng": -122.4109775
+    },
+    "Pier 1": {
+        "lat": 37.7972522,
+        "lng": -122.3944479
+    },
+    "Mission & Fremont St": {
+        "lat": 37.7650579,
+        "lng": -122.419705
+    },
+    "Mission & Beal": {
+        "lat": 37.7911592,
+        "lng": -122.3958262
+    },
+    "Potrero &San Bruno": {
+        "lat": 37.759727,
+        "lng": -122.4052896
+    },
+    "1160 Taylor Street": {
+        "lat": 37.79330059999999,
+        "lng": -122.4126356
+    },
+    "2810 Pacific Avenue": {
+        "lat": 37.792743,
+        "lng": -122.442084
+    },
+    "Stockton Tunnel (Stockton Street at Sutter Street)": {
+        "lat": 37.7915147,
+        "lng": -122.4074057
+    },
+    "Hobart Building (582 Market Street)": {
+        "lat": 37.7894639,
+        "lng": -122.401621
+    },
+    "Conservatory of Flowers (Golden Gate Park)": {
+        "lat": 37.772608,
+        "lng": -122.4602482
+    },
+    "391 Pennsylvania Avenue at 19th Street": {
+        "lat": 37.761621,
+        "lng": -122.393173
+    },
+    "Bank of America Building (555 California Street)": {
+        "lat": 37.792062,
+        "lng": -122.4037148
+    },
+    "The Final Final (2990 Baker Street)": {
+        "lat": 37.7985426,
+        "lng": -122.4458232
+    },
+    "Vallejo Street at Sansome": {
+        "lat": 37.7993922,
+        "lng": -122.4024386
+    },
+    "Union Square": {
+        "lat": 37.7883501,
+        "lng": -122.4075872
+    },
+    "Telegraph Hill": {
+        "lat": 37.8013407,
+        "lng": -122.4056674
+    },
+    "Vesuvio Café (255 Columbus Avenue)": {
+        "lat": 37.797494,
+        "lng": -122.406454
+    },
+    "Maiden Lane": {
+        "lat": 37.7882377,
+        "lng": -122.4051558
+    },
+    "Condor Club (Columbus and Broadway)": {
+        "lat": 37.7980077,
+        "lng": -122.4066528
+    },
+    "Marriot Hotel (55 4th Street at Market)": {
+        "lat": 37.7852279,
+        "lng": -122.404389
+    },
+    "Pier 39 (Fisherman's Wharf)": {
+        "lat": 37.80867300000001,
+        "lng": -122.409821
+    },
+    "4100 20th St": {
+        "lat": 37.758031,
+        "lng": -122.43269
+    },
+    "Harvey Milk Plaza": {
+        "lat": 37.7623652,
+        "lng": -122.4353132
+    },
+    "Ocean Beach @ Balboa": {
+        "lat": 37.774754,
+        "lng": -122.5114201
+    },
+    "F Train": {
+        "lat": 37.7938256,
+        "lng": -122.3935533
+    },
+    "1 Post Street": {
+        "lat": 37.7888404,
+        "lng": -122.4027155
+    },
+    "Flint & 16th (Castro)": {
+        "lat": 37.7639946,
+        "lng": -122.4365551
+    },
+    "222 Mason St. ": {
+        "lat": 37.7857933,
+        "lng": -122.4092577
+    },
+    "Presidio Church at 130 Fisher Loop": {
+        "lat": 37.7993009,
+        "lng": -122.4618706
+    },
+    "Orphan Andy's": {
+        "lat": 37.7624137,
+        "lng": -122.4348633
+    },
+    "Fort Funston": {
+        "lat": 37.7163014,
+        "lng": -122.5025354
+    },
+    "Folsom Street Fair on Folsom St.": {
+        "lat": 37.7753039,
+        "lng": -122.4101615
+    },
+    "Mission St and 5th St": {
+        "lat": 37.7827319,
+        "lng": -122.4064925
+    },
+    "Tiburon Hiking Trail, Tiburon, CA": {
+        "lat": 37.8884463,
+        "lng": -122.4494381
+    },
+    "The Stud": {
+        "lat": 37.7727671,
+        "lng": -122.4100757
+    },
+    "Mr. S Leather": {
+        "lat": 37.7741357,
+        "lng": -122.4086931
+    },
+    "2866 24th St.": {
+        "lat": 37.7529677,
+        "lng": -122.4097206
+    },
+    "St. Francis Fountain": {
+        "lat": 37.7527598,
+        "lng": -122.4083372
+    },
+    "Sutro Baths  ": {
+        "lat": 37.7804369,
+        "lng": -122.5136935
+    },
+    "24th and Church St. ": {
+        "lat": 37.7517076,
+        "lng": -122.4273821
+    },
+    "Golden Gate Park": {
+        "lat": 37.76904,
+        "lng": -122.4835193
+    },
+    "Church and Duboce Muni Station": {
+        "lat": 37.7674572,
+        "lng": -122.4292287
+    },
+    "Market & Church St.": {
+        "lat": 37.7422174,
+        "lng": -122.4267303
+    },
+    "Doc's Clock": {
+        "lat": 37.7559067,
+        "lng": -122.4186894
+    },
+    "Willy's Barber Shop": {
+        "lat": 37.7552116,
+        "lng": -122.419437
+    },
+    "770 Haight St": {
+        "lat": 37.771831,
+        "lng": -122.43489
+    },
+    "Urban Flowers": {
+        "lat": 37.7608889,
+        "lng": -122.4333977
+    },
+    "Jawbone at 99 Rhode Island St. ": {
+        "lat": 37.7689205,
+        "lng": -122.4025611
+    },
+    "Eros": {
+        "lat": 37.7681722,
+        "lng": -122.427699
+    },
+    "Starbucks at 333 O'Farrell St.": {
+        "lat": 37.7872876,
+        "lng": -122.4074322
+    },
+    "The Café at 2369 Market St.": {
+        "lat": 37.7629417,
+        "lng": -122.4343334
+    },
+    "Castro St. from Market to 18th St.": {
+        "lat": 37.7623338,
+        "lng": -122.4350546
+    },
+    "601 Buena Vista West": {
+        "lat": 37.7669535,
+        "lng": -122.4439685
+    },
+    "2000 Folsom": {
+        "lat": 37.765015,
+        "lng": -122.415715
+    },
+    "2413 Harrison St.": {
+        "lat": 37.758564,
+        "lng": -122.4124884
+    },
+    "Valencia St. from 16th to 17th": {
+        "lat": 37.7645317,
+        "lng": -122.4220536
+    },
+    "Muddy Waters Coffee House": {
+        "lat": 37.76451,
+        "lng": -122.4217101
+    },
+    "1890 Clay St.": {
+        "lat": 37.7919963,
+        "lng": -122.4242168
+    },
+    "Mission Arts Center": {
+        "lat": 37.7581831,
+        "lng": -122.4132469
+    },
+    "The Fairmont": {
+        "lat": 37.7924257,
+        "lng": -122.4106032
+    },
+    "El Camino Del Mar": {
+        "lat": 37.7857877,
+        "lng": -122.4962368
+    },
+    "Punjab": {
+        "lat": 37.7530688,
+        "lng": -122.4089713
+    },
+    "Bush Street at Jones": {
+        "lat": 37.7895396,
+        "lng": -122.4137511
+    },
+    "Casa Lucas Market at 2934 24th St": {
+        "lat": 37.7528007,
+        "lng": -122.4106944
+    },
+    "Lower Haight Street": {
+        "lat": 37.7712708,
+        "lng": -122.4371246
+    },
+    "Marine Fireman's Union Headquarters": {
+        "lat": 37.786052,
+        "lng": -122.3977242
+    },
+    "Market & Castro Street": {
+        "lat": 37.7593684,
+        "lng": -122.4350088
+    },
+    "Dolores Park": {
+        "lat": 37.7597727,
+        "lng": -122.427063
+    },
+    "Embarcadero from Broadway to Folsom": {
+        "lat": 37.7989484,
+        "lng": -122.3975042
+    },
+    "2017 23rd Street": {
+        "lat": 37.754504,
+        "lng": -122.400041
+    },
+    "Powell St. from Geary to Sacramento": {
+        "lat": 37.787802,
+        "lng": -122.408812
+    },
+    "Sacramento & Montgomery Streets": {
+        "lat": 37.7937989,
+        "lng": -122.4029789
+    },
+    "Filbert from Hyde to Leavenworth": {
+        "lat": 37.8002388,
+        "lng": -122.4193474
+    },
+    "Columbus and Green": {
+        "lat": 37.799524,
+        "lng": -122.4091473
+    },
+    "Filbert & Leavenworth Streets": {
+        "lat": 37.8003487,
+        "lng": -122.4176339
+    },
+    "1536 Noe St.": {
+        "lat": 37.74447,
+        "lng": -122.431527
+    },
+    "Larkin & Fulton": {
+        "lat": 37.7795923,
+        "lng": -122.4167887
+    },
+    "Texas & 19th Streets (Potrero Hill)": {
+        "lat": 37.7613708,
+        "lng": -122.3954666
+    },
+    "Embarcadero & Market": {
+        "lat": 37.7981483,
+        "lng": -122.284548
+    },
+    "Sheraton Palace Hotel (639 Market Street)": {
+        "lat": 37.7879522,
+        "lng": -122.4019622
+    },
+    "4015 21st St": {
+        "lat": 37.7558152,
+        "lng": -122.4361616
+    },
+    "Tonga Room": {
+        "lat": 37.7921357,
+        "lng": -122.4099773
+    },
+    "21st St & Sanchez": {
+        "lat": 37.756369,
+        "lng": -122.4301273
+    },
+    "Wine Impression": {
+        "lat": 37.7864371,
+        "lng": -122.4510344
+    },
+    "Yerba Buena Gardens": {
+        "lat": 37.7850153,
+        "lng": -122.4023464
+    },
+    "24 Hill St.": {
+        "lat": 37.756276,
+        "lng": -122.422225
+    },
+    "Tank Hill Park": {
+        "lat": 37.759931,
+        "lng": -122.4477144
+    },
+    "Claire Lilienthal Elementary School": {
+        "lat": 37.7869616,
+        "lng": -122.4579662
+    },
+    "Clement St. from 6th to 7th Ave. ": {
+        "lat": 37.7828573,
+        "lng": -122.4639038
+    },
+    "McLaren Lodge": {
+        "lat": 37.7716702,
+        "lng": -122.4545562
+    },
+    "923 Vermont St.": {
+        "lat": 37.757972,
+        "lng": -122.403544
+    },
+    "Bechelli's Flower Market Café": {
+        "lat": 37.7751548,
+        "lng": -122.4010668
+    },
+    "Cal-Mart Supermarket": {
+        "lat": 37.7861918,
+        "lng": -122.4528223
+    },
+    "2nd St & Howard": {
+        "lat": 37.7867936,
+        "lng": -122.3982678
+    },
+    "York & 24th St.": {
+        "lat": 37.7528607,
+        "lng": -122.408214
+    },
+    "Geary & 27th Ave": {
+        "lat": 37.7800493,
+        "lng": -122.4869012
+    },
+    "Vallejo Street Garage": {
+        "lat": 37.7987186,
+        "lng": -122.4099596
+    },
+    "Broadway & Taylor": {
+        "lat": 37.797071,
+        "lng": -122.413562
+    },
+    "Geary & 20th Ave": {
+        "lat": 37.7802754,
+        "lng": -122.479395
+    },
+    "Golden Gate Ave & Jones": {
+        "lat": 37.7820851,
+        "lng": -122.4122427
+    },
+    "Mason & Sacramento St": {
+        "lat": 37.7927762,
+        "lng": -122.4110042
+    },
+    "Pioneer Park at Coit Tower": {
+        "lat": 37.8028575,
+        "lng": -122.4059887
+    },
+    "Embarcadero Street": {
+        "lat": 37.7980721,
+        "lng": -122.3968204
+    },
+    "Clay St. at Taylor": {
+        "lat": 37.7934487,
+        "lng": -122.4128493
+    },
+    "Bay St. at Polk": {
+        "lat": 37.8043727,
+        "lng": -122.4234796
+    },
+    "Grant St. at Bush St.": {
+        "lat": 37.7905703,
+        "lng": -122.4055726
+    },
+    "Vallejo Garage Roof (Vallejo at Powell)": {
+        "lat": 37.7987186,
+        "lng": -122.4099596
+    },
+    "Jefferson St. at Powell St.": {
+        "lat": 37.8085974,
+        "lng": -122.4125358
+    },
+    "2nd St. at Townsend St.": {
+        "lat": 37.7806303,
+        "lng": -122.3905427
+    },
+    "Intersection of Lombard and Hyde": {
+        "lat": 37.8020045,
+        "lng": -122.4196371
+    },
+    "Grant between Bush and Market": {
+        "lat": 37.7897897,
+        "lng": -122.4096207
+    },
+    "Broadway and Kearney": {
+        "lat": 37.7980203,
+        "lng": -122.4055234
+    },
+    "555 California": {
+        "lat": 37.7470699,
+        "lng": -122.4211826
+    },
+    "Battery Spencer": {
+        "lat": 37.8276975,
+        "lng": -122.4817826
+    },
+    "Washington Square": {
+        "lat": 37.8008473,
+        "lng": -122.4099791
+    },
+    "Vallejo St. Garage, 766 Vallejo St.": {
+        "lat": 37.7987186,
+        "lng": -122.4099596
+    },
+    "Pier 43": {
+        "lat": 37.8090906,
+        "lng": -122.4150428
+    },
+    "Mission between 3rd and 4th St.": {
+        "lat": 37.772716,
+        "lng": -122.39123
+    },
+    "TransAmerica Pyramid (600 Montgomery Street)": {
+        "lat": 37.7951616,
+        "lng": -122.4027282
+    },
+    "Hyde St. at Greenwich and Hyde St. at Lombard": {
+        "lat": 37.8077692,
+        "lng": -122.4209012
+    },
+    "18th Street between Guerrero and Valencia Streets": {
+        "lat": 37.7616328,
+        "lng": -122.4240703
+    },
+    "Asia Star Fantasy, 1126 Grant Ave.": {
+        "lat": 37.7974328,
+        "lng": -122.4067744
+    },
+    "Atlas Café, 3049 20th St.": {
+        "lat": 37.7589457,
+        "lng": -122.4114619
+    },
+    "Water work in SF Bay": {
+        "lat": 37.767831,
+        "lng": -122.40271
+    },
+    "AT&T Stadium": {
+        "lat": 37.7785951,
+        "lng": -122.3892698
+    },
+    "Fort Baker": {
+        "lat": 37.8360614,
+        "lng": -122.4788979
+    },
+    "Harrison": {
+        "lat": 37.77284300000001,
+        "lng": -122.4097083
+    },
+    "Folsom": {
+        "lat": 37.761877,
+        "lng": -122.4149987
+    },
+    "Harrison & 20th": {
+        "lat": 37.7590434,
+        "lng": -122.4125343
+    },
+    "S. Van Ness": {
+        "lat": 37.7621605,
+        "lng": -122.4172224
+    },
+    "16th St.": {
+        "lat": 37.7655641,
+        "lng": -122.4114895
+    },
+    "20th": {
+        "lat": 37.7590949,
+        "lng": -122.4115985
+    },
+    "Z Space Studios; 450 Florida St.": {
+        "lat": 37.76370259999999,
+        "lng": -122.411551
+    },
+    "22nd St.": {
+        "lat": 37.7558455,
+        "lng": -122.4122264
+    },
+    "Romain St.": {
+        "lat": 37.7562265,
+        "lng": -122.4410428
+    },
+    "Corbett St.": {
+        "lat": 37.75616360000001,
+        "lng": -122.4432512
+    },
+    "Vallejo Street Garage; 766 Vallejo St.": {
+        "lat": 37.7987186,
+        "lng": -122.4099596
+    },
+    "Montgomery between California and Pine": {
+        "lat": 37.7894069,
+        "lng": -122.4010673
+    },
+    "Market St. overpass": {
+        "lat": 37.7735248,
+        "lng": -122.4212212
+    },
+    "Dolores Park, 20th St. between Church & Dolores St.": {
+        "lat": 37.762123,
+        "lng": -122.4259082
+    },
+    "Irving St. at 9th Ave.": {
+        "lat": 37.7640497,
+        "lng": -122.4663387
+    },
+    "Grand View Ave.": {
+        "lat": 37.7533701,
+        "lng": -122.4419064
+    },
+    "Palace of Fine Arts: 3306 Lyon St.": {
+        "lat": 37.8020645,
+        "lng": -122.4487662
+    },
+    "Van Ness and 12th St.": {
+        "lat": 37.7722723,
+        "lng": -122.4184882
+    },
+    "CCSF Alemany Campus ": {
+        "lat": 37.7256557,
+        "lng": -122.4510586
+    },
+    "Maritime Museum, Building 201 (Fort Mason)": {
+        "lat": 37.80774299999999,
+        "lng": -122.42415
+    },
+    "St. Paul's Church (Church Street, Noe Valley)": {
+        "lat": 37.7442106,
+        "lng": -122.4272742
+    },
+    "475 Diamond St.": {
+        "lat": 37.7548862,
+        "lng": -122.4365274
+    },
+    "411 Shrader St.": {
+        "lat": 37.770807,
+        "lng": -122.452475
+    },
+    "883 42nd Ave.": {
+        "lat": 37.772081,
+        "lng": -122.502706
+    },
+    "Hyatt Hotel (555 North Point St.)": {
+        "lat": 37.8059095,
+        "lng": -122.4161187
+    },
+    "Manor West (750 Harrison St.)": {
+        "lat": 37.781873,
+        "lng": -122.398785
+    },
+    "Carnelian Room, Bank of America Building (555 California Street, 53rd Floor)": {
+        "lat": 37.792062,
+        "lng": -122.4037148
+    },
+    "Unitarian Church (1187 Franklin St.)": {
+        "lat": 37.7852558,
+        "lng": -122.4234062
+    },
+    "E Tutto Qua Restaurant (270 Columbus St.)": {
+        "lat": 37.797753,
+        "lng": -122.4063
+    },
+    "Huntington Park (California & Taylor Streets, Nob Hill)": {
+        "lat": 37.7921814,
+        "lng": -122.4121737
+    },
+    "Clay St. at Sansome": {
+        "lat": 37.7948472,
+        "lng": -122.4015234
+    },
+    "333 Pacheco St at Lopez Ave.": {
+        "lat": 37.7481477,
+        "lng": -122.4625886
+    },
+    "1328 Portola": {
+        "lat": 37.74017800000001,
+        "lng": -122.464446
+    },
+    "New Taraval Café (1054 Taraval St.)": {
+        "lat": 37.743087,
+        "lng": -122.4777317
+    },
+    "Montgomery Street at Post Street": {
+        "lat": 37.7891114,
+        "lng": -122.4020365
+    },
+    "87 Cervantes Blvd (beach)": {
+        "lat": 37.80372,
+        "lng": -122.43898
+    },
+    "Gaspare's Pizza House (5546 Geary Blvd.)": {
+        "lat": 37.780586,
+        "lng": -122.479152
+    },
+    "510 Noe Street & 18th St.": {
+        "lat": 37.7610313,
+        "lng": -122.4328117
+    },
+    "Mission Inn (5630 Mission St)": {
+        "lat": 37.7111874,
+        "lng": -122.4471819
+    },
+    "Europa Café (4318 California St. and 5th Ave.)": {
+        "lat": 37.7852135,
+        "lng": -122.4638934
+    },
+    "City Hall ": {
+        "lat": 37.7792597,
+        "lng": -122.4192646
+    },
+    "2100 Pacific Ave at Laguna St": {
+        "lat": 37.7939648,
+        "lng": -122.4300102
+    },
+    "Greenwich St at Battery St": {
+        "lat": 37.8032569,
+        "lng": -122.4020093
+    },
+    "The Embarcadero": {
+        "lat": 37.7980721,
+        "lng": -122.3968204
+    },
+    "Kansas St at 17th St.": {
+        "lat": 37.7647355,
+        "lng": -122.4035563
+    },
+    "Ocean Beach Motel (2690 46th Ave.)": {
+        "lat": 37.7363439,
+        "lng": -122.5038779
+    },
+    "Swedenborgian Church (2107 Lyon Street)": {
+        "lat": 37.7903559,
+        "lng": -122.4463189
+    },
+    "St. John's Presbyterian Church (25 Lake Street)": {
+        "lat": 37.7866915,
+        "lng": -122.4596833
+    },
+    "305 Hugo Street": {
+        "lat": 37.76520379999999,
+        "lng": -122.4613068
+    },
+    "Rocco's Corner (Columbus Street)": {
+        "lat": 37.8032179,
+        "lng": -122.4146053
+    },
+    "Edinburgh Castle (950 Geary Street)": {
+        "lat": 37.7864269,
+        "lng": -122.4190489
+    },
+    "City Light Bookstore (261 Columbus Avenue)": {
+        "lat": 37.7976073,
+        "lng": -122.4065603
+    },
+    "Café Picaro 3120 16th Street": {
+        "lat": 37.7650784,
+        "lng": -122.4225222
+    },
+    "1462 Grant Avenue, at Union Street": {
+        "lat": 37.8004749,
+        "lng": -122.4073884
+    },
+    "Fog City Diner (1300 Battery Street)": {
+        "lat": 37.8035474,
+        "lng": -122.4019217
+    },
+    "Davies Symphony Hall (201 Van Ness Ave.)": {
+        "lat": 37.7776149,
+        "lng": -122.4206135
+    },
+    "21st and Collingswood St.": {
+        "lat": 37.7563632,
+        "lng": -122.4357347
+    },
+    "Sutter-Stockton Garage (444  Stockton)": {
+        "lat": 37.7900536,
+        "lng": -122.406524
+    },
+    "Castro St. between 21st an Hill St": {
+        "lat": 37.756098,
+        "lng": -122.434625
+    },
+    "Powell St. from California St. to Sutter St.": {
+        "lat": 37.787802,
+        "lng": -122.408812
+    },
+    "Intersection of Columbus and Kearny": {
+        "lat": 37.7969361,
+        "lng": -122.4053194
+    },
+    "War Memorial Opera House (401 Van Ness Avenue)": {
+        "lat": 37.778583,
+        "lng": -122.4208774
+    },
+    "Jackson St. from Mason St. to Powell St.": {
+        "lat": 37.7954534,
+        "lng": -122.4117282
+    },
+    "Intersection of Clay St. and Walter U Lum Plc": {
+        "lat": 37.794351,
+        "lng": -122.4057097
+    },
+    "21st and Sanchez St": {
+        "lat": 37.756369,
+        "lng": -122.4301273
+    },
+    "19th and Kansas St.": {
+        "lat": 37.76090970000001,
+        "lng": -122.4031849
+    },
+    "Broadway and Taylor St Intersection": {
+        "lat": 37.797071,
+        "lng": -122.413562
+    },
+    "Stanyan & Belgrave": {
+        "lat": 37.7594733,
+        "lng": -122.4515737
+    },
+    "Turk St between Lyon and Baker St": {
+        "lat": 37.7789663,
+        "lng": -122.4434129
+    },
+    "Oasis Nightclub (298 11th St)": {
+        "lat": 37.771972,
+        "lng": -122.4144509
+    },
+    "Alamo Square ": {
+        "lat": 37.77634219999999,
+        "lng": -122.4346334
+    },
+    "Fisherman's Wharf pier near Chapel (Port Walk #19)": {
+        "lat": 37.80867300000001,
+        "lng": -122.409821
+    },
+    "53 Potomac St": {
+        "lat": 37.769982,
+        "lng": -122.4327866
+    },
+    "Chrissy Field": {
+        "lat": 37.8039069,
+        "lng": -122.4640618
+    },
+    "Blooms Saloon (18th Street between Missouri and Texas Streets)": {
+        "lat": 37.7627985,
+        "lng": -122.3960369
+    },
+    "Citicorp Center (1 Sansome Street at Sutter) ": {
+        "lat": 37.7904356,
+        "lng": -122.4012663
+    },
+    "Hotel Majestic (1500 Sutter Street)": {
+        "lat": 37.7872514,
+        "lng": -122.425517
+    },
+    "Christopher's Books (1400 18th Street)": {
+        "lat": 37.7626784,
+        "lng": -122.3966969
+    },
+    "Farley's Café (1315 18th Street Near Missouri)": {
+        "lat": 37.7624718,
+        "lng": -122.3959956
+    },
+    "Van Ness between Fell and Lombard": {
+        "lat": 37.8021954,
+        "lng": -122.4244616
+    },
+    "Market at Mason": {
+        "lat": 37.7832203,
+        "lng": -122.4090909
+    },
+    "California at Larkin": {
+        "lat": 37.804578,
+        "lng": -122.4218478
+    },
+    "Regency Building (1290 Sutter Street)": {
+        "lat": 37.7879104,
+        "lng": -122.4215079
+    },
+    "16th and Utah": {
+        "lat": 37.7658488,
+        "lng": -122.406571
+    },
+    "California at Jones": {
+        "lat": 37.8052248,
+        "lng": -122.4169057
+    },
+    "Broadway Studios (435 Broadway at Montgomery Street)": {
+        "lat": 37.7980293,
+        "lng": -122.4044496
+    },
+    "Mission Dolores Park (Mission District)": {
+        "lat": 37.7597727,
+        "lng": -122.427063
+    },
+    "Pine and Leavenworth": {
+        "lat": 37.7902649,
+        "lng": -122.4155825
+    },
+    "Howard St. from Embarcadero to 11 St.": {
+        "lat": 37.773336,
+        "lng": -122.4157308
+    },
+    "Pine St. between Market and Kearny": {
+        "lat": 37.7921608,
+        "lng": -122.3981707
+    },
+    "Market St. at Embarcadero area": {
+        "lat": 37.7950111,
+        "lng": -122.3978696
+    },
+    "California St. between Drumm St. and Kearny St.": {
+        "lat": 37.7939407,
+        "lng": -122.3963452
+    },
+    "San Francisco - Oakland Bay Bridge": {
+        "lat": 37.7982799,
+        "lng": -122.3778182
+    },
+    "Sutter Stockton Garage": {
+        "lat": 37.7900536,
+        "lng": -122.406524
+    },
+    "Bush St. at Stockton St.": {
+        "lat": 37.790372,
+        "lng": -122.4071706
+    },
+    "766 Sutter Street": {
+        "lat": 37.788937,
+        "lng": -122.413123
+    },
+    "Pier 14": {
+        "lat": 37.7935796,
+        "lng": -122.3913269
+    },
+    "Merchant Exchange (465 California Street at Leidesdorff)": {
+        "lat": 37.792781,
+        "lng": -122.402175
+    },
+    "Powell St at Geary St": {
+        "lat": 37.7873819,
+        "lng": -122.4082412
+    },
+    "Embarcadero between Pier 2 and Harrison": {
+        "lat": 37.7895359,
+        "lng": -122.3877594
+    },
+    "1 Market St. Landmark Building": {
+        "lat": 37.7851667,
+        "lng": -122.4072784
+    },
+    "Sutter-Stockton Garage (330 Sutter Street at Stockton)": {
+        "lat": 37.7900536,
+        "lng": -122.406524
+    },
+    "Roof of Cable Car (California at Front Street)": {
+        "lat": 37.7907044,
+        "lng": -122.4187692
+    },
+    "Mama's Restaurant (1701 Stockton)": {
+        "lat": 37.80146,
+        "lng": -122.4095298
+    },
+    "Washington Square Park (North Beach)": {
+        "lat": 37.8008473,
+        "lng": -122.4099791
+    },
+    "Columbus Avenue at Green & Stockton": {
+        "lat": 37.7994642,
+        "lng": -122.40891
+    },
+    "Moose's Restaurant (1652 Stockton)": {
+        "lat": 37.8011609,
+        "lng": -122.4090968
+    },
+    "SPECS' Twelve Adler Museum Café": {
+        "lat": 37.7976253,
+        "lng": -122.4059732
+    },
+    "Victoria Theatre": {
+        "lat": 37.7649681,
+        "lng": -122.4188024
+    },
+    "700 Kansas St.": {
+        "lat": 37.76075,
+        "lng": -122.403468
+    },
+    "Ocean Beach at Point Lobos": {
+        "lat": 37.7784764,
+        "lng": -122.513963
+    },
+    "Danilo's Bakery (Green Street & Bannam Place)": {
+        "lat": 37.7997429,
+        "lng": -122.407789
+    },
+    "770 Haight St.": {
+        "lat": 37.771831,
+        "lng": -122.43489
+    },
+    "Tonic": {
+        "lat": 37.7986775,
+        "lng": -122.4222097
+    },
+    "The Magazine at 920 Larkin": {
+        "lat": 37.7864628,
+        "lng": -122.418059
+    },
+    "Presidio Branch Library": {
+        "lat": 37.7888519,
+        "lng": -122.444892
+    },
+    "The Royal Oak": {
+        "lat": 37.797001,
+        "lng": -122.42225
+    },
+    "Higher Grounds Coffee House": {
+        "lat": 37.7344121,
+        "lng": -122.4337293
+    },
+    "Hamburger Haven": {
+        "lat": 37.7829633,
+        "lng": -122.4678211
+    },
+    "304 Lily St.": {
+        "lat": 37.77419769999999,
+        "lng": -122.4261198
+    },
+    "Polk and Northpoint St.": {
+        "lat": 37.8052968,
+        "lng": -122.4236765
+    },
+    "Geary St. from Polk to Larkin": {
+        "lat": 37.7864269,
+        "lng": -122.4190489
+    },
+    "Yerba Buena Island": {
+        "lat": 37.8108709,
+        "lng": -122.3668348
+    },
+    "Montgomery and Union St.": {
+        "lat": 37.8010394,
+        "lng": -122.4044855
+    },
+    "Players Arcade at Pier 39": {
+        "lat": 37.8111035,
+        "lng": -122.4104763
+    },
+    "Epic Roasthouse": {
+        "lat": 37.7908379,
+        "lng": -122.3893566
+    },
+    "2601 Lyon Street": {
+        "lat": 37.794673,
+        "lng": -122.446996
+    },
+    "724 Brazil Avenue": {
+        "lat": 37.721611,
+        "lng": -122.428894
+    },
+    "Broadway Tunnel (Broadway between Powell and Larkin)": {
+        "lat": 37.7964404,
+        "lng": -122.4185264
+    },
+    "422 Oak Street at Laguna": {
+        "lat": 37.774738,
+        "lng": -122.426386
+    },
+    "Administration Building (Treasure Island)": {
+        "lat": 37.8171008,
+        "lng": -122.371205
+    },
+    "Glen Park Subway Station": {
+        "lat": 37.7330628,
+        "lng": -122.4338194
+    },
+    "Cliff House (1090 Point Lobos Avenue)": {
+        "lat": 37.7784764,
+        "lng": -122.513963
+    },
+    "Baker Beach": {
+        "lat": 37.7935724,
+        "lng": -122.483638
+    },
+    "Firestation #3 (Brazil Avenue and Athens Street)": {
+        "lat": 37.7951904,
+        "lng": -122.4224724
+    },
+    "Glide Memorial Church (434 Ellis St)": {
+        "lat": 37.785154,
+        "lng": -122.4114072
+    },
+    "Candlestick Park (602 Jamestown Ave.)": {
+        "lat": 37.7135308,
+        "lng": -122.3861392
+    },
+    "Golden Gate Park Children's Playground ": {
+        "lat": 37.7683448,
+        "lng": -122.4573784
+    },
+    "New Russian Hill Market (1198 Pacific Avenue at Jones)": {
+        "lat": 37.7959824,
+        "lng": -122.4148973
+    },
+    "3567 18th Street": {
+        "lat": 37.76161829999999,
+        "lng": -122.4230832
+    },
+    "Golden Gate National Recreation Area": {
+        "lat": 37.8345025,
+        "lng": -122.5047923
+    },
+    "Pier 24": {
+        "lat": 37.7895359,
+        "lng": -122.3877594
+    },
+    "Pier 39": {
+        "lat": 37.80867300000001,
+        "lng": -122.409821
+    },
+    "Piers 30-32": {
+        "lat": 37.7871426,
+        "lng": -122.3874048
+    },
+    "Montgomery Street at Union Street": {
+        "lat": 37.8010394,
+        "lng": -122.4044855
+    },
+    "Brocklebank Apartments (1000 Mason Street)": {
+        "lat": 37.7931691,
+        "lng": -122.4105791
+    },
+    "Japanese Tea Garden (Hagiwara Tea Garden Drive, Golden Gate Park)": {
+        "lat": 37.7700914,
+        "lng": -122.470436
+    },
+    "Red's Java House (Pier 30-32, The Embarcadero)": {
+        "lat": 37.7872148,
+        "lng": -122.3874311
+    },
+    "544 Natoma (SOMA)": {
+        "lat": 37.7795351,
+        "lng": -122.4088011
+    },
+    "Corona Heights Park": {
+        "lat": 37.7653122,
+        "lng": -122.4385846
+    },
+    "Mojito (1337-1339 Grant Avenue)": {
+        "lat": 37.7992708,
+        "lng": -122.4074228
+    },
+    "The Saloon (1232 Grant Avenue)": {
+        "lat": 37.7985867,
+        "lng": -122.4070229
+    },
+    "Project Artaud (Florida Street)": {
+        "lat": 37.7631435,
+        "lng": -122.4119294
+    },
+    "Mecca Restaurant (2029 Market Street)": {
+        "lat": 37.7683932,
+        "lng": -122.4274806
+    },
+    "McCovey Point, China Basin Park (24 Willy Mays Plaza)": {
+        "lat": 37.7765809,
+        "lng": -122.3888509
+    },
+    "Lombard Street between Hyde and Leavenworth": {
+        "lat": 37.802139,
+        "lng": -122.41874
+    },
+    "Alta Plaza Park (Steiner Street)": {
+        "lat": 37.7911417,
+        "lng": -122.4376241
+    },
+    "Hyde Street Pier": {
+        "lat": 37.8077692,
+        "lng": -122.4209012
+    },
+    "San Francisco Hilton (333 O'Farrell Street)": {
+        "lat": 37.7859008,
+        "lng": -122.4108333
+    },
+    "Buena Vista Café (2765 Hyde Street)": {
+        "lat": 37.8065045,
+        "lng": -122.4207783
+    },
+    "22nd Avenue & Balboa Street (Richmond District)": {
+        "lat": 37.7764599,
+        "lng": -122.4812627
+    },
+    "312 Fillmore Street": {
+        "lat": 37.772407,
+        "lng": -122.4303972
+    },
+    "1521 Masonic Avenue at Piedmont Street": {
+        "lat": 37.765892,
+        "lng": -122.444467
+    },
+    "Grant Street at Pacific Avenue": {
+        "lat": 37.79690970000001,
+        "lng": -122.4068577
+    },
+    "800 Bay Street": {
+        "lat": 37.804891,
+        "lng": -122.420441
+    },
+    "Cybelle's Pizza (1000 Bush Street)": {
+        "lat": 37.789657,
+        "lng": -122.413957
+    },
+    "766 Vallejo Street at Stockton Street (North Beach)": {
+        "lat": 37.7987186,
+        "lng": -122.4099596
+    },
+    "Spring Valley School (1451 Jackson Street)": {
+        "lat": 37.7939134,
+        "lng": -122.418809
+    },
+    "International Studies Academy (993 Vermont Street, Potrero Hill)": {
+        "lat": 37.7619724,
+        "lng": -122.4010678
+    },
+    "Victor's Restaurant, The Westin St. Francis Hotel (335 Powell Street)": {
+        "lat": 37.787802,
+        "lng": -122.408812
+    },
+    "SF Chronicle Building (901 Mission St)": {
+        "lat": 37.7824374,
+        "lng": -122.4063456
+    },
+    "369 Embarcadero": {
+        "lat": 37.7979967,
+        "lng": -122.3967523
+    },
+    "314 11th Street": {
+        "lat": 37.7714688,
+        "lng": -122.4139395
+    },
+    "Balboa pool Lot, San Jose Avenue & Havelock St": {
+        "lat": 37.7261581,
+        "lng": -122.4433243
+    },
+    "901 Missouri Street": {
+        "lat": 37.7548219,
+        "lng": -122.3955818
+    },
+    "Muddy Waters, 521 Valencia Street": {
+        "lat": 37.76451,
+        "lng": -122.4217101
+    },
+    "745 Treat Ave": {
+        "lat": 37.7581831,
+        "lng": -122.4132469
+    },
+    "Point Lobos Avenue": {
+        "lat": 37.7798893,
+        "lng": -122.5089571
+    },
+    "The San Francisco Bay": {
+        "lat": 37.8009074,
+        "lng": -122.3749732
+    },
+    "731 Grant Avenue": {
+        "lat": 37.7937592,
+        "lng": -122.4063094
+    },
+    "3650 21st Street": {
+        "lat": 37.756667,
+        "lng": -122.429073
+    },
+    "9 Calhoun Terrace": {
+        "lat": 37.80080950000001,
+        "lng": -122.4038203
+    },
+    "1246 Folsom Street": {
+        "lat": 37.7746094,
+        "lng": -122.4110331
+    },
+    "State Garage, 818 Leavenworth": {
+        "lat": 37.788783,
+        "lng": -122.4151264
+    },
+    "Cordova Market, 301 Rolph Street, San Francisco": {
+        "lat": 37.7135191,
+        "lng": -122.436377
+    },
+    "Buena Vista Park": {
+        "lat": 37.7684046,
+        "lng": -122.4414145
+    },
+    "Gough Street & Clay Street": {
+        "lat": 37.79176959999999,
+        "lng": -122.4260016
+    },
+    "Warren's Antiques, 375 9th St.": {
+        "lat": 37.7729581,
+        "lng": -122.4103937
+    },
+    "Cliffhouse, 1090 Point Lobos Ave.": {
+        "lat": 37.7784764,
+        "lng": -122.513963
+    },
+    "Julia Morgan Ballroom at the Merchant's Exchange Building, 465 California St.": {
+        "lat": 37.792781,
+        "lng": -122.402175
+    },
+    "1400 16th Street": {
+        "lat": 37.7661647,
+        "lng": -122.4012633
+    },
+    "Cameron House (920 Sacramento Street)": {
+        "lat": 37.7932786,
+        "lng": -122.4084188
+    },
+    "Broadway @ Jones Streets": {
+        "lat": 37.7968072,
+        "lng": -122.4152099
+    },
+    "Mad Dog Bar, 530 Haight Street": {
+        "lat": 37.7721395,
+        "lng": -122.4310217
+    },
+    "Duboce St., Duboce Café": {
+        "lat": 37.7692134,
+        "lng": -122.4315563
+    },
+    "68 Division Street": {
+        "lat": 37.7700948,
+        "lng": -122.4026916
+    },
+    "Jones @ Broadway": {
+        "lat": 37.7968072,
+        "lng": -122.4152099
+    },
+    "St Regis Hotel, 125 3rd Street": {
+        "lat": 37.786271,
+        "lng": -122.401452
+    },
+    "Bayview Police Station, 201 Williams Ave.": {
+        "lat": 37.7298279,
+        "lng": -122.3977161
+    },
+    "Park 77 (now called The Lister Bar), 77 Cambon Dr, San Francisco, CA 94132": {
+        "lat": 37.7176429,
+        "lng": -122.4737004
+    },
+    "770 Haight Street": {
+        "lat": 37.771831,
+        "lng": -122.43489
+    },
+    "Outpost Studios, 69 Green Street": {
+        "lat": 37.800349,
+        "lng": -122.4007583
+    },
+    "Harvey Milk Rec Center, 50 Scott St.": {
+        "lat": 37.7695269,
+        "lng": -122.4345774
+    },
+    "Filbert between Grant and Kearny": {
+        "lat": 37.801366,
+        "lng": -122.4079346
+    },
+    "Pier 45 - Jeremiah O'Brien Liberty Ship": {
+        "lat": 37.8110638,
+        "lng": -122.4181442
+    },
+    "Castro St. between 17th and 18th St.": {
+        "lat": 37.7623313,
+        "lng": -122.4353943
+    },
+    "Vega Coffee, 1245 Folsom Street": {
+        "lat": 37.7746094,
+        "lng": -122.4110331
+    },
+    "Embarcadero Street at Washington Street": {
+        "lat": 37.7966899,
+        "lng": -122.3956093
+    },
+    "Sparky's Diner, 242 Church Street": {
+        "lat": 37.7666948,
+        "lng": -122.4290866
+    },
+    "24th Between Portrero & Alabama": {
+        "lat": 37.7524763,
+        "lng": -122.4181458
+    },
+    "UN Plaza/ Civic Center Bart steps": {
+        "lat": 37.779756,
+        "lng": -122.41415
+    },
+    "42 Walter Street": {
+        "lat": 37.768422,
+        "lng": -122.432663
+    },
+    "Mudpie, 2185 Fillmore Street": {
+        "lat": 37.7895789,
+        "lng": -122.4342146
+    },
+    "Joice Street at Clay Street": {
+        "lat": 37.7939604,
+        "lng": -122.4087083
+    },
+    "Valenti, Marini, Perata, 4840 Mission Street": {
+        "lat": 37.7204481,
+        "lng": -122.4382032
+    },
+    "2007 Franklin Street": {
+        "lat": 37.7933438,
+        "lng": -122.424636
+    },
+    "Jonell's Bar, 401 Ellis": {
+        "lat": 37.7847671,
+        "lng": -122.4128835
+    },
+    "Green and Divisadero": {
+        "lat": 37.7953275,
+        "lng": -122.4419248
+    },
+    "60 Leavenworth St.": {
+        "lat": 37.7811707,
+        "lng": -122.4135524
+    },
+    "Huntington Park": {
+        "lat": 37.7921814,
+        "lng": -122.4121737
+    },
+    "Benu Restaurant, 22 Hawthorne Street": {
+        "lat": 37.7854075,
+        "lng": -122.3991123
+    },
+    "Billy Goat Hill, Castro St. & 30th St.": {
+        "lat": 37.741492,
+        "lng": -122.4329806
+    },
+    "Ellis and Jones St.": {
+        "lat": 37.784875,
+        "lng": -122.4128063
+    },
+    "The Holding Company (now called Patriot House Pub), 2 Embarcadero Ctr, San Francisco, CA 94111": {
+        "lat": 37.7949674,
+        "lng": -122.3989043
+    },
+    "157 Commonwealth": {
+        "lat": 37.782571,
+        "lng": -122.455958
+    },
+    "887 De Haro Street": {
+        "lat": 37.758626,
+        "lng": -122.400695
+    },
+    "970 Geary Street": {
+        "lat": 37.7861363,
+        "lng": -122.4192927
+    },
+    "Twin Peaks Blvd.": {
+        "lat": 37.7533934,
+        "lng": -122.4481732
+    },
+    "1201 Columbus Avenue": {
+        "lat": 37.8053125,
+        "lng": -122.4178646
+    },
+    "Betelnut restaurant, 2030 Union St.": {
+        "lat": 37.7976571,
+        "lng": -122.4326802
+    },
+    "Agua Vista Park at Mission Rock, 817 Terry A Francois Blvd.": {
+        "lat": 37.7654957,
+        "lng": -122.3865943
+    },
+    "Pier 45": {
+        "lat": 37.8093233,
+        "lng": -122.417095
+    },
+    "901/909Tennessee St.": {
+        "lat": 37.760022,
+        "lng": -122.389134
+    },
+    "Blue Danube Café, 306 Clement": {
+        "lat": 37.7831653,
+        "lng": -122.4625598
+    },
+    "Westin St. Francis": {
+        "lat": 37.787802,
+        "lng": -122.408812
+    },
+    "3033 24th Street": {
+        "lat": 37.7524177,
+        "lng": -122.412587
+    },
+    "Mission between 19th and 25th St.": {
+        "lat": 37.7523139,
+        "lng": -122.4188802
+    },
+    "Tonga Room, Fairmont Hotel, 950 Mason Street": {
+        "lat": 37.7924257,
+        "lng": -122.4106032
+    },
+    "San Francisco City Hall": {
+        "lat": 37.7792597,
+        "lng": -122.4192646
+    },
+    "1890 Clay Street": {
+        "lat": 37.7919963,
+        "lng": -122.4242168
+    },
+    "Harriet Alley": {
+        "lat": 37.7764971,
+        "lng": -122.4041981
+    },
+    "878-898 Chestnut St.": {
+        "lat": 37.8033262,
+        "lng": -122.4181013
+    },
+    "Stevenson Alley": {
+        "lat": 37.7897173,
+        "lng": -122.3994262
+    },
+    "Doc's Clock, 2575 Misison Street": {
+        "lat": 37.7559067,
+        "lng": -122.4186894
+    },
+    "1541 Grove Street": {
+        "lat": 37.775158,
+        "lng": -122.442046
+    },
+    "10th Street between Market & Mission ": {
+        "lat": 37.7761331,
+        "lng": -122.4173382
+    },
+    "William Stout Architectural Books, 804 Montgomery St.": {
+        "lat": 37.7966361,
+        "lng": -122.4033161
+    },
+    "The Stud, 399 9th Street": {
+        "lat": 37.7727671,
+        "lng": -122.4100757
+    },
+    "Washington between Stockton and Kearny": {
+        "lat": 37.8012257,
+        "lng": -122.4092224
+    },
+    "Hyde at Union": {
+        "lat": 37.79920730000001,
+        "lng": -122.4190807
+    },
+    "Always Open Car Wash, 2560 Marin Street": {
+        "lat": 37.7486566,
+        "lng": -122.4031389
+    },
+    "440 Castro St.": {
+        "lat": 37.7618293,
+        "lng": -122.4353406
+    },
+    "The Women's Building, 3543 18th St.": {
+        "lat": 37.7615596,
+        "lng": -122.4226539
+    },
+    "Pennsylvania Avenue at 19th Street": {
+        "lat": 37.7614837,
+        "lng": -122.3935108
+    },
+    "Mission Neibhrohood Health Cetner, 240 Shotweel Street": {
+        "lat": 37.764599,
+        "lng": -122.416586
+    },
+    "1125 Guerrero Street": {
+        "lat": 37.7532132,
+        "lng": -122.4227271
+    },
+    "1641 York Street": {
+        "lat": 37.7473312,
+        "lng": -122.4062631
+    },
+    "1000 Mason St.": {
+        "lat": 37.7930742,
+        "lng": -122.4107104
+    },
+    "343 Union Street": {
+        "lat": 37.8009644,
+        "lng": -122.405104
+    },
+    "Larken Street Youth Services, 1138 Sutter Street": {
+        "lat": 37.7822605,
+        "lng": -122.4130207
+    },
+    "60 Potomac": {
+        "lat": 37.770158,
+        "lng": -122.43233
+    },
+    "The 500 Club (500 Guerrero Street, Mission District)": {
+        "lat": 37.7630418,
+        "lng": -122.4241468
+    },
+    "Blind Cat, 3050 24th Street, San Francisco": {
+        "lat": 37.7527597,
+        "lng": -122.4132336
+    },
+    "67 Deming Street": {
+        "lat": 37.7603752,
+        "lng": -122.4457537
+    },
+    "1375 Haight St.": {
+        "lat": 37.7698938,
+        "lng": -122.4447426
+    },
+    "1 Urbano": {
+        "lat": 37.724404,
+        "lng": -122.463524
+    },
+    "Koshland Park": {
+        "lat": 37.77327760000001,
+        "lng": -122.4267285
+    },
+    "Mission Rec Center, 2450 Harrison Street": {
+        "lat": 37.75820100000001,
+        "lng": -122.412999
+    },
+    "Delores Park": {
+        "lat": 37.7597727,
+        "lng": -122.427063
+    },
+    "Musee Mecanique, Fisherman's Wharf": {
+        "lat": 37.8093405,
+        "lng": -122.4160609
+    },
+    "California at Mason": {
+        "lat": 37.8056316,
+        "lng": -122.4136236
+    },
+    "Pier 96": {
+        "lat": 37.7418606,
+        "lng": -122.3723858
+    },
+    "24th St. between Florida and Alabama": {
+        "lat": 37.7524763,
+        "lng": -122.4181458
+    },
+    "Various Haight St. Vintage Shops": {
+        "lat": 37.7696426,
+        "lng": -122.4488782
+    },
+    "San Francisco General Hospital": {
+        "lat": 37.7558047,
+        "lng": -122.4044432
+    },
+    "Laguna Honda Hospital, 375 Laguna Honda Blvd.": {
+        "lat": 37.7473116,
+        "lng": -122.4590615
+    },
+    "San Francisco Art Institute, 800 Chestnut": {
+        "lat": 37.803376,
+        "lng": -122.417167
+    },
+    "United Nations Plaza": {
+        "lat": 37.7799923,
+        "lng": -122.4137276
+    },
+    "Pier 14 San Francisco": {
+        "lat": 37.7935796,
+        "lng": -122.3913269
+    },
+    "1167 Alabama Street": {
+        "lat": 37.7532664,
+        "lng": -122.4110406
+    },
+    "1069 Tennessee Street": {
+        "lat": 37.75836899999999,
+        "lng": -122.388981
+    },
+    "40 Prentiss Street": {
+        "lat": 37.7420875,
+        "lng": -122.4121141
+    },
+    "Marina Morrison Bridal, 30 Maiden Ln.": {
+        "lat": 37.7884657,
+        "lng": -122.4043518
+    },
+    "Infield Batting Cages, 1888 Clement Street": {
+        "lat": 37.7825272,
+        "lng": -122.4792965
+    },
+    "504 Broadway": {
+        "lat": 37.798165,
+        "lng": -122.4056481
+    },
+    "1059 Texas Street": {
+        "lat": 37.7529012,
+        "lng": -122.394629
+    },
+    "253 4th Ave.": {
+        "lat": 37.783857,
+        "lng": -122.462669
+    },
+    "Orphan Andy's, 3991 17th Street": {
+        "lat": 37.7624137,
+        "lng": -122.4348633
+    },
+    "UCSF Mt Zion 1600 Divisadero": {
+        "lat": 37.7850048,
+        "lng": -122.4389555
+    },
+    "Daniel's Pharmacy, 943 Geneva Ave": {
+        "lat": 37.7163218,
+        "lng": -122.4403456
+    },
+    "350 Santa Ana Ave.": {
+        "lat": 37.730616,
+        "lng": -122.46829
+    },
+    "2937 24th Street": {
+        "lat": 37.75254,
+        "lng": -122.4108485
+    },
+    "850 Bryant- 6th floor County Jail": {
+        "lat": 37.77523619999999,
+        "lng": -122.4048949
+    },
+    "St. Mary's Square Park": {
+        "lat": 37.7919602,
+        "lng": -122.4051777
+    },
+    "535 Octavia Street": {
+        "lat": 37.7772013,
+        "lng": -122.4250075
+    },
+    "435 Broadway": {
+        "lat": 37.7980182,
+        "lng": -122.4044996
+    },
+    "2 Rowland": {
+        "lat": 37.7977448,
+        "lng": -122.4044379
+    },
+    "Red's Java House (Pier 30)": {
+        "lat": 37.7872148,
+        "lng": -122.3874311
+    },
+    "AT&T Park": {
+        "lat": 37.7785951,
+        "lng": -122.3892698
+    },
+    "Legion of Honor, 100 34th Ave": {
+        "lat": 37.7844661,
+        "lng": -122.5008419
+    },
+    "Bi-Rite Creamery, 3692 18th Stret": {
+        "lat": 37.76159,
+        "lng": -122.425717
+    },
+    "1821 Alabama Street": {
+        "lat": 37.7439999,
+        "lng": -122.4101619
+    },
+    "17th and Arkansas": {
+        "lat": 37.7650337,
+        "lng": -122.3987168
+    },
+    "11 San Jacinto Ave.": {
+        "lat": 37.735273,
+        "lng": -122.463151
+    },
+    "Underground SF, 424 Haight St.": {
+        "lat": 37.7724664,
+        "lng": -122.4293949
+    },
+    "City Lights Bookstore, 261 Columbus Ave.": {
+        "lat": 37.7976073,
+        "lng": -122.4065603
+    },
+    "1227 Montgomery Street": {
+        "lat": 37.8004708,
+        "lng": -122.4045297
+    },
+    "Sue Bierman Park": {
+        "lat": 37.7959705,
+        "lng": -122.3959833
+    },
+    "YWCA, 940 Powell": {
+        "lat": 37.7934919,
+        "lng": -122.4092654
+    },
+    "Harriet Street between Bryant and Brannan Streets": {
+        "lat": 37.7747389,
+        "lng": -122.4022683
+    },
+    "433 Baker Street, ": {
+        "lat": 37.775023,
+        "lng": -122.441662
+    },
+    "Ellis Food Center, 398 Ellis": {
+        "lat": 37.7849979,
+        "lng": -122.4126834
+    },
+    "Twin Peaks Park": {
+        "lat": 37.759931,
+        "lng": -122.4477144
+    },
+    "Mission Thrift, 2330 Mission St.": {
+        "lat": 37.759752,
+        "lng": -122.4193958
+    },
+    "Leavenworth at Green": {
+        "lat": 37.7985017,
+        "lng": -122.4172437
+    },
+    "145 Barlett St.": {
+        "lat": 37.7546686,
+        "lng": -122.4195856
+    },
+    "373 Columbus Avenue": {
+        "lat": 37.7983867,
+        "lng": -122.4078726
+    },
+    "Fillmore and Waller": {
+        "lat": 37.7711891,
+        "lng": -122.4302841
+    },
+    "Capital Restaurant, 839 Clay Street": {
+        "lat": 37.7940788,
+        "lng": -122.4071024
+    },
+    "Li Po Lounge, 916 Grant Avenue": {
+        "lat": 37.7954841,
+        "lng": -122.4063742
+    },
+    "Eddy @ Polk Street": {
+        "lat": 37.7831079,
+        "lng": -122.419195
+    },
+    "The Castro Theater, 429 Castro St.": {
+        "lat": 37.7620333,
+        "lng": -122.4347591
+    },
+    "Ele Nino Traiing Cetner, 2920 3rd Street": {
+        "lat": 37.75208,
+        "lng": -122.388246
+    },
+    "San Francisco Airport": {
+        "lat": 37.6213129,
+        "lng": -122.3789554
+    },
+    "2930 3rd Street": {
+        "lat": 37.7519723,
+        "lng": -122.3879709
+    },
+    "Bernal Heights Boulevard": {
+        "lat": 37.742249,
+        "lng": -122.412627
+    },
+    "520 Castro St.": {
+        "lat": 37.7604765,
+        "lng": -122.4351507
+    },
+    "McAllister between Leavenworth and Hyde": {
+        "lat": 37.78094249999999,
+        "lng": -122.414372
+    },
+    "Willy's Barber shop, 3227 22nd Street": {
+        "lat": 37.7552116,
+        "lng": -122.419437
+    },
+    "Howard Street at Steuart Street": {
+        "lat": 37.7920034,
+        "lng": -122.3916688
+    },
+    "The Drew School, 2901 California": {
+        "lat": 37.787638,
+        "lng": -122.442352
+    },
+    "Civic Center Plaza": {
+        "lat": 37.7795867,
+        "lng": -122.4173489
+    },
+    "1055 Montgomery St.": {
+        "lat": 37.798888,
+        "lng": -122.404283
+    },
+    "Octavia at Grove Street": {
+        "lat": 37.7879648,
+        "lng": -122.4271064
+    },
+    "3050 24th Street": {
+        "lat": 37.752565,
+        "lng": -122.4131914
+    },
+    "Mission Arts Center, 2450 Harrison Street": {
+        "lat": 37.7581831,
+        "lng": -122.4132469
+    },
+    "Bernal Heights Neighborhood": {
+        "lat": 37.7411622,
+        "lng": -122.4178378
+    },
+    "Kezar Pavillion": {
+        "lat": 37.7675483,
+        "lng": -122.4539336
+    },
+    "Boulevard Restaurant, 1 Mission St.": {
+        "lat": 37.79332,
+        "lng": -122.392761
+    },
+    "Dolores Park, San Francisco": {
+        "lat": 37.7597727,
+        "lng": -122.427063
+    },
+    "The End Up, 401 6th Streeet": {
+        "lat": 37.7772833,
+        "lng": -122.403778
+    },
+    "372/374 Pennsylvania Avenue ": {
+        "lat": 37.761786,
+        "lng": -122.393848
+    },
+    "1243 19th Street": {
+        "lat": 37.761136,
+        "lng": -122.395233
+    },
+    "940 Powell St.": {
+        "lat": 37.7934919,
+        "lng": -122.4092654
+    },
+    "Citizens Band, 1198 Folsom Street": {
+        "lat": 37.7752421,
+        "lng": -122.4101313
+    },
+    "1901 Ocean Ave. at Ashton Ave.": {
+        "lat": 37.7250734,
+        "lng": -122.4625197
+    },
+    "8 Octavia Street": {
+        "lat": 37.7725981,
+        "lng": -122.4234298
+    },
+    "745 Treat Ave.": {
+        "lat": 37.7581831,
+        "lng": -122.4132469
+    },
+    "Potomac and Waller": {
+        "lat": 37.7708691,
+        "lng": -122.4327506
+    },
+    "Jefferson Square Park": {
+        "lat": 37.7817433,
+        "lng": -122.4256958
+    },
+    "1119 Alabama Street": {
+        "lat": 37.7536766,
+        "lng": -122.4108745
+    },
+    "San Bruno and Alameda": {
+        "lat": 37.6321558,
+        "lng": -122.4008137
+    },
+    "901 Valencia Street": {
+        "lat": 37.7583737,
+        "lng": -122.4210319
+    },
+    "Boxer Stadium, 166 Havelock Street": {
+        "lat": 37.7258505,
+        "lng": -122.4446198
+    },
+    "100 Church Street": {
+        "lat": 37.769177,
+        "lng": -122.4293581
+    },
+    "Buena Vista betweeen Upper Terrace and Java St.": {
+        "lat": 37.7617415,
+        "lng": -122.4452113
+    },
+    "Fairmont Hotel": {
+        "lat": 37.7924257,
+        "lng": -122.4106032
+    },
+    "651 Brannan Street": {
+        "lat": 37.7752365,
+        "lng": -122.3996581
+    },
+    "600 Octavia Street": {
+        "lat": 37.7778147,
+        "lng": -122.4247127
+    },
+    "66 Potomac": {
+        "lat": 37.7703172,
+        "lng": -122.432439
+    },
+    "Castle between Union and Green": {
+        "lat": 37.7955685,
+        "lng": -122.4226443
+    },
+    "426 Castro St.": {
+        "lat": 37.7620409,
+        "lng": -122.4354446
+    },
+    "500 Cortland Avenue": {
+        "lat": 37.7388503,
+        "lng": -122.4161319
+    },
+    "Antonio Alley": {
+        "lat": 37.785257,
+        "lng": -122.4134107
+    },
+    "2450 Harrison Street": {
+        "lat": 37.75820100000001,
+        "lng": -122.412999
+    },
+    "Women's Building, 3543 18th St.": {
+        "lat": 37.7615596,
+        "lng": -122.4226539
+    },
+    "Eureka Arts Center, 4400 20th St.": {
+        "lat": 37.7576924,
+        "lng": -122.4370414
+    },
+    "Sutter Stockton Garage, 444 Stockton": {
+        "lat": 37.7900536,
+        "lng": -122.406524
+    },
+    "Terry A. Francois Blvd. ": {
+        "lat": 37.7701426,
+        "lng": -122.3864105
+    },
+    "Taylor and Union": {
+        "lat": 37.7998334,
+        "lng": -122.4141412
+    },
+    "225 California Street": {
+        "lat": 37.7933104,
+        "lng": -122.3993073
+    },
+    "Church @ Duboce Street": {
+        "lat": 37.7694689,
+        "lng": -122.4294966
+    },
+    "Powell St. at Market St.": {
+        "lat": 37.7845959,
+        "lng": -122.4073408
+    },
+    "534 Hyde Street": {
+        "lat": 37.7859698,
+        "lng": -122.4161084
+    },
+    "Washington Square Park": {
+        "lat": 37.8008473,
+        "lng": -122.4099791
+    },
+    "Mission Street @ 22nd Street": {
+        "lat": 37.7554447,
+        "lng": -122.4187761
+    },
+    "Leavenworth at Union": {
+        "lat": 37.7994171,
+        "lng": -122.4174331
+    },
+    "13 Lucky Street": {
+        "lat": 37.752228,
+        "lng": -122.413388
+    },
+    "Esta Noche, 3079 16th Street": {
+        "lat": 37.7646893,
+        "lng": -122.4212802
+    },
+    "Forrest Hill Muni Station": {
+        "lat": 37.7480295,
+        "lng": -122.4591606
+    },
+    "Mission Dolores Park, 19th St. & Dolores St.": {
+        "lat": 37.7597727,
+        "lng": -122.427063
+    },
+    "601 Buena Vista Ave West": {
+        "lat": 37.7669535,
+        "lng": -122.4439685
+    },
+    "67-69 Deming St.": {
+        "lat": 37.7603752,
+        "lng": -122.4457537
+    },
+    "Double Happiness Health, 3380 20th Street": {
+        "lat": 37.7589773,
+        "lng": -122.4167034
+    },
+    "Alamo Square Park": {
+        "lat": 37.7763694,
+        "lng": -122.434819
+    },
+    "Urban Flowers, 4029 18th Street": {
+        "lat": 37.7608889,
+        "lng": -122.4333977
+    },
+    "Lucky Street": {
+        "lat": 37.7509423,
+        "lng": -122.4133835
+    },
+    "Mission Creek Harbor along Channel St.": {
+        "lat": 37.7708696,
+        "lng": -122.3988211
+    },
+    "Bentley Reserve, 301 Battery Street": {
+        "lat": 37.7944107,
+        "lng": -122.4007622
+    },
+    "Grace Cathedral, 1100 California St.": {
+        "lat": 37.7918345,
+        "lng": -122.4133435
+    },
+    "Patricia's Green": {
+        "lat": 37.776225,
+        "lng": -122.4244228
+    },
+    "1461 Page St.": {
+        "lat": 37.7712411,
+        "lng": -122.4448386
+    },
+    "1080 Natoma Street": {
+        "lat": 37.7726957,
+        "lng": -122.4171274
+    },
+    "Bush and Sansome St.": {
+        "lat": 37.7911874,
+        "lng": -122.4007825
+    },
+    "Marriott Marquis, 780 Mission Street": {
+        "lat": 37.7852279,
+        "lng": -122.404389
+    },
+    "950 Mason Street": {
+        "lat": 37.7923317,
+        "lng": -122.4104804
+    },
+    "200 Kansas St.": {
+        "lat": 37.7667651,
+        "lng": -122.4042173
+    },
+    "Mason Street @ Vallejo ": {
+        "lat": 37.7981761,
+        "lng": -122.412118
+    },
+    "Haight St. at Central": {
+        "lat": 37.7704404,
+        "lng": -122.4436739
+    },
+    "Pier 50": {
+        "lat": 37.7739341,
+        "lng": -122.3848875
+    },
+    "Uva Enoteca, 568 Haight Street": {
+        "lat": 37.7720558,
+        "lng": -122.4316081
+    },
+    "Castro Street @ 18th street": {
+        "lat": 37.7608908,
+        "lng": -122.4350262
+    },
+    "1111 California Street": {
+        "lat": 37.791198,
+        "lng": -122.4129823
+    },
+    "Pier 39 San Francisco": {
+        "lat": 37.80867300000001,
+        "lng": -122.409821
+    },
+    "Fort 1": {
+        "lat": 37.80731,
+        "lng": -122.4194816
+    },
+    "Punjab Café, 838 24th St.": {
+        "lat": 37.7530688,
+        "lng": -122.4089713
+    },
+    "Filbert and Kearny Steps": {
+        "lat": 37.801771,
+        "lng": -122.4062606
+    },
+    "24th Street between Folsom and Harrison Streets": {
+        "lat": 37.7524763,
+        "lng": -122.4181458
+    },
+    "Ocean Park Motel": {
+        "lat": 37.7363439,
+        "lng": -122.5038779
+    },
+    "2633 Vallejo Street": {
+        "lat": 37.7945299,
+        "lng": -122.4406982
+    },
+    "California at Grant": {
+        "lat": 37.7924638,
+        "lng": -122.405954
+    },
+    "Mario's Café, 566 Columbus": {
+        "lat": 37.800256,
+        "lng": -122.409829
+    },
+    "18 Urbano": {
+        "lat": 37.724689,
+        "lng": -122.463036
+    },
+    "Laguna Honda Hospital": {
+        "lat": 37.7473116,
+        "lng": -122.4590615
+    },
+    "160 Church Street": {
+        "lat": 37.7683721,
+        "lng": -122.4294287
+    },
+    "1958 Valencia St.": {
+        "lat": 37.7453457,
+        "lng": -122.4200744
+    },
+    "500 Grove Street": {
+        "lat": 37.7777444,
+        "lng": -122.4250555
+    },
+    "350 Union Street": {
+        "lat": 37.8010955,
+        "lng": -122.4052791
+    },
+    "Encore Karaoke, 1550 California Street": {
+        "lat": 37.7907946,
+        "lng": -122.4200466
+    },
+    "Church Street MUNI Station": {
+        "lat": 37.7674572,
+        "lng": -122.4292287
+    },
+    "SF Zoo, 2945 Sloat Blvd": {
+        "lat": 37.7329743,
+        "lng": -122.5028407
+    },
+    "1018 Tennessee St.": {
+        "lat": 37.758936,
+        "lng": -122.389657
+    },
+    "Harvey Milk Plaza, 17th and Castro": {
+        "lat": 37.7623652,
+        "lng": -122.4353132
+    },
+    "Andronico's, 1200 Irving Street": {
+        "lat": 37.7640628,
+        "lng": -122.4708944
+    },
+    "Castle Street @ Green Street": {
+        "lat": 37.8000109,
+        "lng": -122.4050755
+    },
+    "Montgomery between Pacific and Broadway": {
+        "lat": 37.7973722,
+        "lng": -122.4035793
+    },
+    "Clayton Post Office, 554 Clayton St.": {
+        "lat": 37.7700539,
+        "lng": -122.4483882
+    },
+    "Philz Coffee, 1258 Minnesota Street": {
+        "lat": 37.7543341,
+        "lng": -122.3900774
+    },
+    "5th Ave @ Fulton Street in Golden Gate Park": {
+        "lat": 37.7737373,
+        "lng": -122.4627045
+    },
+    "83 Watchman Way": {
+        "lat": 37.7547842,
+        "lng": -122.3953682
+    },
+    "3079 16th Street": {
+        "lat": 37.7646893,
+        "lng": -122.4212802
+    },
+    "Mason and Pacific": {
+        "lat": 37.796296,
+        "lng": -122.4117426
+    },
+    "951 Hudson Avenue": {
+        "lat": 37.7331614,
+        "lng": -122.376629
+    },
+    "Potrero Hill Recreation Center (801 Arkansas Street)": {
+        "lat": 37.7561624,
+        "lng": -122.3972493
+    },
+    "Hayes Street between Ashbury and Shrader": {
+        "lat": 37.7734254,
+        "lng": -122.4520203
+    },
+    "Twin Peaks Bar, 401 Castro": {
+        "lat": 37.7624034,
+        "lng": -122.4349646
+    },
+    "La Taqueria, 2889 Mission St.": {
+        "lat": 37.7508961,
+        "lng": -122.4180867
+    },
+    "Daniel's Pharmacy, 943 Geneva Ave.": {
+        "lat": 37.7163218,
+        "lng": -122.4403456
+    },
+    "Matching Half Café, 1799 McAllister Street": {
+        "lat": 37.777197,
+        "lng": -122.4414181
+    },
+    "Castro Theatre, 429 Castro St.": {
+        "lat": 37.7620333,
+        "lng": -122.4347591
+    },
+    "Chaya / Perry's 132 Embarcadero": {
+        "lat": 37.7930864,
+        "lng": -122.392181
+    },
+    "BART Station @ 16th Street & Mission Streets": {
+        "lat": 37.7650579,
+        "lng": -122.419705
+    },
+    "17th & Market Street": {
+        "lat": 37.762738,
+        "lng": -122.4352084
+    },
+    "50 California Street": {
+        "lat": 37.7939839,
+        "lng": -122.3973981
+    },
+    "Cesar Chavez & Mission Street (Mission)": {
+        "lat": 37.774436,
+        "lng": -122.412079
+    },
+    "One Embarcadero Center (Financial District)": {
+        "lat": 37.7949973,
+        "lng": -122.3994346
+    },
+    "Castagnola's Restaurant (Fisherman's Wharf)": {
+        "lat": 37.808097,
+        "lng": -122.4176035
+    },
+    "Star's Café (55 Golden Gate Avenue at Van Ness)": {
+        "lat": 37.789844,
+        "lng": -122.421925
+    },
+    "20th & Connecticut Streets (Potrero Hill)": {
+        "lat": 37.7599753,
+        "lng": -122.3972755
+    },
+    "387 Fair Oaks at 25th Street": {
+        "lat": 37.750608,
+        "lng": -122.423581
+    },
+    "Moscone Convention Center": {
+        "lat": 37.7838675,
+        "lng": -122.4012377
+    },
+    "San Francisco Drydock (The Dogpatch)": {
+        "lat": 37.760628,
+        "lng": -122.3866097
+    },
+    "Balmy Street (Mission District)": {
+        "lat": 37.75261,
+        "lng": -122.4124888
+    },
+    "United Nations Plaza (Civic Center)": {
+        "lat": 37.7799923,
+        "lng": -122.4137276
+    },
+    "Ramada Plaza Hotel Downtown (1231 Market Street, Civic Center)": {
+        "lat": 37.7781588,
+        "lng": -122.4150923
+    },
+    "San Francisco Zoo (2701 Sloat Blvd.)": {
+        "lat": 37.7329743,
+        "lng": -122.5028407
+    },
+    "The Embarcadero/Ferry Building": {
+        "lat": 37.7955469,
+        "lng": -122.3934177
+    },
+    "Forest Hill Station- MUNI": {
+        "lat": 37.7480295,
+        "lng": -122.4591606
+    },
+    "SF General Hospital Center (1001 Potrero Avenue, Potrero Hill)": {
+        "lat": 37.7558047,
+        "lng": -122.4044432
+    }
+};
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = Object.keys(locations).map(function(locationKey, i) {
+          return new google.maps.Marker({
+            position: locations[locationKey],
+            label: labels[i % labels.length]
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+      geocoder = new google.maps.Geocoder();
+            }
+    </script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uZxbTV1GS8sMXbnd333Qyj4L6yciIXk&callback=init" async defer></script>
+        <script src="app.js"></script>
+    </body>
+</html>
