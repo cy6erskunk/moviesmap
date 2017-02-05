@@ -1,29 +1,4 @@
-<!doctype html>
-<html>
-    <head>
-        <title>maps</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="mapContainer"></div>
-        <input type="text" class="addressInput" placeholder="address">
-        <script>
-            var geocoder;
-            function init() {
-                var position = {
-                    lat: 37.790704,
-                    lng:-122.418769
-                };
-                var mapContainer = document.querySelector('.mapContainer');
-                var mapOptions = {
-                    zoom: 10,
-                    center: position
-                };
-                
-                window.map = new google.maps.Map(mapContainer, mapOptions);
-
-                var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                var locations = {
+{
     "555 Market St.": {
         "lat": 37.7899844,
         "lng": -122.3999366
@@ -3008,28 +2983,4 @@
         "lat": 37.7558047,
         "lng": -122.4044432
     }
-};
-
-        // Add some markers to the map.
-        // Note: The code uses the JavaScript Array.prototype.map() method to
-        // create an array of markers based on a given "locations" array.
-        // The map() method here has nothing to do with the Google Maps API.
-        var markers = Object.keys(locations).map(function(locationKey, i) {
-          return new google.maps.Marker({
-            position: locations[locationKey],
-            label: labels[i % labels.length]
-          });
-        });
-
-        // Add a marker clusterer to manage the markers.
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
-      geocoder = new google.maps.Geocoder();
-            }
-    </script>
-        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uZxbTV1GS8sMXbnd333Qyj4L6yciIXk&callback=init" async defer></script>
-        <script src="app.js"></script>
-    </body>
-</html>
+}

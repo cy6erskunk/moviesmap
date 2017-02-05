@@ -1,8 +1,8 @@
-/* eslint-env es6, jasmine */
+/* eslint-env jasmine */
 describe('geocode', () => {
     let geocode = require('../lib/geocode');
 
-    it('should resturn Promise', () => {
+    it('should return Promise', () => {
         expect(geocode() instanceof Promise).toBe(true);
     });
 
@@ -14,4 +14,4 @@ describe('geocode', () => {
                 done();
             });
     }, 100);
-})
+});
