@@ -8,7 +8,7 @@
     "test": "jasmine",
     "build": "webpack",
     "serve": "webpack-dev-server --progress",
-    "heroku-postinstall": "webpack"
+    "heroku-postbuild": "webpack"
   },
   "author": "Igor Shevchenko",
   "license": "ISC",
