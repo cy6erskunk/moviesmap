@@ -1,13 +1,14 @@
 {
   "name": "moviesmap",
   "version": "1.0.0",
-  "description": "",
+  "description": "SF movie locations on the map",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "test": "jasmine",
     "build": "webpack",
-    "serve": "webpack-dev-server --progress"
+    "serve": "webpack-dev-server --progress",
+    "heroku-postinstall": "webpack"
   },
   "author": "Igor Shevchenko",
   "license": "ISC",
@@ -28,5 +29,8 @@
     "eslint-plugin-react": "^6.9.0",
     "jasmine": "^2.5.3",
     "webpack-dev-server": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=6"
   }
 }
