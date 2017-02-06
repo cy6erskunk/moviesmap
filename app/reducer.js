@@ -3,10 +3,16 @@ import _moviesData from './data.json';
 import locations from './locations.json';
 
 const moviesData = _moviesData.filter(m => m.locations);
+const titles = moviesData.reduce((prev, m) => {
+    if (!prev.includes(m.title)) {
+        prev.push(m.title);
+    }
+    return prev;
+}, []);
 
 const initialState = {
     title: '',
-    markers: [],
+    titles,
     moviesData,
     locations
 };
@@ -20,7 +26,7 @@ const reducer = (state = initialState, action) => {
     case constants.SWITCH_MOVIE:
         return { 
             title: action.title,
-            markers: [],
+            titles,
             moviesData: filteredMoviesData,
             locations: filteredLocations
         };

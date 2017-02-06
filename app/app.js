@@ -8,19 +8,10 @@ import store from './store';
 import MovieSelector from './Selector';
 import MoviesMap from './MoviesMap';
 
-import moviesData from './data.json';
-
-let titles = moviesData.reduce((prev, next) => {
-    if (next.title && !prev.includes(next.title)) {
-        prev.push(next.title);
-    }
-    return prev;
-}, []);
-
 class SomeApp extends Component {
     render() {
         return (<div>
-            <MovieSelector titles={titles} className="title-select"
+            <MovieSelector titles={this.props.titles} className="title-select"
                 handleChange={ (title) => store.dispatch({ type: constants.SWITCH_MOVIE, title }) }/>
             <MoviesMap locations={this.props.locations}/>
         </div>);
@@ -44,6 +35,7 @@ class SomeAppContainer extends Component {
         return (
             <SomeApp
                 locations={ store.getState().locations }
+                titles={ store.getState().titles }
             />
         );
     }
