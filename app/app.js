@@ -10,9 +10,15 @@ import MoviesMap from './MoviesMap';
 class SomeApp extends Component {
     render() {
         return (<div>
-            <MovieSelector titles={this.props.titles} className="title-select"
-                handleChange={ (title) => store.dispatch({ type: constants.SWITCH_MOVIE, title }) }/>
-            <MoviesMap locations={this.props.locations}/>
+            <MovieSelector 
+                titles={this.props.titles}
+                className="title-select"
+                handleChange={ (title) => store.dispatch({ type: constants.SWITCH_MOVIE, title }) }
+            />
+            <MoviesMap 
+                locations={this.props.locations} 
+                movieTitle={this.props.movieTitle}
+            />
         </div>);
     }
 

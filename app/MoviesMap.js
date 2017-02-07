@@ -27,24 +27,44 @@ class MoviesMap extends Component {
         let map = new google.maps.Map(this.refs.map, mapOptions);
         window.map = map;
 
-        this.state.markers = Object.keys(locations).map((locationKey, i) => {
+        let markers = Object.keys(locations).map(locationKey => {
             return new google.maps.Marker({
                 position: locations[locationKey],
                 map: map,
-                title: locationKey
+                title: locationKey,
+                something: this.props.movieTitle
             });
         });
-        // window.markers = markers;
+        this.setState({markers});
 
-        // // Add a marker clusterer to manage the markers.
-        // var markerCluster = new MarkerClusterer(map, markers,
-        //     { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+        let infoWindow = new google.maps.InfoWindow();
+
+        markers.forEach(marker => {
+            google.maps.event.addListener(marker, 'click', () => {
+                infoWindow.setContent(`<h2>${marker.title}</h2><p>${this.props.movieTitle}</p>`);
+                infoWindow.open(map, marker);
+            });
+        });
     }
 
     componentDidUpdate() {
         let locationTitles = Object.keys(this.props.locations);
+        let bounds = new google.maps.LatLngBounds();
+
         this.state.markers.forEach(marker => {
             marker.setVisible(locationTitles.includes(marker.getTitle()));
+            if (locationTitles.includes(marker.getTitle())) {
+                bounds.extend(marker.getPosition());
+            }
+        });
+        /* global map */
+        map.setCenter(bounds.getCenter());
+        map.fitBounds(bounds);
+        google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+            map.setCenter(bounds.getCenter());
+            if (map.getZoom() > constants.MAX_ZOOM_AFTER_BOUND_CHANGE) {
+                map.setZoom(constants.MAX_ZOOM_AFTER_BOUND_CHANGE);
+            }
         });
     }
 
