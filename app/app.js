@@ -1,5 +1,4 @@
 /* eslint-env es6 */
-/* global google */
 'use strict';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
@@ -19,6 +18,12 @@ class SomeApp extends Component {
 
 }
 
+SomeApp.propTypes = {
+    locations: React.PropTypes.object,
+    movieTitle: React.PropTypes.string,
+    titles: React.PropTypes.arrayOf(React.PropTypes.string)
+};
+
 class SomeAppContainer extends Component {
 
     componentDidMount() {
@@ -36,10 +41,10 @@ class SomeAppContainer extends Component {
             <SomeApp
                 locations={ store.getState().locations }
                 titles={ store.getState().titles }
+                movieTitle={ store.getState().title }
             />
         );
     }
 }
 
-render(<SomeAppContainer/>, document.querySelector('.app-container'))
-
+render(<SomeAppContainer/>, document.querySelector('.app-container'));

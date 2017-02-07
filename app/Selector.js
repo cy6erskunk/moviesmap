@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
-import { render } from 'react-dom';
 
 function MovieTitleOption(props) {
-    let title = typeof props.title !== "undefined" ? props.title : props.value;
+    let title = typeof props.title !== 'undefined' ? props.title : props.value;
     return (
         <option value={props.value}>{title}</option>
     );
 }
+
+MovieTitleOption.propTypes = {
+    title: React.PropTypes.string,
+    value: React.PropTypes.string
+};
 
 const selectorStyle = {
     margin: '1em',
@@ -23,7 +27,7 @@ class MovieSelector extends Component {
         this.titlesList = titles.map((title, index) => 
             <MovieTitleOption key={index} value={title}/>
         );
-        this.titlesList.unshift(<MovieTitleOption key="-1" title="(select title to proceed)" value=""/>)
+        this.titlesList.unshift(<MovieTitleOption key="-1" title="(select title to proceed)" value=""/>);
     }
 
     handleChange(event) {
@@ -40,5 +44,10 @@ class MovieSelector extends Component {
         );
     }
 }
+
+MovieSelector.propTypes = {
+    handleChange: React.PropTypes.func,
+    titles: React.PropTypes.arrayOf(React.PropTypes.string)
+};
 
 export default MovieSelector;

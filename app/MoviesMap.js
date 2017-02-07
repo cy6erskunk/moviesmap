@@ -1,9 +1,10 @@
+/* global google */
 import React, {Component} from 'react';
-import { render } from 'react-dom';
+import constants from './constants';
 
 const mapStyle = {
-    width: "98vw",
-    height: "calc(100vh - 4em)",
+    width: '98vw',
+    height: 'calc(100vh - 4em)',
     margin: 0,
     padding: 0
 };
@@ -58,6 +59,12 @@ MoviesMap.defaultProps = {
         lat: 37.790704,
         lng: -122.418769
     }
+};
+
+MoviesMap.propTypes = {
+    locations: React.PropTypes.object,
+    movieTitle: React.PropTypes.string,
+    position: React.PropTypes.object
 };
 
 export default MoviesMap;
