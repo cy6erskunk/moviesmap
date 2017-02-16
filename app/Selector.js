@@ -31,13 +31,12 @@ class MovieSelector extends Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
         this.props.handleChange(event.target.value);
     }
     
     render() {
         return (
-            <select value={this.state.value} 
+            <select value={this.props.value} 
                     onChange={this.handleChange.bind(this)}
                     style={selectorStyle}
                     >{this.titlesList}</select>
@@ -47,7 +46,8 @@ class MovieSelector extends Component {
 
 MovieSelector.propTypes = {
     handleChange: React.PropTypes.func,
-    titles: React.PropTypes.arrayOf(React.PropTypes.string)
+    titles: React.PropTypes.arrayOf(React.PropTypes.string),
+    value: React.PropTypes.string
 };
 
 export default MovieSelector;

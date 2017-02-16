@@ -8,12 +8,19 @@ import MovieSelector from './Selector';
 import MoviesMap from './MoviesMap';
 
 class SomeApp extends Component {
+    dispatchChange(title) {
+        title ?
+            store.dispatch({ type: constants.SWITCH_MOVIE, title }) :
+            store.dispatch({ type: constants.RESET_MOVIE });
+    }
+    
     render() {
         return (<div>
             <MovieSelector 
                 titles={this.props.titles}
                 className="title-select"
-                handleChange={ (title) => store.dispatch({ type: constants.SWITCH_MOVIE, title }) }
+                handleChange={this.dispatchChange}
+                value={this.props.movieTitle}
             />
             <MoviesMap 
                 locations={this.props.locations} 
