@@ -7,6 +7,19 @@ import store from './store';
 import MovieSelector from './Selector';
 import MoviesMap from './MoviesMap';
 
+import clone from 'clone';
+
+import _moviesData from './data.json';
+import locations from './locations.json';
+
+const moviesData = _moviesData.filter(m => m.locations);
+const titles = moviesData.reduce((prev, m) => {
+    if (!prev.includes(m.title)) {
+        prev.push(m.title);
+    }
+    return prev;
+}, []);
+
 class SomeApp extends Component {
     dispatchChange(title) {
         title ?
@@ -41,8 +54,17 @@ class SomeAppContainer extends Component {
 
     componentDidMount() {
         this.unsubscribe = store.subscribe(() =>
-            this.setState({locations: store.getState().locations})
+            this.setState({
+                locations: store.getState().locations,
+                titles: store.getState().titles
+            })
         );
+
+        store.dispatch({ type: constants.INIT_DATA, data: {
+            titles,
+            moviesData,
+            locations
+        }})
     }
 
     componentWillUnmount() {

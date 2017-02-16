@@ -12,9 +12,34 @@ const mapStyle = {
 class MoviesMap extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            markers: []
-        };
+        
+        this.markers = [];
+    }
+
+    updateMarkers() {
+        // debugger;
+        this.markers.forEach(m => {
+            m.setMap(null);
+            m = null;
+        });
+        this.markers = [];
+        let locations = this.props.locations;
+        let markers = Object.keys(locations).map(locationKey => {
+            return new google.maps.Marker({
+                position: locations[locationKey],
+                map: this.map,
+                title: locationKey,
+                something: this.props.movieTitle
+            });
+        });
+
+        markers.forEach(marker => {
+            google.maps.event.addListener(marker, 'click', () => {
+                this.infoWindow.setContent(`<h2>${marker.title}</h2><p>${this.props.movieTitle}</p>`);
+                this.infoWindow.open(this.map, marker);
+            });
+        });
+        this.markers = markers;
     }
 
     componentDidMount() {
@@ -22,54 +47,47 @@ class MoviesMap extends Component {
             zoom: 10,
             center: this.props.position
         };
-        let locations = this.props.locations;
 
-        let map = new google.maps.Map(this.refs.map, mapOptions);
-        window.map = map;
-
-        let markers = Object.keys(locations).map(locationKey => {
-            return new google.maps.Marker({
-                position: locations[locationKey],
-                map: map,
-                title: locationKey,
-                something: this.props.movieTitle
-            });
-        });
-        this.setState({markers});
-
-        let infoWindow = new google.maps.InfoWindow();
-
-        markers.forEach(marker => {
-            google.maps.event.addListener(marker, 'click', () => {
-                infoWindow.setContent(`<h2>${marker.title}</h2><p>${this.props.movieTitle}</p>`);
-                infoWindow.open(map, marker);
-            });
-        });
+        this.map = new google.maps.Map(this.mapElem, mapOptions);
+        this.infoWindow = new google.maps.InfoWindow();
+        window.map = this.map;
     }
 
     componentDidUpdate() {
+        this.updateMarkers();
+
         let locationTitles = Object.keys(this.props.locations);
         let bounds = new google.maps.LatLngBounds();
 
-        this.state.markers.forEach(marker => {
-            marker.setVisible(locationTitles.includes(marker.getTitle()));
-            if (locationTitles.includes(marker.getTitle())) {
-                bounds.extend(marker.getPosition());
-            }
-        });
-        /* global map */
-        map.setCenter(bounds.getCenter());
-        map.fitBounds(bounds);
-        google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
-            map.setCenter(bounds.getCenter());
-            if (map.getZoom() > constants.MAX_ZOOM_AFTER_BOUND_CHANGE) {
-                map.setZoom(constants.MAX_ZOOM_AFTER_BOUND_CHANGE);
-            }
-        });
+        if (this.markers.length) {
+            this.markers.forEach(marker => {
+                marker.setVisible(locationTitles.includes(marker.getTitle()));
+                if (locationTitles.includes(marker.getTitle())) {
+                    bounds.extend(marker.getPosition());
+                }
+            });
+            
+            this.map.setCenter(bounds.getCenter());
+            this.map.fitBounds(bounds);
+            google.maps.event.addListenerOnce(this.map, 'bounds_changed', () => {
+                this.map.setCenter(bounds.getCenter());
+                if (this.map.getZoom() > constants.MAX_ZOOM_AFTER_BOUND_CHANGE) {
+                    this.map.setZoom(constants.MAX_ZOOM_AFTER_BOUND_CHANGE);
+                }
+            });
+        }
+    }
+
+    refDiv(div) {
+        this.mapElem = div;
     }
 
     render() {
-        return <div ref="map" style={mapStyle} className="mapContainer"></div>;
+        return <div 
+            ref={this.refDiv.bind(this)} 
+            style={mapStyle} 
+            className="mapContainer"
+        ></div>;
     }
     
 }

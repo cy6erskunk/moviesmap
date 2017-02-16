@@ -22,12 +22,6 @@ class MovieSelector extends Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
-
-        const titles = props.titles;
-        this.titlesList = titles.map((title, index) => 
-            <MovieTitleOption key={index} value={title}/>
-        );
-        this.titlesList.unshift(<MovieTitleOption key="-1" title="(select title to proceed)" value=""/>);
     }
 
     handleChange(event) {
@@ -35,6 +29,11 @@ class MovieSelector extends Component {
     }
     
     render() {
+        const titles = this.props.titles;
+        this.titlesList = titles.map((title, index) => 
+            <MovieTitleOption key={index} value={title}/>
+        );
+        this.titlesList.unshift(<MovieTitleOption key={"-1"} title="(select title to proceed)" value=""/>);
         return (
             <select value={this.props.value} 
                     onChange={this.handleChange.bind(this)}
