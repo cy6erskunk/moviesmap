@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
             clone(action.data),                    
             clone(action.data.moviesData)
                 .reduce((prev, m) => {
-                    prev[m.locations] = action.data.locations[m.locations]
+                    prev[m.locations] = action.data.locations[m.locations];
                     return prev;
                 }, {}));
 
@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
             locations: clone(state.moviesData)
                 .reduce((prev, m) => {
                     if (!action.title || m.title === action.title) {
-                        prev[m.locations] = state.locations[m.locations]
+                        prev[m.locations] = state.locations[m.locations];
                     }
                     return prev;
                 }, {})

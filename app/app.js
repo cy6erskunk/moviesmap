@@ -62,7 +62,7 @@ class SomeAppContainer extends Component {
             titles,
             moviesData,
             locations
-        }})
+        }});
     }
 
     componentWillUnmount() {
