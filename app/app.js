@@ -7,8 +7,6 @@ import store from './store';
 import MovieSelector from './Selector';
 import MoviesMap from './MoviesMap';
 
-import clone from 'clone';
-
 import _moviesData from './data.json';
 import locations from './locations.json';
 

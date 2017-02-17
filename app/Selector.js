@@ -33,7 +33,7 @@ class MovieSelector extends Component {
         this.titlesList = titles.map((title, index) => 
             <MovieTitleOption key={index} value={title}/>
         );
-        this.titlesList.unshift(<MovieTitleOption key={"-1"} title="(select title to proceed)" value=""/>);
+        this.titlesList.unshift(<MovieTitleOption key="-1" title="(select title to proceed)" value=""/>);
         return (
             <select value={this.props.value} 
                     onChange={this.handleChange.bind(this)}
