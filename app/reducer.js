@@ -5,6 +5,7 @@ const initialState = {
     title: '',
     titles: [],
     moviesData: [],
+    allLocations: {},
     locations: {}
 };
 
@@ -13,13 +14,18 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {    
     case constants.INIT_DATA:
 
-        return Object.assign({title: ''}, 
-            clone(action.data),                    
-            clone(action.data.moviesData)
+        return Object.assign({}, {
+            title: '',
+            titles: clone(action.data.titles),
+            allLocations: clone(action.data.locations),
+            moviesData: clone(action.data.moviesData),
+            locations: clone(action.data.moviesData)
                 .reduce((prev, m) => {
-                    prev[m.locations] = action.data.locations[m.locations];
+                    if (typeof action.data.locations[m.locations] !== 'undefined') {
+                        prev[m.locations] = action.data.locations[m.locations];
+                    }
                     return prev;
-                }, {}));
+                }, {})});
 
     case constants.SWITCH_MOVIE:
 
@@ -27,17 +33,22 @@ const reducer = (state = initialState, action) => {
             title: action.title,
             titles: clone(state.titles),
             moviesData: clone(state.moviesData),
+            allLocations: state.allLocations,
             locations: clone(state.moviesData)
                 .reduce((prev, m) => {
-                    if (!action.title || m.title === action.title) {
-                        prev[m.locations] = state.locations[m.locations];
+                    if (typeof state.allLocations[m.locations] !== 'undefined' && m.title === action.title) {
+                        prev[m.locations] = state.allLocations[m.locations];
                     }
                     return prev;
                 }, {})
         };
 
     case constants.RESET_MOVIE:
-        return clone(initialState);
+        return Object.assign({},
+            clone(state), {
+                title: '',
+                locations: state.allLocations
+            });
 
     default:
         return state;

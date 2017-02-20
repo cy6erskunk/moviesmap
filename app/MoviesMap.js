@@ -17,7 +17,6 @@ class MoviesMap extends Component {
     }
 
     updateMarkers() {
-        // debugger;
         this.markers.forEach(m => {
             m.setMap(null);
             m = null;
