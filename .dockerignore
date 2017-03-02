@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+
+.git*
+
+.dockerignore
+Dockerfile
+
+.vscode
+
+.eslintrc.json
+yarn.lock
+
+test
