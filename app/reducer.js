@@ -14,6 +14,10 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {    
     case constants.INIT_DATA:
 
+        if (!action.data) {
+            action.data = initialState;
+        }
+
         return Object.assign({}, {
             title: '',
             titles: clone(action.data.titles),

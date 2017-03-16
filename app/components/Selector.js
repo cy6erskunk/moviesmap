@@ -49,4 +49,8 @@ MovieSelector.propTypes = {
     value: React.PropTypes.string
 };
 
+MovieSelector.defaultProps = {
+    titles: []
+};
+
 export default MovieSelector;

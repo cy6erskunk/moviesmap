@@ -1,6 +1,6 @@
 /* global google */
 import React, {Component} from 'react';
-import constants from './constants';
+import constants from '../constants';
 
 const mapStyle = {
     width: '98vw',
@@ -14,6 +14,7 @@ class MoviesMap extends Component {
         super(props);
         
         this.markers = [];
+        this.mapInited = false;
     }
 
     updateMarkers() {
@@ -47,33 +48,38 @@ class MoviesMap extends Component {
             center: this.props.position
         };
 
-        this.map = new google.maps.Map(this.mapElem, mapOptions);
-        this.infoWindow = new google.maps.InfoWindow();
-        window.map = this.map;
+        if (typeof google !== 'undefined') {
+            this.map = new google.maps.Map(this.mapElem, mapOptions);
+            this.infoWindow = new google.maps.InfoWindow();
+            window.map = this.map;
+            this.mapInited = true;
+        }
     }
 
     componentDidUpdate() {
-        this.updateMarkers();
+        if (this.mapInited) {
+            this.updateMarkers();
 
-        let locationTitles = Object.keys(this.props.locations);
-        let bounds = new google.maps.LatLngBounds();
+            let locationTitles = Object.keys(this.props.locations);
+            let bounds = new google.maps.LatLngBounds();
 
-        if (this.markers.length) {
-            this.markers.forEach(marker => {
-                marker.setVisible(locationTitles.includes(marker.getTitle()));
-                if (locationTitles.includes(marker.getTitle())) {
-                    bounds.extend(marker.getPosition());
-                }
-            });
-            
-            this.map.setCenter(bounds.getCenter());
-            this.map.fitBounds(bounds);
-            google.maps.event.addListenerOnce(this.map, 'bounds_changed', () => {
+            if (this.markers.length) {
+                this.markers.forEach(marker => {
+                    marker.setVisible(locationTitles.includes(marker.getTitle()));
+                    if (locationTitles.includes(marker.getTitle())) {
+                        bounds.extend(marker.getPosition());
+                    }
+                });
+                
                 this.map.setCenter(bounds.getCenter());
-                if (this.map.getZoom() > constants.MAX_ZOOM_AFTER_BOUND_CHANGE) {
-                    this.map.setZoom(constants.MAX_ZOOM_AFTER_BOUND_CHANGE);
-                }
-            });
+                this.map.fitBounds(bounds);
+                google.maps.event.addListenerOnce(this.map, 'bounds_changed', () => {
+                    this.map.setCenter(bounds.getCenter());
+                    if (this.map.getZoom() > constants.MAX_ZOOM_AFTER_BOUND_CHANGE) {
+                        this.map.setZoom(constants.MAX_ZOOM_AFTER_BOUND_CHANGE);
+                    }
+                });
+            }
         }
     }
 
