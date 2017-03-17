@@ -1,8 +1,9 @@
 import constants from '../constants';
 
-export const init = () => {
+export const init = (data) => {
     return {
-        type: constants.INIT_DATA
+        type: constants.INIT_DATA,
+        data
     };
 };
 
