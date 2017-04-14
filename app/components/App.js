@@ -5,6 +5,7 @@ import store from '../store';
 import { init, switchMovie, resetMovie }  from '../actions';
 import MovieSelector from './Selector';
 import MoviesMap from './MoviesMap';
+import ErrorBubble from './ErrorBubble';
 
 class SomeApp extends Component {
     dispatchChange(title) {
@@ -15,11 +16,13 @@ class SomeApp extends Component {
     
     render() {
         return (<div>
+            <ErrorBubble message={this.props.error}/>
             <MovieSelector 
                 titles={this.props.titles}
                 className="title-select"
                 handleChange={this.dispatchChange}
                 value={this.props.movieTitle}
+                loadingData={this.props.loadingData}
             />
             <MoviesMap 
                 locations={this.props.locations} 
@@ -33,7 +36,9 @@ class SomeApp extends Component {
 SomeApp.propTypes = {
     locations: React.PropTypes.object,
     movieTitle: React.PropTypes.string,
-    titles: React.PropTypes.arrayOf(React.PropTypes.string)
+    titles: React.PropTypes.arrayOf(React.PropTypes.string),
+    loadingData: React.PropTypes.bool,
+    error: React.PropTypes.string
 };
 
 class SomeAppContainer extends Component {
@@ -42,7 +47,8 @@ class SomeAppContainer extends Component {
         this.unsubscribe = store.subscribe(() =>
             this.setState({
                 locations: store.getState().locations,
-                titles: store.getState().titles
+                titles: store.getState().titles,
+                error: store.getState().error
             })
         );
 
@@ -59,6 +65,8 @@ class SomeAppContainer extends Component {
                 locations={ store.getState().locations }
                 titles={ store.getState().titles }
                 movieTitle={ store.getState().title }
+                loadingData={ store.getState().loadingData }
+                error={ store.getState().error }
             />
         );
     }

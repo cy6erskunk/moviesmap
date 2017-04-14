@@ -98,6 +98,7 @@ class MoviesMap extends Component {
 }
 
 MoviesMap.defaultProps = {
+    /* initial center of the map */
     position: {
         lat: 37.790704,
         lng: -122.418769
@@ -105,6 +106,7 @@ MoviesMap.defaultProps = {
 };
 
 MoviesMap.propTypes = {
+    /* { location name => coordinates } */
     locations: React.PropTypes.object,
     movieTitle: React.PropTypes.string,
     position: React.PropTypes.object

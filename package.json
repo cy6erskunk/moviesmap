@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest",
+    "test": "jest --watchAll",
     "build": "webpack",
     "serve": "webpack-dev-server --progress",
     "heroku-postbuild": "webpack"
@@ -23,7 +23,9 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "redux": "^3.6.0",
-    "webpack": "^2.2.1"
+    "redux-thunk": "^2.2.0",
+    "webpack": "^2.2.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-jest": "^18.0.0",

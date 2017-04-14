@@ -30,14 +30,20 @@ class MovieSelector extends Component {
     
     render() {
         const titles = this.props.titles;
-        this.titlesList = titles.map((title, index) => 
-            <MovieTitleOption key={index} value={title}/>
-        );
-        this.titlesList.unshift(<MovieTitleOption key="-1" title="(select title to proceed)" value=""/>);
+        if (!this.props.loadingData) {
+            this.titlesList = titles.map((title, index) => 
+                <MovieTitleOption key={index} value={title}/>
+            );
+            this.titlesList.unshift(<MovieTitleOption key="-1" title="(select title to proceed)" value=""/>);
+        } else {
+            this.titlesList.unshift(<MovieTitleOption key={Math.random()} title="(Loading...)" value=""/>);
+        }
+        
         return (
             <select value={this.props.value} 
                     onChange={this.handleChange.bind(this)}
                     style={selectorStyle}
+                    disabled={this.props.loadingData}
                     >{this.titlesList}</select>
         );
     }
@@ -46,11 +52,13 @@ class MovieSelector extends Component {
 MovieSelector.propTypes = {
     handleChange: React.PropTypes.func,
     titles: React.PropTypes.arrayOf(React.PropTypes.string),
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    loadingData: React.PropTypes.bool
 };
 
 MovieSelector.defaultProps = {
-    titles: []
+    titles: [],
+    loadingData: false
 };
 
 export default MovieSelector;
