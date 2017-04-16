@@ -52,7 +52,7 @@ describe('reducer', () => {
 
     it('does not reset error', () => {
         let errorMsg = 'something error-like';
-        let state = reducer(undefined, {type: constants.RECEIVE_DATA, error: errorMsg});
+        let state = reducer(undefined, {type: constants.RECEIVE_MOVIES_DATA, error: errorMsg});
         let result = reducer(state, {type: constants.INIT_DATA});
         expect(result.error).toEqual(errorMsg);
     });
@@ -98,7 +98,7 @@ describe('reducer', () => {
                 'lng': -122.3928481
             }};
         let result = reducer(undefined, {type: constants.INIT_DATA, data: {locations}});
-        result = reducer(result, {type: constants.RECEIVE_DATA, data: []});
+        result = reducer(result, {type: constants.RECEIVE_MOVIES_DATA, data: []});
 
         expect(result.allLocations).toEqual(locations);
         result = reducer(result, {type: constants.SWITCH_MOVIE, title});

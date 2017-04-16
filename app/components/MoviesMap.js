@@ -88,11 +88,14 @@ class MoviesMap extends Component {
     }
 
     render() {
-        return <div 
-            ref={this.refDiv.bind(this)} 
-            style={mapStyle} 
-            className="mapContainer"
-        ></div>;
+        return <div>
+            {this.props.loadingLocations && <div>loadingLocations</div>}
+            <div 
+                ref={this.refDiv.bind(this)} 
+                style={mapStyle} 
+                className="mapContainer"
+            ></div>
+        </div>;
     }
     
 }
@@ -102,14 +105,17 @@ MoviesMap.defaultProps = {
     position: {
         lat: 37.790704,
         lng: -122.418769
-    }
+    },
+    locations: {},
+    loadingLocations: true
 };
 
 MoviesMap.propTypes = {
     /* { location name => coordinates } */
     locations: React.PropTypes.object,
     movieTitle: React.PropTypes.string,
-    position: React.PropTypes.object
+    position: React.PropTypes.object,
+    loadingLocations: React.PropTypes.bool
 };
 
 export default MoviesMap;

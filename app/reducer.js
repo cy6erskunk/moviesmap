@@ -8,6 +8,7 @@ const initialState = {
     allLocations: {},
     locations: {},
     loadingData: false,
+    loadingLocations: false,
     error: ''
 };
 
@@ -15,12 +16,17 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {    
 
-    case constants.REQUEST_DATA:
+    case constants.REQUEST_MOVIES_DATA:
         return Object.assign({}, clone(state), {
             loadingData: true
         });
 
-    case constants.RECEIVE_DATA:
+    case constants.REQUEST_LOCATIONS_DATA:
+        return Object.assign({}, clone(state), {
+            loadingLocations: true
+        });
+
+    case constants.RECEIVE_MOVIES_DATA:
         return action.error ? Object.assign({}, state, {
             error: action.error.toString(),
             loadingData: false
@@ -35,6 +41,16 @@ const reducer = (state = initialState, action) => {
                             }
                             return prev;
                         }, [])
+        });
+
+    case constants.RECEIVE_LOCATIONS_DATA:
+        return action.error ? Object.assign({}, state, {
+            error: action.error.toString(),
+            loadingLocations: false
+        }) : Object.assign({}, state, {
+            loadingLocations: false,
+            locations: action.data,
+            allLocations: action.data
         });
 
     case constants.INIT_DATA:

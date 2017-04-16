@@ -2,7 +2,7 @@
 'use strict';
 import React, { Component } from 'react';
 import store from '../store';
-import { init, switchMovie, resetMovie }  from '../actions';
+import { switchMovie, resetMovie }  from '../actions';
 import MovieSelector from './Selector';
 import MoviesMap from './MoviesMap';
 import ErrorBubble from './ErrorBubble';
@@ -27,6 +27,7 @@ class SomeApp extends Component {
             <MoviesMap 
                 locations={this.props.locations} 
                 movieTitle={this.props.movieTitle}
+                loadingLocations={this.props.loadingLocations}
             />
         </div>);
     }
@@ -38,7 +39,8 @@ SomeApp.propTypes = {
     movieTitle: React.PropTypes.string,
     titles: React.PropTypes.arrayOf(React.PropTypes.string),
     loadingData: React.PropTypes.bool,
-    error: React.PropTypes.string
+    error: React.PropTypes.string,
+    loadingLocations: React.PropTypes.bool
 };
 
 class SomeAppContainer extends Component {
@@ -52,7 +54,7 @@ class SomeAppContainer extends Component {
             })
         );
 
-        store.dispatch(init());
+        // store.dispatch(init());
     }
 
     componentWillUnmount() {
@@ -67,6 +69,7 @@ class SomeAppContainer extends Component {
                 movieTitle={ store.getState().title }
                 loadingData={ store.getState().loadingData }
                 error={ store.getState().error }
+                loadingLocations={ store.getState().loadingLocations }
             />
         );
     }
