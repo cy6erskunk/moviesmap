@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import reducer from '../app/reducer';
+import reducer from '../app/reducers/movies';
 import constants from '../app/constants';
 import deepFreeze from 'deep-freeze';
 

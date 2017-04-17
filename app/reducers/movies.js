@@ -1,10 +1,10 @@
-import constants from './constants';
+import constants from '../constants';
 import clone from 'clone';
 
 const initialState = {
     title: '',
     titles: [],
-    moviesData: [],
+    moviesData: {},
     allLocations: {},
     locations: {},
     loadingData: false,
@@ -32,15 +32,8 @@ const reducer = (state = initialState, action) => {
             loadingData: false
         }) : Object.assign({}, state, {
             loadingData: false,
-            moviesData: action.data.filter(m => m.locations),
-            titles: action.data
-                        .filter(m => m.locations)
-                        .reduce((prev, m) => {
-                            if (!prev.includes(m.title)) {
-                                prev.push(m.title);
-                            }
-                            return prev;
-                        }, [])
+            moviesData: action.data,
+            titles: Object.keys(action.data)
         });
 
     case constants.RECEIVE_LOCATIONS_DATA:
@@ -70,10 +63,10 @@ const reducer = (state = initialState, action) => {
         return Object.assign({}, clone(state), { 
             title: action.title,
             moviesData: clone(state.moviesData),
-            locations: clone(state.moviesData)
-                .reduce((prev, m) => {
-                    if (typeof state.allLocations[m.locations] !== 'undefined' && m.title === action.title) {
-                        prev[m.locations] = state.allLocations[m.locations];
+            locations: (clone(state.moviesData[action.title])||[])
+                .reduce((prev, locationName) => {
+                    if (typeof state.allLocations[locationName] !== 'undefined') {
+                        prev[locationName] = state.allLocations[locationName];
                     }
                     return prev;
                 }, {})

@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import reducer from './reducer';
+import reducer from './reducers/movies';
 import thunk from 'redux-thunk';
 
 const logMe = (store) => (next) => (action) => {

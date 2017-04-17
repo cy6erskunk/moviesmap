@@ -43,36 +43,4 @@ SomeApp.propTypes = {
     loadingLocations: React.PropTypes.bool
 };
 
-class SomeAppContainer extends Component {
-
-    componentDidMount() {
-        this.unsubscribe = store.subscribe(() =>
-            this.setState({
-                locations: store.getState().locations,
-                titles: store.getState().titles,
-                error: store.getState().error
-            })
-        );
-
-        // store.dispatch(init());
-    }
-
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
-
-    render() {
-        return (
-            <SomeApp
-                locations={ store.getState().locations }
-                titles={ store.getState().titles }
-                movieTitle={ store.getState().title }
-                loadingData={ store.getState().loadingData }
-                error={ store.getState().error }
-                loadingLocations={ store.getState().loadingLocations }
-            />
-        );
-    }
-}
-
-export default SomeAppContainer;
+export default SomeApp;
