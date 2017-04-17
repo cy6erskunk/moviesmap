@@ -3,3 +3,4 @@ keys
 public/app-bundle.js
 coverage
 .DS_Store
+.vscode
