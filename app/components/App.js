@@ -1,5 +1,6 @@
 /* eslint-env es6 */
 'use strict';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import store from '../store';
 import { switchMovie, resetMovie }  from '../actions';
@@ -35,12 +36,12 @@ class SomeApp extends Component {
 }
 
 SomeApp.propTypes = {
-    locations: React.PropTypes.object,
-    movieTitle: React.PropTypes.string,
-    titles: React.PropTypes.arrayOf(React.PropTypes.string),
-    loadingData: React.PropTypes.bool,
-    error: React.PropTypes.string,
-    loadingLocations: React.PropTypes.bool
+    locations: PropTypes.object,
+    movieTitle: PropTypes.string,
+    titles: PropTypes.arrayOf(PropTypes.string),
+    loadingData: PropTypes.bool,
+    error: PropTypes.string,
+    loadingLocations: PropTypes.bool
 };
 
 export default SomeApp;

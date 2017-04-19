@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 let errorStyle = {
@@ -17,7 +18,7 @@ ErrorBubble.defaultProps = {
 };
 
 ErrorBubble.propTypes = {
-    message: React.PropTypes.string
+    message: PropTypes.string
 };
 
 export default ErrorBubble;

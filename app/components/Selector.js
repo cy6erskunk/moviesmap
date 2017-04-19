@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
 function MovieTitleOption(props) {
@@ -8,8 +9,8 @@ function MovieTitleOption(props) {
 }
 
 MovieTitleOption.propTypes = {
-    title: React.PropTypes.string,
-    value: React.PropTypes.string
+    title: PropTypes.string,
+    value: PropTypes.string
 };
 
 const selectorStyle = {
@@ -50,10 +51,10 @@ class MovieSelector extends Component {
 }
 
 MovieSelector.propTypes = {
-    handleChange: React.PropTypes.func,
-    titles: React.PropTypes.arrayOf(React.PropTypes.string),
-    value: React.PropTypes.string,
-    loadingData: React.PropTypes.bool
+    handleChange: PropTypes.func,
+    titles: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.string,
+    loadingData: PropTypes.bool
 };
 
 MovieSelector.defaultProps = {

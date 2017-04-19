@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 /* global google */
 import React, {Component} from 'react';
 import constants from '../constants';
@@ -112,10 +113,10 @@ MoviesMap.defaultProps = {
 
 MoviesMap.propTypes = {
     /* { location name => coordinates } */
-    locations: React.PropTypes.object,
-    movieTitle: React.PropTypes.string,
-    position: React.PropTypes.object,
-    loadingLocations: React.PropTypes.bool
+    locations: PropTypes.object,
+    movieTitle: PropTypes.string,
+    position: PropTypes.object,
+    loadingLocations: PropTypes.bool
 };
 
 export default MoviesMap;
