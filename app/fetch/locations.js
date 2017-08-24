@@ -1,6 +1,4 @@
 import 'whatwg-fetch';
 
-export default () => {
-    return fetch('locations.json')
-        .then(response => response.json());
-};
+export default () => fetch('locations.json').
+  then(response => response.json());
