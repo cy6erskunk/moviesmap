@@ -7,5 +7,5 @@ export default {
   RECEIVE_MOVIES_DATA: 'receive data from sfgov',
   REQUEST_LOCATIONS_DATA: 'request locations',
   RECEIVE_LOCATIONS_DATA: 'receive locations',
-  HTTP_OK: 200
-};
+  HTTP_OK: 200,
+}
