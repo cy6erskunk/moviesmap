@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@jetbrains/eslint-config": "4.0.2",
-    "babel-eslint": "7.2.3",
+    "babel-eslint": "8.2.2",
     "babel-jest": "20.0.3",
     "deep-freeze": "0.0.1",
     "eslint": "4.5.0",
