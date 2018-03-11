@@ -15,7 +15,7 @@ class SomeApp extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <ErrorBubble message={this.props.error} />
         <MovieSelector
           titles={this.props.titles}
@@ -29,7 +29,7 @@ class SomeApp extends Component {
           movieTitle={this.props.movieTitle}
           loadingLocations={this.props.loadingLocations}
         />
-      </div>
+      </React.Fragment>
     )
   }
 }
