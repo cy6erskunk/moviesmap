@@ -9,6 +9,15 @@ import MoviesMap from './MoviesMap'
 import ErrorBubble from './ErrorBubble'
 
 class SomeApp extends Component {
+  static propTypes = {
+    locations: PropTypes.object,
+    movieTitle: PropTypes.string,
+    titles: PropTypes.arrayOf(PropTypes.string),
+    loadingData: PropTypes.bool,
+    error: PropTypes.string,
+    loadingLocations: PropTypes.bool,
+  }
+
   dispatchChange(title) {
     store.dispatch(title ? switchMovie(title) : resetMovie())
   }
@@ -32,15 +41,6 @@ class SomeApp extends Component {
       </React.Fragment>
     )
   }
-}
-
-SomeApp.propTypes = {
-  locations: PropTypes.object,
-  movieTitle: PropTypes.string,
-  titles: PropTypes.arrayOf(PropTypes.string),
-  loadingData: PropTypes.bool,
-  error: PropTypes.string,
-  loadingLocations: PropTypes.bool,
 }
 
 export default SomeApp

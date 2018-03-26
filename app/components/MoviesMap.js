@@ -12,6 +12,24 @@ const mapStyle = {
 }
 
 class MoviesMap extends Component {
+  static defaultProps = {
+    /* initial center of the map */
+    position: {
+      lat: 37.790704,
+      lng: -122.418769,
+    },
+    locations: {},
+    loadingLocations: true,
+  }
+
+  static propTypes = {
+    /* { location name => coordinates } */
+    locations: PropTypes.object,
+    movieTitle: PropTypes.string,
+    position: PropTypes.object,
+    loadingLocations: PropTypes.bool,
+  }
+
   constructor(props) {
     super(props)
 
@@ -101,24 +119,6 @@ class MoviesMap extends Component {
       </div>
     )
   }
-}
-
-MoviesMap.defaultProps = {
-  /* initial center of the map */
-  position: {
-    lat: 37.790704,
-    lng: -122.418769,
-  },
-  locations: {},
-  loadingLocations: true,
-}
-
-MoviesMap.propTypes = {
-  /* { location name => coordinates } */
-  locations: PropTypes.object,
-  movieTitle: PropTypes.string,
-  position: PropTypes.object,
-  loadingLocations: PropTypes.bool,
 }
 
 export default MoviesMap

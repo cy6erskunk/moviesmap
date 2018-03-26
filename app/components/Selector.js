@@ -18,6 +18,18 @@ const selectorStyle = {
 }
 
 class MovieSelector extends Component {
+  static propTypes = {
+    handleChange: PropTypes.func,
+    titles: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.string,
+    loadingData: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    titles: [],
+    loadingData: false,
+  }
+
   constructor(props) {
     super(props)
 
@@ -57,18 +69,6 @@ class MovieSelector extends Component {
       </select>
     )
   }
-}
-
-MovieSelector.propTypes = {
-  handleChange: PropTypes.func,
-  titles: PropTypes.arrayOf(PropTypes.string),
-  value: PropTypes.string,
-  loadingData: PropTypes.bool,
-}
-
-MovieSelector.defaultProps = {
-  titles: [],
-  loadingData: false,
 }
 
 export default MovieSelector
