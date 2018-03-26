@@ -1,10 +1,15 @@
-import React from 'react'
+import * as React from 'react'
 import {connect, Provider} from 'react-redux'
 import {render} from 'react-dom'
 
 import SomeApp from './components/App'
 import store from './store'
 import {init, fetchMoviesData, fetchLocationsData} from './actions'
+
+if (process.env.NODE_ENV !== 'production') {
+  const {whyDidYouUpdate} = require('why-did-you-update')
+  whyDidYouUpdate(React)
+}
 
 const mapStateToProps = state => ({
   locations: state.locations,
