@@ -11,5 +11,9 @@ const logMe = store => next => action => {
   return next(action)
 }
 
-const store = createStore(reducer, applyMiddleware(thunk, logMe))
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk, logMe),
+)
 export default store
