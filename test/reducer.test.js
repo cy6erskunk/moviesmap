@@ -131,4 +131,36 @@ describe('reducer', () => {
     result = reducer(result, {type: constants.SWITCH_MOVIE, title})
     expect(result.allLocations).toEqual(locations)
   })
+
+  test(constants.REQUEST_LOCATIONS_DATA, () => {
+    const state = reducer(
+      {
+        loadingData: false,
+        loadingLocations: false,
+        error: '',
+      },
+      {type: constants.REQUEST_LOCATIONS_DATA},
+    )
+    expect(state).toEqual({
+      loadingData: false,
+      loadingLocations: true,
+      error: '',
+    })
+  })
+
+  test(constants.REQUEST_MOVIES_DATA, () => {
+    const state = reducer(
+      {
+        loadingData: false,
+        loadingLocations: true,
+        error: '',
+      },
+      {type: constants.REQUEST_MOVIES_DATA},
+    )
+    expect(state).toEqual({
+      loadingData: true,
+      loadingLocations: true,
+      error: '',
+    })
+  })
 })
