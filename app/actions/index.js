@@ -2,11 +2,6 @@ import constants from '../constants'
 import fetchMovies from '../fetch/movies'
 import fetchLocations from '../fetch/locations'
 
-export const init = data => ({
-  type: constants.INIT_DATA,
-  data,
-})
-
 export const switchMovie = title => ({
   type: constants.SWITCH_MOVIE,
   title,
@@ -23,9 +18,15 @@ export const fetchMoviesData = () => dispatch => {
 }
 
 export const fetchLocationsData = () => dispatch => {
-  dispatch({type: constants.REQUEST_MOVIES_DATA})
+  dispatch({type: constants.REQUEST_LOCATIONS_DATA})
   fetchLocations().then(
     data => dispatch({type: constants.RECEIVE_LOCATIONS_DATA, data}),
     error => dispatch({type: constants.RECEIVE_LOCATIONS_DATA, error}),
   )
+}
+
+export const init = () => dispatch => {
+  Promise.all([dispatch(fetchLocationsData()), dispatch(fetchMoviesData())]).then(() => {
+    dispatch(resetMovie())
+  })
 }

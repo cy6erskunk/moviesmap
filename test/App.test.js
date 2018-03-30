@@ -6,5 +6,6 @@ import App from '../app/components/App'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
+  function noop() {}
+  ReactDOM.render(<App init={noop} />, div)
 })

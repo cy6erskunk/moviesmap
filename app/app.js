@@ -4,7 +4,7 @@ import {render} from 'react-dom'
 
 import SomeApp from './components/App'
 import store from './store'
-import {init, fetchMoviesData, fetchLocationsData} from './actions'
+import {init} from './actions'
 
 if (process.env.NODE_ENV !== 'production') {
   const {whyDidYouUpdate} = require('why-did-you-update')
@@ -20,21 +20,15 @@ const mapStateToProps = state => ({
   error: state.error,
 })
 
-const SomeAppContainer = connect(mapStateToProps)(SomeApp)
+const mapDispatchToProps = {
+  init,
+}
+
+const SomeAppContainer = connect(mapStateToProps, mapDispatchToProps)(SomeApp)
 
 render(
   <Provider store={store}>
     <SomeAppContainer />
   </Provider>,
   document.querySelector('.app-container'),
-)
-
-Promise.all([store.dispatch(fetchLocationsData()), store.dispatch(fetchMoviesData())]).then(
-  ([locations]) => {
-    store.dispatch(
-      init({
-        locations,
-      }),
-    )
-  },
 )

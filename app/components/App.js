@@ -16,6 +16,12 @@ class SomeApp extends Component {
     loadingData: PropTypes.bool,
     error: PropTypes.string,
     loadingLocations: PropTypes.bool,
+    init: PropTypes.func,
+  }
+
+  constructor(props) {
+    super(props)
+    props.init()
   }
 
   dispatchChange(title) {
