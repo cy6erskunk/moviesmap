@@ -10,6 +10,7 @@
     "build:dev": "webpack --mode development",
     "build": "webpack",
     "build-n-analyze": "webpack --env.analyze",
+    "check-licenses": "webpack --env.licenses",
     "serve": "webpack-dev-server --progress --mode development",
     "heroku-postbuild": "webpack",
     "lint": "eslint .",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@jetbrains/eslint-config": "4.0.2",
+    "@jetbrains/ring-ui-license-checker": "1.2.2",
     "babel-core": "6.26.0",
     "babel-eslint": "8.2.2",
     "babel-jest": "22.4.3",

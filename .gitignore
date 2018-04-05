@@ -2,6 +2,7 @@ node_modules
 keys
 public/app-bundle.js
 public/report.html
+public/third-party-licenses.txt
 coverage
 .DS_Store
 .vscode
