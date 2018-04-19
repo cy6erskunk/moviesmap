@@ -30,7 +30,7 @@ class SomeApp extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <React.StrictMode>
         <ErrorBubble message={this.props.error} />
         <MovieSelector
           titles={this.props.titles}
@@ -44,7 +44,7 @@ class SomeApp extends Component {
           movieTitle={this.props.movieTitle}
           loadingLocations={this.props.loadingLocations}
         />
-      </React.Fragment>
+      </React.StrictMode>
     )
   }
 }
