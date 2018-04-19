@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 
 import store from '../store'
 import {switchMovie, resetMovie} from '../actions'
+import updateMarkers from '../tools/updateMarkers'
 
 import MovieSelector from './Selector'
 import MoviesMap from './MoviesMap'
@@ -43,6 +44,7 @@ class SomeApp extends Component {
           locations={this.props.locations}
           movieTitle={this.props.movieTitle}
           loadingLocations={this.props.loadingLocations}
+          updateMarkers={updateMarkers}
         />
       </React.StrictMode>
     )

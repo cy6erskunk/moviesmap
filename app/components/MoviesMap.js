@@ -4,6 +4,8 @@ import React, {Component} from 'react'
 
 import constants from '../constants'
 
+function noop() {}
+
 const mapStyle = {
   width: '98vw',
   height: 'calc(100vh - 4em)',
@@ -20,6 +22,7 @@ class MoviesMap extends Component {
     },
     locations: {},
     loadingLocations: true,
+    updateMarkers: noop,
   }
 
   static propTypes = {
@@ -28,6 +31,7 @@ class MoviesMap extends Component {
     movieTitle: PropTypes.string,
     position: PropTypes.object,
     loadingLocations: PropTypes.bool,
+    updateMarkers: PropTypes.func,
   }
 
   constructor(props) {
@@ -55,7 +59,13 @@ class MoviesMap extends Component {
 
   componentDidUpdate() {
     if (this.mapInited) {
-      this.updateMarkers()
+      this.markers = this.props.updateMarkers(google, {
+        locations: this.props.locations,
+        markers: this.markers,
+        infoWindow: this.infoWindow,
+        map: this.map,
+        movieTitle: this.props.movieTitle,
+      })
 
       const locationTitles = Object.keys(this.props.locations)
       const bounds = new google.maps.LatLngBounds()
@@ -80,32 +90,6 @@ class MoviesMap extends Component {
     }
   }
 
-  updateMarkers() {
-    this.markers.forEach((m, i, array) => {
-      m.setMap(null)
-      array[i] = null
-    })
-    this.markers = []
-    const locations = this.props.locations
-    const markers = Object.keys(locations).map(
-      locationKey =>
-        new google.maps.Marker({
-          position: locations[locationKey],
-          map: this.map,
-          title: locationKey,
-          something: this.props.movieTitle,
-        }),
-    )
-
-    markers.forEach(marker => {
-      google.maps.event.addListener(marker, 'click', () => {
-        this.infoWindow.setContent(`<h2>${marker.title}</h2><p>${this.props.movieTitle}</p>`)
-        this.infoWindow.open(this.map, marker)
-      })
-    })
-    this.markers = markers
-  }
-
   refDiv(div) {
     this.mapElem = div
   }
@@ -113,10 +97,10 @@ class MoviesMap extends Component {
   render() {
     const LOADING_MESSAGE = 'loadingLocations'
     return (
-      <div>
+      <React.Fragment>
         {this.props.loadingLocations && <div>{LOADING_MESSAGE}</div>}
         <div ref={this.refDiv} style={mapStyle} className="mapContainer" />
-      </div>
+      </React.Fragment>
     )
   }
 }
