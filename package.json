@@ -21,6 +21,7 @@
   "dependencies": {
     "@google/maps": "^0.4.3",
     "clone": "^2.1.1",
+    "core-js": "^2.5.5",
     "express": "^4.15.4",
     "prop-types": "^15.5.8",
     "react": "^16.3.2",
@@ -44,6 +45,7 @@
     "deep-freeze": "0.0.1",
     "eslint": "4.19.1",
     "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-compat": "2.2.0",
     "eslint-plugin-import": "2.11.0",
     "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.7.0",

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {connect, Provider} from 'react-redux'
 import {render} from 'react-dom'
+import 'core-js/fn/promise'
 
 import SomeApp from './components/App'
 import store from './store'
