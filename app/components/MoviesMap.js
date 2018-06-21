@@ -14,6 +14,15 @@ const mapStyle = {
 }
 
 class MoviesMap extends Component {
+  static propTypes = {
+    /* { location name => coordinates } */
+    locations: PropTypes.object,
+    movieTitle: PropTypes.string,
+    position: PropTypes.object,
+    loadingLocations: PropTypes.bool,
+    updateMarkers: PropTypes.func,
+  }
+
   static defaultProps = {
     /* initial center of the map */
     position: {
@@ -23,15 +32,6 @@ class MoviesMap extends Component {
     locations: {},
     loadingLocations: true,
     updateMarkers: noop,
-  }
-
-  static propTypes = {
-    /* { location name => coordinates } */
-    locations: PropTypes.object,
-    movieTitle: PropTypes.string,
-    position: PropTypes.object,
-    loadingLocations: PropTypes.bool,
-    updateMarkers: PropTypes.func,
   }
 
   constructor(props) {
