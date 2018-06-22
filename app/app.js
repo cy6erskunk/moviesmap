@@ -25,7 +25,10 @@ const mapDispatchToProps = {
   init,
 }
 
-const SomeAppContainer = connect(mapStateToProps, mapDispatchToProps)(SomeApp)
+const SomeAppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SomeApp)
 
 render(
   <Provider store={store}>
