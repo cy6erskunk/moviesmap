@@ -46,7 +46,7 @@
     "eslint": "5.0.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-plugin-compat": "2.4.0",
-    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-import": "2.13.0",
     "eslint-plugin-prettier": "2.6.1",
     "eslint-plugin-react": "7.9.1",
     "jest": "23.1.0",
