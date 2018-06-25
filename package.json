@@ -48,7 +48,7 @@
     "eslint-plugin-compat": "2.4.0",
     "eslint-plugin-import": "2.12.0",
     "eslint-plugin-prettier": "2.6.1",
-    "eslint-plugin-react": "7.9.1",
+    "eslint-plugin-react": "7.10.0",
     "jest": "23.1.0",
     "prettier": "1.13.5",
     "webpack-bundle-analyzer": "2.13.1",
