@@ -43,7 +43,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "deep-freeze": "0.0.1",
-    "eslint": "5.0.1",
+    "eslint": "5.2.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-plugin-compat": "2.4.0",
     "eslint-plugin-import": "2.12.0",
