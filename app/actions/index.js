@@ -2,12 +2,13 @@ import constants from '../constants'
 import fetchMovies from '../fetch/movies'
 import fetchLocations from '../fetch/locations'
 
-export const switchMovie = title => ({
+export const switchMovie = (title, loadingHistory) => ({
   type: constants.SWITCH_MOVIE,
   title,
+  loadingHistory,
 })
 
-export const resetMovie = () => ({type: constants.RESET_MOVIE})
+export const resetMovie = loadingHistory => ({type: constants.RESET_MOVIE, loadingHistory})
 
 export const fetchMoviesData = () => dispatch => {
   dispatch({type: constants.REQUEST_MOVIES_DATA})

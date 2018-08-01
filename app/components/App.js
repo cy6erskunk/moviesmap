@@ -25,8 +25,14 @@ class SomeApp extends Component {
     props.init()
   }
 
-  dispatchChange(title) {
-    store.dispatch(title ? switchMovie(title) : resetMovie())
+  componentDidMount = () => window.addEventListener('popstate', this.popStateHandler)
+
+  componentWillUnmount = () => window.removeEventListener('popstate', this.popStateHandler)
+
+  popStateHandler = event => this.dispatchChange(event.state ? event.state.title : '', true)
+
+  dispatchChange(title, loadingHistory) {
+    store.dispatch(title ? switchMovie(title, loadingHistory) : resetMovie(loadingHistory))
   }
 
   render() {

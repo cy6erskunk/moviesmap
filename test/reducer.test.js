@@ -5,6 +5,14 @@ import reducer from '../app/reducers/movies'
 import constants from '../app/constants'
 
 describe('reducer', () => {
+  beforeEach(() => {
+    jest.spyOn(history, 'pushState')
+  })
+
+  afterEach(() => {
+    history.pushState.mockReset()
+  })
+
   it('requires action', () => {
     expect(reducer).toThrow()
     expect(() => {
@@ -20,46 +28,78 @@ describe('reducer', () => {
     expect(result.error).toBe('')
   })
 
-  it('switches state', () => {
-    const title = '180'
-    let result = reducer(undefined, {type: constants.SWITCH_MOVIE, title})
+  describe('SWITCH_MOVIE', () => {
+    it('switches state', () => {
+      const title = '180'
+      let result = reducer(undefined, {type: constants.SWITCH_MOVIE, title})
 
-    expect(result).toBeTruthy()
-    expect(result.title).toBe(title)
-    expect(result.error).toBe('')
+      expect(result).toBeTruthy()
+      expect(result.title).toBe(title)
+      expect(result.error).toBe('')
 
-    result = reducer(result, {type: constants.SWITCH_MOVIE, title})
-    expect(result.title).toBe(title)
-    expect(result.error).toBe('')
-  })
-
-  it('ignores duplicate calls', () => {
-    const title = '180'
-    const firstState = reducer(undefined, {
-      type: constants.SWITCH_MOVIE,
-      title,
-    })
-    deepFreeze(firstState)
-    const secondState = reducer(firstState, {
-      type: constants.SWITCH_MOVIE,
-      title,
+      result = reducer(result, {type: constants.SWITCH_MOVIE, title})
+      expect(result.title).toBe(title)
+      expect(result.error).toBe('')
     })
 
-    expect(firstState).toEqual(secondState)
-  })
+    it('updates browser history by default', () => {
+      const title = '18 0'
+      reducer(undefined, {type: constants.SWITCH_MOVIE, title})
 
-  it('RESET_MOVIE returns default state', () => {
-    const title = '180'
-    const defaultState = deepFreeze(reducer(undefined, {}))
-    const intermediateState = deepFreeze(
-      reducer(defaultState, {
+      expect(history.pushState).toHaveBeenLastCalledWith({title}, title, encodeURIComponent(title))
+    })
+
+    it('does not updates history whel loading from history', () => {
+      const title = '18 0'
+      reducer(undefined, {type: constants.SWITCH_MOVIE, title, loadingHistory: true})
+
+      expect(history.pushState).not.toHaveBeenCalled()
+    })
+
+    it('ignores duplicate calls', () => {
+      const title = '180'
+      const firstState = reducer(undefined, {
         type: constants.SWITCH_MOVIE,
         title,
-      }),
-    )
-    const result = reducer(intermediateState, {type: constants.RESET_MOVIE})
+      })
+      deepFreeze(firstState)
+      const secondState = reducer(firstState, {
+        type: constants.SWITCH_MOVIE,
+        title,
+      })
 
-    expect(result).toEqual(defaultState)
+      expect(firstState).toEqual(secondState)
+    })
+  })
+
+  describe('RESET_MOVIE', () => {
+    it('returns default state', () => {
+      const title = '180'
+      const defaultState = deepFreeze(reducer(undefined, {}))
+      const intermediateState = deepFreeze(
+        reducer(defaultState, {
+          type: constants.SWITCH_MOVIE,
+          title,
+        }),
+      )
+      const result = reducer(intermediateState, {type: constants.RESET_MOVIE})
+
+      expect(result).toEqual(defaultState)
+    })
+
+    it('updates browser history by default', () => {
+      const defaultState = deepFreeze(reducer(undefined, {}))
+      reducer(defaultState, {type: constants.RESET_MOVIE})
+
+      expect(history.pushState).toHaveBeenLastCalledWith({title: ''}, '', '/')
+    })
+
+    it('does not call history.pushState when loading history', () => {
+      const defaultState = deepFreeze(reducer(undefined, {}))
+      reducer(defaultState, {type: constants.RESET_MOVIE, loadingHistory: true})
+
+      expect(history.pushState).not.toHaveBeenCalled()
+    })
   })
 
   it('does not reset error', () => {

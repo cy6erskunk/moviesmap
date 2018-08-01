@@ -71,6 +71,9 @@ const reducer = (state = initialState, action) => {
       )
 
     case constants.SWITCH_MOVIE:
+      if (!action.loadingHistory) {
+        history.pushState({title: action.title}, action.title, encodeURIComponent(action.title))
+      }
       return Object.assign({}, clone(state), {
         title: action.title,
         moviesData: clone(state.moviesData),
@@ -83,6 +86,9 @@ const reducer = (state = initialState, action) => {
       })
 
     case constants.RESET_MOVIE:
+      if (!action.loadingHistory) {
+        history.pushState({title: ''}, '', '/')
+      }
       return Object.assign({}, clone(state), {
         title: '',
         locations: state.allLocations,
