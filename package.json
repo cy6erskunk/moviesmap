@@ -52,7 +52,7 @@
     "eslint-plugin-react": "7.11.1",
     "jest": "23.6.0",
     "prettier": "1.14.2",
-    "webpack-bundle-analyzer": "2.13.1",
+    "webpack-bundle-analyzer": "3.0.3",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.8",
     "why-did-you-update": "0.1.1"
