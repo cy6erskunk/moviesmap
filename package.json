@@ -33,9 +33,9 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0",
-    "@babel/plugin-proposal-class-properties": "7.0.0",
-    "@babel/preset-env": "7.0.0",
+    "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
     "@jetbrains/eslint-config": "4.0.3",
     "@jetbrains/ring-ui-license-checker": "1.4.1",
