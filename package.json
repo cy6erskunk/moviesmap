@@ -55,7 +55,7 @@
     "webpack-bundle-analyzer": "3.0.3",
     "webpack-cli": "3.1.2",
     "webpack-dev-server": "3.1.10",
-    "why-did-you-update": "1.0.2"
+    "why-did-you-update": "1.0.6"
   },
   "engines": {
     "node": ">=6"
