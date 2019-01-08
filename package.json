@@ -29,7 +29,7 @@
     "react-redux": "^6.0.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "webpack": "^4.17.2",
+    "webpack": "^4.28.3",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "prettier": "1.15.3",
     "webpack-bundle-analyzer": "3.0.3",
     "webpack-cli": "3.1.2",
-    "webpack-dev-server": "3.1.10",
+    "webpack-dev-server": "^3.1.14",
     "why-did-you-update": "1.0.6"
   },
   "engines": {
