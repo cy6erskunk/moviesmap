@@ -53,7 +53,7 @@
     "jest": "23.6.0",
     "prettier": "1.15.3",
     "webpack-bundle-analyzer": "3.0.3",
-    "webpack-cli": "3.1.2",
+    "webpack-cli": "3.2.3",
     "webpack-dev-server": "^3.1.14",
     "why-did-you-update": "1.0.6"
   },
