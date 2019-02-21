@@ -37,7 +37,7 @@
     "@babel/plugin-proposal-class-properties": "7.2.3",
     "@babel/preset-env": "7.2.3",
     "@babel/preset-react": "7.0.0",
-    "@jetbrains/eslint-config": "4.0.3",
+    "@jetbrains/eslint-config": "4.0.5",
     "@jetbrains/ring-ui-license-checker": "1.4.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
