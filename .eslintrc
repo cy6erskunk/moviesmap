@@ -37,6 +37,9 @@
     "polyfills": [
       "fetch",
       "promises"
-    ]
+    ],
+    "react": {
+      "version": "detect"
+    }
   }
 }
