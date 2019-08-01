@@ -43,7 +43,7 @@
     "babel-jest": "24.1.0",
     "babel-loader": "8.0.6",
     "deep-freeze": "0.0.1",
-    "eslint": "5.14.1",
+    "eslint": "5.16.0",
     "eslint-config-prettier": "4.1.0",
     "eslint-plugin-compat": "2.7.0",
     "eslint-plugin-import": "2.16.0",
