@@ -21,7 +21,7 @@
   "dependencies": {
     "@google/maps": "^0.5.5",
     "clone": "^2.1.2",
-    "core-js": "^2.5.7",
+    "core-js": "^3.2.1",
     "express": "^4.16.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
