@@ -1,4 +1,5 @@
 import clone from 'clone'
+import 'core-js/modules/es.object.assign'
 
 import constants from '../constants'
 

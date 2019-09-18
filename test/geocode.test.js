@@ -1,5 +1,6 @@
 /* eslint-env jasmine, jest */
 import deepFreeze from 'deep-freeze'
+import 'core-js/modules/es.object.assign'
 
 const geocode = require('../lib/geocode')
 

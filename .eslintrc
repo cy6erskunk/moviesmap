@@ -36,7 +36,8 @@
   "settings": {
     "polyfills": [
       "fetch",
-      "promises"
+      "Promise",
+      "Object.assign"
     ],
     "react": {
       "version": "detect"
