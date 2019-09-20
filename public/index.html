@@ -2,8 +2,20 @@
 <html>
     <head>
         <title>SF movie locations on the map</title>
+        <style>
+            .loading {
+                --font-size: 90px;
+                font-size: var(--font-size);
+                position: absolute;
+                top: calc(50% - var(--font-size)/2);
+                width: 100%;
+                margin: 0 auto;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
+        <div class="loading">⏳⏳⏳</div>
         <div class="app-container"></div>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uZxbTV1GS8sMXbnd333Qyj4L6yciIXk"></script>
