@@ -6,3 +6,5 @@ public/third-party-licenses.txt
 coverage
 .DS_Store
 .vscode
+dist
+.cache
