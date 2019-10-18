@@ -1,4 +1,4 @@
-import 'whatwg-fetch'
+const fetch = require('node-fetch')
 
 module.exports = async (req, res) => {
   const movies = await fetch(
