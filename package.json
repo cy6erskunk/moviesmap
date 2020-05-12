@@ -39,7 +39,7 @@
     "@babel/preset-env": "7.9.5",
     "@babel/preset-react": "7.9.4",
     "@jetbrains/eslint-config": "5.0.0",
-    "@jetbrains/ring-ui-license-checker": "1.5.3",
+    "@jetbrains/ring-ui-license-checker": "1.5.5",
     "babel-eslint": "10.1.0",
     "babel-jest": "25.4.0",
     "babel-loader": "8.1.0",
