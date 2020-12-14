@@ -27,8 +27,8 @@ describe('geocode', () => {
 
   it(
     'fails on falsy input',
-    done => {
-      geocode().catch(reason => {
+    (done) => {
+      geocode().catch((reason) => {
         expect(reason instanceof Error).toBe(true)
         expect(reason.message).toEqual('Empty input')
         done()
@@ -48,7 +48,7 @@ describe('geocode', () => {
 
     return geocode('whatever', options).then(
       () => expect(options.mapsClient.geocode.mock.calls.length).toBe(1),
-      err => expect(err).toBeNull(),
+      (err) => expect(err).toBeNull(),
     ) // to fail immediately if Promise gets rejected
   })
 
@@ -60,7 +60,7 @@ describe('geocode', () => {
       },
     }
 
-    return geocode('whatever', options).catch(reason => {
+    return geocode('whatever', options).catch((reason) => {
       expect(reason).toEqual(dummyError)
     })
   })
@@ -72,7 +72,7 @@ describe('geocode', () => {
       },
     }
 
-    return geocode('whatever', options).catch(reason => {
+    return geocode('whatever', options).catch((reason) => {
       expect(reason).toEqual('Empty response')
     })
   })
@@ -88,7 +88,7 @@ describe('geocode', () => {
       },
     }
 
-    return geocode('whatever', options).catch(reason => {
+    return geocode('whatever', options).catch((reason) => {
       expect(reason).toEqual(`Bad status: ${anotherDummyResponse.status}`)
     })
   })
@@ -104,7 +104,7 @@ describe('geocode', () => {
       },
     }
 
-    return geocode('whatever', options).catch(reason => {
+    return geocode('whatever', options).catch((reason) => {
       expect(reason).toEqual(`Bad json status: ${anotherDummyResponse.json.status}`)
     })
   })
@@ -122,7 +122,7 @@ describe('geocode', () => {
 
     return geocode('whatever', options).then(
       () => expect(processorMock.mock.calls.length).toBe(1),
-      err => expect(err).toBeNull(),
+      (err) => expect(err).toBeNull(),
     )
   })
 })

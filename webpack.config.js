@@ -3,7 +3,7 @@ const path = require('path')
 const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
 
-module.exports = env => ({
+module.exports = (env) => ({
   mode: env && env.development ? 'development' : 'production',
   entry: path.join(__dirname, 'app/app.js'),
   output: {
@@ -17,10 +17,10 @@ module.exports = env => ({
       env.licenses &&
       new LicenseChecker({
         filename: 'third-party-licenses.txt',
-        format: params =>
+        format: (params) =>
           params.modules
             .map(
-              mod => `${mod.name} (${mod.url})
+              (mod) => `${mod.name} (${mod.url})
 ${mod.license.name} (${mod.license.url})`,
             )
             .join('\n\n'),

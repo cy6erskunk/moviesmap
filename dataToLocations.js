@@ -6,16 +6,16 @@ const locations = require('./locations.json')
 
 const promises = []
 
-data.forEach(elem => {
+data.forEach((elem) => {
   if (!locations[elem.locations]) {
     process.stdout.write(`requesting location: ${elem.locations}\n`)
 
     const p = geocode(`${elem.locations} San Francisco Bay Area, CA, USA`)
-      .then(res => {
+      .then((res) => {
         locations[elem.locations] = res
         return res
       })
-      .catch(reason => {
+      .catch((reason) => {
         process.stderr.write(`${reason}\n`)
       })
 
@@ -26,11 +26,11 @@ data.forEach(elem => {
 })
 
 Promise.all(promises).then(
-  results => {
+  (results) => {
     process.stdout.write(`${results.length} item(s) received\n`)
     fs.writeFileSync('./locations.json', JSON.stringify(locations))
   },
-  reason => {
+  (reason) => {
     process.stderr.write(`Error: ${reason}\n`)
   },
 )

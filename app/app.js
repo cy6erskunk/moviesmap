@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
   whyDidYouUpdate(React)
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   locations: state.locations,
   titles: state.titles,
   movieTitle: state.title,
@@ -25,10 +25,7 @@ const mapDispatchToProps = {
   init,
 }
 
-const SomeAppContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SomeApp)
+const SomeAppContainer = connect(mapStateToProps, mapDispatchToProps)(SomeApp)
 
 render(
   <Provider store={store}>

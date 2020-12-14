@@ -29,7 +29,7 @@ class SomeApp extends Component {
 
   componentWillUnmount = () => window.removeEventListener('popstate', this.popStateHandler)
 
-  popStateHandler = event => this.dispatchChange(event.state ? event.state.title : '', true)
+  popStateHandler = (event) => this.dispatchChange(event.state ? event.state.title : '', true)
 
   dispatchChange(title, loadingHistory) {
     store.dispatch(title ? switchMovie(title, loadingHistory) : resetMovie(loadingHistory))
