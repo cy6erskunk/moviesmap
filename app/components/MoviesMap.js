@@ -71,7 +71,7 @@ class MoviesMap extends Component {
       const bounds = new google.maps.LatLngBounds()
 
       if (this.markers.length) {
-        this.markers.forEach(marker => {
+        this.markers.forEach((marker) => {
           marker.setVisible(locationTitles.includes(marker.getTitle()))
           if (locationTitles.includes(marker.getTitle())) {
             bounds.extend(marker.getPosition())
