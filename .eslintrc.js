@@ -1,10 +1,10 @@
-{
+module.exports = {
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": [
     "@jetbrains",
     "@jetbrains/eslint-config/browser",
@@ -43,4 +43,4 @@
       "version": "detect"
     }
   }
-}
+};
