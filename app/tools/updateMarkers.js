@@ -5,7 +5,7 @@ export default (google, {markers, locations, movieTitle, map, infoWindow}) => {
   })
   // markers = []
   const newMarkers = Object.keys(locations).map(
-    locationKey =>
+    (locationKey) =>
       new google.maps.Marker({
         position: locations[locationKey],
         map,
@@ -14,7 +14,7 @@ export default (google, {markers, locations, movieTitle, map, infoWindow}) => {
       }),
   )
 
-  newMarkers.forEach(marker => {
+  newMarkers.forEach((marker) => {
     google.maps.event.addListener(marker, 'click', () => {
       infoWindow.setContent(`<h2>${marker.title}</h2><p>${movieTitle}</p>`)
       infoWindow.open(map, marker)

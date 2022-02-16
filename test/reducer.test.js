@@ -6,7 +6,7 @@ import constants from '../app/constants'
 
 describe('reducer', () => {
   beforeEach(() => {
-    jest.spyOn(history, 'pushState')
+    history.pushState = jest.fn()
   })
 
   afterEach(() => {
