@@ -1,4 +1,4 @@
-import './wdyr';
+import './wdyr'
 
 import * as React from 'react'
 import {connect, Provider} from 'react-redux'
