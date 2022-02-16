@@ -59,7 +59,7 @@
     "webpack-dev-server": "4.7.4"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=14"
   },
   "jest": {
     "testURL": "http://localhost",
