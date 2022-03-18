@@ -23,7 +23,7 @@
     "clone": "2.1.2",
     "core-js": "3.21.1",
     "express": "4.17.3",
-    "node-fetch": "2.6.7",
+    "node-fetch": "3.2.3",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
