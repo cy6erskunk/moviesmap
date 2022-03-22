@@ -42,7 +42,7 @@
     "@jetbrains/ring-ui-license-checker": "1.5.6",
     "@welldone-software/why-did-you-render": "6.2.3",
     "babel-jest": "27.5.1",
-    "babel-loader": "8.2.3",
+    "babel-loader": "8.2.4",
     "deep-freeze": "0.0.1",
     "eslint": "8.11.0",
     "eslint-config-prettier": "8.5.0",
