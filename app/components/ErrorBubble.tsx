@@ -1,28 +1,20 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const errorStyle = {
+const errorStyle: React.CSSProperties = {
   color: 'red',
   position: 'fixed',
-  top: 0,
-  left: 0,
+  top: '0',
+  left: '0',
 }
 
-function ErrorBubble(props: any) {
+function ErrorBubble(props: {message?: string} = {message: ''}) {
+  const style = {...errorStyle, display: props.message ? 'block' : 'none'};
   return (
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-    <div style={Object.assign({}, errorStyle, {display: props.message ? 'block' : 'none'})}>
+    <div style={style}>
       {`Something went wrong: ${props.message}`}
     </div>
   )
-}
-
-ErrorBubble.defaultProps = {
-  message: '',
-}
-
-ErrorBubble.propTypes = {
-  message: PropTypes.string,
 }
 
 export default ErrorBubble

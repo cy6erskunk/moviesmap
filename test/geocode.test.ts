@@ -3,7 +3,6 @@
 import deepFreeze from 'deep-freeze'
 import 'core-js/modules/es.object.assign'
 
-// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const geocode = require('../lib/geocode')
 
 const HTTP_OK = 200

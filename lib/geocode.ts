@@ -1,8 +1,6 @@
 const HTTP_OK = 200
 
-// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const defaultMapsClient = require('@google/maps').createClient({
-  // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
   key: process.env.MAPS_KEY,
 })
 
@@ -90,5 +88,4 @@ function defaultResponseProcessor(data: any) {
  * @prop {String} input to geocode
  * @prop {Options} optionsObject
  */
-// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 module.exports = (input: any, optionsObject: any) => geocodeAddress(input, optionsObject)

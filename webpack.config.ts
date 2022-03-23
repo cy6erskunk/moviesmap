@@ -1,19 +1,13 @@
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'path'.
-const path = require('path')
+import path from 'path'
 
-// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
 
-// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 module.exports = (env: any) => ({
   mode: env && env.development ? 'development' : 'production',
-  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
   entry: path.join(__dirname, 'app/app.js'),
 
   output: {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
     path: path.join(__dirname, 'public'),
     filename: 'app-bundle.js',
   },
@@ -58,7 +52,6 @@ ${mod.license.name} (${mod.license.url})`,
   },
 
   devServer: {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
     static: path.join(__dirname, 'public'),
     historyApiFallback: true,
   }
