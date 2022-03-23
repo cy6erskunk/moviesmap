@@ -1,12 +1,19 @@
+// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'path'.
 const path = require('path')
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
 
-module.exports = (env) => ({
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+module.exports = (env: any) => ({
   mode: env && env.development ? 'development' : 'production',
+  // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
   entry: path.join(__dirname, 'app/app.js'),
+
   output: {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
     path: path.join(__dirname, 'public'),
     filename: 'app-bundle.js',
   },
@@ -17,13 +24,12 @@ module.exports = (env) => ({
       env.licenses &&
       new LicenseChecker({
         filename: 'third-party-licenses.txt',
-        format: (params) =>
-          params.modules
-            .map(
-              (mod) => `${mod.name} (${mod.url})
+        format: (params: any) => params.modules
+          .map(
+            (mod: any) => `${mod.name} (${mod.url})
 ${mod.license.name} (${mod.license.url})`,
-            )
-            .join('\n\n'),
+          )
+          .join('\n\n'),
         // stackframe has wrong license field in 0.3.1
         exclude: [/stackframe/],
         customLicenses: [
@@ -52,7 +58,8 @@ ${mod.license.name} (${mod.license.url})`,
   },
 
   devServer: {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
     static: path.join(__dirname, 'public'),
     historyApiFallback: true,
-  },
+  }
 })

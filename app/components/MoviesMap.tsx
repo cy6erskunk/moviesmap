@@ -34,7 +34,13 @@ class MoviesMap extends Component {
     updateMarkers: noop,
   }
 
-  constructor(props) {
+  infoWindow: any;
+  map: any;
+  mapElem: any;
+  mapInited: any;
+  markers: any;
+
+  constructor(props: any) {
     super(props)
 
     this.markers = []
@@ -46,12 +52,17 @@ class MoviesMap extends Component {
   componentDidMount() {
     const mapOptions = {
       zoom: 10,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type 'Readon... Remove this comment to see the full error message
       center: this.props.position,
     }
 
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
     if (typeof google !== 'undefined') {
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
       this.map = new google.maps.Map(this.mapElem, mapOptions)
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
       this.infoWindow = new google.maps.InfoWindow()
+      // @ts-expect-error ts-migrate(2551) FIXME: Property 'map' does not exist on type 'Window & ty... Remove this comment to see the full error message
       window.map = this.map
       this.mapInited = true
     }
@@ -59,19 +70,24 @@ class MoviesMap extends Component {
 
   componentDidUpdate() {
     if (this.mapInited) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'updateMarkers' does not exist on type 'R... Remove this comment to see the full error message
       this.markers = this.props.updateMarkers(google, {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'locations' does not exist on type 'Reado... Remove this comment to see the full error message
         locations: this.props.locations,
         markers: this.markers,
         infoWindow: this.infoWindow,
         map: this.map,
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'movieTitle' does not exist on type 'Read... Remove this comment to see the full error message
         movieTitle: this.props.movieTitle,
       })
 
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'locations' does not exist on type 'Reado... Remove this comment to see the full error message
       const locationTitles = Object.keys(this.props.locations)
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
       const bounds = new google.maps.LatLngBounds()
 
       if (this.markers.length) {
-        this.markers.forEach((marker) => {
+        this.markers.forEach((marker: any) => {
           marker.setVisible(locationTitles.includes(marker.getTitle()))
           if (locationTitles.includes(marker.getTitle())) {
             bounds.extend(marker.getPosition())
@@ -80,6 +96,7 @@ class MoviesMap extends Component {
 
         this.map.setCenter(bounds.getCenter())
         this.map.fitBounds(bounds)
+        // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
         google.maps.event.addListenerOnce(this.map, 'bounds_changed', () => {
           this.map.setCenter(bounds.getCenter())
           if (this.map.getZoom() > constants.MAX_ZOOM_AFTER_BOUND_CHANGE) {
@@ -90,15 +107,18 @@ class MoviesMap extends Component {
     }
   }
 
-  refDiv(div) {
+  refDiv(div: any) {
     this.mapElem = div
   }
 
   render() {
     const LOADING_MESSAGE = 'loadingLocations'
     return (
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <React.Fragment>
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'loadingLocations' does not exist on type... Remove this comment to see the full error message
         {this.props.loadingLocations && <div>{LOADING_MESSAGE}</div>}
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <div ref={this.refDiv} style={mapStyle} className="mapContainer" />
       </React.Fragment>
     )

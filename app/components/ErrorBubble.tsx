@@ -8,8 +8,9 @@ const errorStyle = {
   left: 0,
 }
 
-function ErrorBubble(props) {
+function ErrorBubble(props: any) {
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div style={Object.assign({}, errorStyle, {display: props.message ? 'block' : 'none'})}>
       {`Something went wrong: ${props.message}`}
     </div>

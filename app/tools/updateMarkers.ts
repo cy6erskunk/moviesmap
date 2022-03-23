@@ -1,5 +1,11 @@
-export default (google, {markers, locations, movieTitle, map, infoWindow}) => {
-  markers.forEach((m, i, array) => {
+export default (google: any, {
+  markers,
+  locations,
+  movieTitle,
+  map,
+  infoWindow
+}: any) => {
+  markers.forEach((m: any, i: any, array: any) => {
     m.setMap(null)
     array[i] = null
   })
