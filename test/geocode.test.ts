@@ -3,7 +3,7 @@
 import deepFreeze from 'deep-freeze'
 import 'core-js/modules/es.object.assign'
 
-const geocode = require('../lib/geocode')
+import geocode from '../lib/geocode'
 
 const HTTP_OK = 200
 const HTTP_ERROR = 500
@@ -23,17 +23,17 @@ deepFreeze(dummyResponse)
 describe('geocode', () => {
   // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('should return Promise', () => {
-    const result = geocode()
+    const result = geocode('')
     // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(result instanceof Promise).toBe(true)
-    result.then(undefined, () => {}) // handle promise rejection to avoid warning
+    result.then(undefined, () => ({})) // handle promise rejection to avoid warning
   })
 
   // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it(
     'fails on falsy input',
     (done: any) => {
-      geocode().catch((reason: any) => {
+      geocode('').catch((reason: any) => {
         // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
         expect(reason instanceof Error).toBe(true)
         // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
@@ -53,6 +53,7 @@ describe('geocode', () => {
           cb(null, dummyResponse)
         }),
       },
+      responseProcessor: (response: any) => response.json,
     }
 
     return geocode('whatever', options).then(
@@ -60,7 +61,7 @@ describe('geocode', () => {
       () => expect(options.mapsClient.geocode.mock.calls.length).toBe(1),
       // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       (err: any) => expect(err).toBeNull(),
-    ); // to fail immediately if Promise gets rejected
+    ) // to fail immediately if Promise gets rejected
   })
 
   // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
@@ -70,12 +71,13 @@ describe('geocode', () => {
       mapsClient: {
         geocode: (input: any, cb: any) => cb(dummyError, undefined),
       },
+      responseProcessor: (response: any) => response.json,
     }
 
     return geocode('whatever', options).catch((reason: any) => {
       // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(reason).toEqual(dummyError)
-    });
+    })
   })
 
   // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
@@ -84,12 +86,13 @@ describe('geocode', () => {
       mapsClient: {
         geocode: (input: any, cb: any) => cb(null, undefined),
       },
+      responseProcessor: (response: any) => response.json,
     }
 
     return geocode('whatever', options).catch((reason: any) => {
       // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(reason).toEqual('Empty response')
-    });
+    })
   })
 
   // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
@@ -102,12 +105,13 @@ describe('geocode', () => {
       mapsClient: {
         geocode: (input: any, cb: any) => cb(null, anotherDummyResponse),
       },
+      responseProcessor: (response: any) => response.json,
     }
 
     return geocode('whatever', options).catch((reason: any) => {
       // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(reason).toEqual(`Bad status: ${anotherDummyResponse.status}`)
-    });
+    })
   })
 
   // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
@@ -120,12 +124,13 @@ describe('geocode', () => {
       mapsClient: {
         geocode: (input: any, cb: any) => cb(null, anotherDummyResponse),
       },
+      responseProcessor: (response: any) => response.json,
     }
 
     return geocode('whatever', options).catch((reason: any) => {
       // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       expect(reason).toEqual(`Bad json status: ${anotherDummyResponse.json.status}`)
-    });
+    })
   })
 
   // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
@@ -147,6 +152,6 @@ describe('geocode', () => {
       () => expect(processorMock.mock.calls.length).toBe(1),
       // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
       (err: any) => expect(err).toBeNull(),
-    );
+    )
   })
 })

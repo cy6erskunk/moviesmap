@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 
 import store from '../store'
@@ -10,17 +9,16 @@ import MoviesMap from './MoviesMap'
 import ErrorBubble from './ErrorBubble'
 
 type Props = {
-  locations: Record<string, any>,
-  movieTitle?: string,
-  titles: string[],
-  loadingData?: boolean,
-  error?: string,
-  loadingLocations?: boolean,
-  init: () => void,
+  locations: Record<string, any>
+  movieTitle?: string
+  titles: string[]
+  loadingData?: boolean
+  error?: string
+  loadingLocations?: boolean
+  init: () => void
 }
 
 class SomeApp extends Component<Props> {
-
   constructor(props: Props) {
     super(props)
     props.init()

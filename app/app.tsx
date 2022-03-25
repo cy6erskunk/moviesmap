@@ -16,7 +16,7 @@ const mapStateToProps = (state: any) => ({
   movieTitle: state.title,
   loadingData: state.loadingData,
   loadingLocations: state.loadingLocations,
-  error: state.error
+  error: state.error,
 })
 
 const mapDispatchToProps = {

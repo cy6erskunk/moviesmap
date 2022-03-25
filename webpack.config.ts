@@ -1,7 +1,7 @@
 import path from 'path'
 
-const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
+import {BundleAnalyzerPlugin as BundleAlalyzer} from 'webpack-bundle-analyzer'
+import LicenseChecker from '@jetbrains/ring-ui-license-checker'
 
 module.exports = (env: any) => ({
   mode: env && env.development ? 'development' : 'production',
@@ -18,12 +18,13 @@ module.exports = (env: any) => ({
       env.licenses &&
       new LicenseChecker({
         filename: 'third-party-licenses.txt',
-        format: (params: any) => params.modules
-          .map(
-            (mod: any) => `${mod.name} (${mod.url})
+        format: (params: any) =>
+          params.modules
+            .map(
+              (mod: any) => `${mod.name} (${mod.url})
 ${mod.license.name} (${mod.license.url})`,
-          )
-          .join('\n\n'),
+            )
+            .join('\n\n'),
         // stackframe has wrong license field in 0.3.1
         exclude: [/stackframe/],
         customLicenses: [
@@ -54,5 +55,5 @@ ${mod.license.name} (${mod.license.url})`,
   devServer: {
     static: path.join(__dirname, 'public'),
     historyApiFallback: true,
-  }
+  },
 })

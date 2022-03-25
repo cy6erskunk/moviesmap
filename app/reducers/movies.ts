@@ -80,15 +80,18 @@ const reducer = (state = initialState, action: any) => {
         title: action.title,
         moviesData: clone(state.moviesData),
         // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
-        locations: (clone(state.moviesData[action.title]) || []).reduce((prev: any, locationName: any) => {
-          // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
-          if (typeof state.allLocations[locationName] !== 'undefined') {
+        locations: (clone(state.moviesData[action.title]) || []).reduce(
+          (prev: any, locationName: any) => {
             // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
-            prev[locationName] = state.allLocations[locationName]
-          }
-          return prev
-        }, {}),
-      });
+            if (typeof state.allLocations[locationName] !== 'undefined') {
+              // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+              prev[locationName] = state.allLocations[locationName]
+            }
+            return prev
+          },
+          {},
+        ),
+      })
 
     case constants.RESET_MOVIE:
       if (!action.loadingHistory) {

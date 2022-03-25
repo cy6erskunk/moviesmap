@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 
 export default async (req: any, res: any) => {
   const movies = await fetch(

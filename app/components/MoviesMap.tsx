@@ -3,36 +3,31 @@ import React, {Component} from 'react'
 
 import constants from '../constants'
 
-function noop() {}
+function noop() {
+  return undefined
+}
 
 const mapStyle = {
   width: '98vw',
   height: 'calc(100vh - 4em)',
   margin: 0,
   padding: 0,
-};
+}
 
 type Position = {
-  lat: number,
+  lat: number
   lng: number
 }
 
 type Props = {
   /* { location name => coordinates } */
-  locations: Record<string, any>,
-  movieTitle?: string,
-  position: Position,
-  loadingLocations: boolean,
-  updateMarkers: (google: any, {
-    markers,
-    locations,
-    movieTitle,
-    map,
-    infoWindow
-  }: any) => void
-};
+  locations: Record<string, any>
+  movieTitle?: string
+  position: Position
+  loadingLocations: boolean
+  updateMarkers: (google: any, {markers, locations, movieTitle, map, infoWindow}: any) => void
+}
 class MoviesMap extends Component<Props> {
-
   static defaultProps = {
     /* initial center of the map */
     position: {
@@ -44,11 +39,11 @@ class MoviesMap extends Component<Props> {
     updateMarkers: noop,
   }
 
-  infoWindow: any;
-  map: any;
-  mapElem: any;
-  mapInited: any;
-  markers: any;
+  infoWindow: any
+  map: any
+  mapElem: any
+  mapInited: any
+  markers: any
 
   constructor(props: any) {
     super(props)
@@ -65,11 +60,8 @@ class MoviesMap extends Component<Props> {
       center: this.props.position,
     }
 
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
     if (typeof google !== 'undefined') {
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
       this.map = new google.maps.Map(this.mapElem, mapOptions)
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
       this.infoWindow = new google.maps.InfoWindow()
       // @ts-expect-error ts-migrate(2551) FIXME: Property 'map' does not exist on type 'Window & ty... Remove this comment to see the full error message
       window.map = this.map
@@ -79,7 +71,6 @@ class MoviesMap extends Component<Props> {
 
   componentDidUpdate() {
     if (this.mapInited) {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'updateMarkers' does not exist on type 'R... Remove this comment to see the full error message
       this.markers = this.props.updateMarkers(google, {
         locations: this.props.locations,
         markers: this.markers,
@@ -89,7 +80,6 @@ class MoviesMap extends Component<Props> {
       })
 
       const locationTitles = Object.keys(this.props.locations)
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
       const bounds = new google.maps.LatLngBounds()
 
       if (this.markers.length) {
@@ -102,7 +92,6 @@ class MoviesMap extends Component<Props> {
 
         this.map.setCenter(bounds.getCenter())
         this.map.fitBounds(bounds)
-        // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'google'.
         google.maps.event.addListenerOnce(this.map, 'bounds_changed', () => {
           this.map.setCenter(bounds.getCenter())
           if (this.map.getZoom() > constants.MAX_ZOOM_AFTER_BOUND_CHANGE) {

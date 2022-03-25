@@ -6,12 +6,12 @@ import fetchLocations from '../fetch/locations'
 export const switchMovie = (title, loadingHistory) => ({
   type: constants.SWITCH_MOVIE,
   title,
-  loadingHistory
+  loadingHistory,
 })
 
 export const resetMovie = (loadingHistory: any) => ({
   type: constants.RESET_MOVIE,
-  loadingHistory
+  loadingHistory,
 })
 
 export const fetchMoviesData = () => (dispatch: any) => {

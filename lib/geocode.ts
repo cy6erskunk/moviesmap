@@ -1,5 +1,6 @@
 const HTTP_OK = 200
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const defaultMapsClient = require('@google/maps').createClient({
   key: process.env.MAPS_KEY,
 })
@@ -16,6 +17,7 @@ function geocodeAddress(
     mapsClient.geocode(
       {
         address,
+        key: process.env.MAPS_KEY,
       },
       (err: any, response: any) => {
         if (err) {
@@ -35,7 +37,7 @@ function geocodeAddress(
         }
       },
     )
-  });
+  })
 }
 /**
  * @type {Object} Point
@@ -72,20 +74,13 @@ function defaultResponseProcessor(data: any) {
   return data.results[0].geometry.location
 }
 
-/**
- * @type {Object} MapsClient
- *
- * @prop {Function} geocode({address}, cb(err, cb))
- */
+type MapsClient = {
+  geocode: (input: any, cb: any) => void
+}
 
-/**
- * @type {Object} Options
- * @prop {Function} [responseProcessor]
- * @prop {MapsClient} [mapsClient]
- */
+type Options = {
+  responseProcessor: (data: any) => any
+  mapsClient: MapsClient
+}
 
-/**
- * @prop {String} input to geocode
- * @prop {Options} optionsObject
- */
-module.exports = (input: any, optionsObject: any) => geocodeAddress(input, optionsObject)
+export default (input: string, optionsObject?: Options) => geocodeAddress(input, optionsObject)

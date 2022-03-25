@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 
 type MovieTitleProps = {
-  title?: string,
+  title?: string
   value: string
 }
 function MovieTitleOption(props: MovieTitleProps) {
@@ -22,20 +22,19 @@ const selectorStyle = {
 }
 
 type Props = {
-  handleChange: (title: string, loadingHistory: Array<any>) => void,
-  titles: string[],
-  value?: string,
-  loadingData: boolean,
-  className?: string,
+  handleChange: (title: string, loadingHistory: Array<any>) => void
+  titles: string[]
+  value?: string
+  loadingData: boolean
+  className?: string
 }
 class MovieSelector extends Component<Props> {
-
   static defaultProps = {
     titles: [],
     loadingData: false,
   }
 
-  titlesList: any;
+  titlesList: any
 
   constructor(props: any) {
     super(props)

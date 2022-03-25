@@ -8,6 +8,8 @@ import App from '../app/components/App'
 // @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  function noop() {}
+  function noop() {
+    return undefined
+  }
   ReactDOM.render(<App locations={[]} titles={[]} init={noop} />, div)
 })

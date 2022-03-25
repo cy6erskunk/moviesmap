@@ -1,8 +1,10 @@
 import fs from 'fs'
 
-const data = require('./data.json')
-const geocode = require('./lib/geocode')
-const locations = require('./locations.json')
+import geocode from './lib/geocode'
+// @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
+import data from './data.json'
+// @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
+import locations from './locations.json'
 
 const promises: any = []
 
