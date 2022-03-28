@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'clon... Remove this comment to see the full error message
 import clone from 'clone'
 import 'core-js/modules/es.object.assign'
 
@@ -14,7 +15,7 @@ const initialState = {
   error: '',
 }
 /* eslint-disable complexity */
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case constants.REQUEST_MOVIES_DATA:
       return Object.assign({}, clone(state), {
@@ -78,12 +79,18 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, clone(state), {
         title: action.title,
         moviesData: clone(state.moviesData),
-        locations: (clone(state.moviesData[action.title]) || []).reduce((prev, locationName) => {
-          if (typeof state.allLocations[locationName] !== 'undefined') {
-            prev[locationName] = state.allLocations[locationName]
-          }
-          return prev
-        }, {}),
+        // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+        locations: (clone(state.moviesData[action.title]) || []).reduce(
+          (prev: any, locationName: any) => {
+            // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+            if (typeof state.allLocations[locationName] !== 'undefined') {
+              // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+              prev[locationName] = state.allLocations[locationName]
+            }
+            return prev
+          },
+          {},
+        ),
       })
 
     case constants.RESET_MOVIE:

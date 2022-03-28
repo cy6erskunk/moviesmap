@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 
 import reducer from './reducers/movies'
 
-const logMe = (store) => (next) => (action) => {
+const logMe = (store: any) => (next: any) => (action: any) => {
   if (typeof action !== 'function') {
     // eslint-disable-next-line no-console
     console.log('dispatching:', action, store.getState())
@@ -13,6 +13,7 @@ const logMe = (store) => (next) => (action) => {
 
 const store = createStore(
   reducer,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property '__REDUX_DEVTOOLS_EXTENSION__' does not e... Remove this comment to see the full error message
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk, logMe),
 )

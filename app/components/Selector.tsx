@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 
-function MovieTitleOption(props) {
+type MovieTitleProps = {
+  title?: string
+  value: string
+}
+function MovieTitleOption(props: MovieTitleProps) {
   const title = typeof props.title !== 'undefined' ? props.title : props.value
   return <option value={props.value}>{title}</option>
 }
@@ -17,20 +21,22 @@ const selectorStyle = {
   fontSize: '18px',
 }
 
-class MovieSelector extends Component {
-  static propTypes = {
-    handleChange: PropTypes.func,
-    titles: PropTypes.arrayOf(PropTypes.string),
-    value: PropTypes.string,
-    loadingData: PropTypes.bool,
-  }
-
+type Props = {
+  handleChange: (title: string, loadingHistory: Array<any>) => void
+  titles: string[]
+  value?: string
+  loadingData: boolean
+  className?: string
+}
+class MovieSelector extends Component<Props> {
   static defaultProps = {
     titles: [],
     loadingData: false,
   }
 
-  constructor(props) {
+  titlesList: any
+
+  constructor(props: any) {
     super(props)
 
     this.state = {value: ''}
@@ -38,14 +44,15 @@ class MovieSelector extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(event) {
+  handleChange(event: any) {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'handleChange' does not exist on type 'Re... Remove this comment to see the full error message
     this.props.handleChange(event.target.value)
   }
 
   render() {
     const titles = this.props.titles
     if (!this.props.loadingData) {
-      this.titlesList = titles.map((title, index) => {
+      this.titlesList = titles.map((title: any, index: any) => {
         const key = `__id_${index}`
         return <MovieTitleOption key={key} value={title} />
       })

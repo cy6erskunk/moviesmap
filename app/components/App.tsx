@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 
 import store from '../store'
@@ -9,18 +8,18 @@ import MovieSelector from './Selector'
 import MoviesMap from './MoviesMap'
 import ErrorBubble from './ErrorBubble'
 
-class SomeApp extends Component {
-  static propTypes = {
-    locations: PropTypes.object,
-    movieTitle: PropTypes.string,
-    titles: PropTypes.arrayOf(PropTypes.string),
-    loadingData: PropTypes.bool,
-    error: PropTypes.string,
-    loadingLocations: PropTypes.bool,
-    init: PropTypes.func,
-  }
+type Props = {
+  locations: Record<string, any>
+  movieTitle?: string
+  titles: string[]
+  loadingData?: boolean
+  error?: string
+  loadingLocations?: boolean
+  init: () => void
+}
 
-  constructor(props) {
+class SomeApp extends Component<Props> {
+  constructor(props: Props) {
     super(props)
     props.init()
   }
@@ -29,9 +28,9 @@ class SomeApp extends Component {
 
   componentWillUnmount = () => window.removeEventListener('popstate', this.popStateHandler)
 
-  popStateHandler = (event) => this.dispatchChange(event.state ? event.state.title : '', true)
+  popStateHandler = (event: any) => this.dispatchChange(event.state ? event.state.title : '', true)
 
-  dispatchChange(title, loadingHistory) {
+  dispatchChange(title: any, loadingHistory: any) {
     store.dispatch(title ? switchMovie(title, loadingHistory) : resetMovie(loadingHistory))
   }
 

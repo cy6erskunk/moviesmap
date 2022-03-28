@@ -1,19 +1,13 @@
 module.exports = {
+  root: true,
   env: {
     es6: true,
     browser: true,
     node: true,
   },
-  parser: '@babel/eslint-parser',
-  extends: [
-    '@jetbrains',
-    '@jetbrains/eslint-config/browser',
-    '@jetbrains/eslint-config/es6',
-    '@jetbrains/eslint-config/node',
-    '@jetbrains/eslint-config/react',
-    'prettier',
-  ],
-  plugins: ['prettier', 'compat'],
+  parser: '@typescript-eslint/parser',
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', 'compat'],
   rules: {
     'prettier/prettier': [
       'error',
@@ -34,6 +28,11 @@ module.exports = {
     polyfills: ['fetch', 'Promise', 'Object.assign'],
     react: {
       version: 'detect',
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
   },
 }

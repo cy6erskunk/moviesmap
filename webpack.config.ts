@@ -1,11 +1,14 @@
-const path = require('path')
+import path from 'path'
 
-const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
+// @ts-expect-error Could not find a declaration file for module
+import {BundleAnalyzerPlugin as BundleAlalyzer} from 'webpack-bundle-analyzer'
+// @ts-expect-error Could not find a declaration file for module
+import LicenseChecker from '@jetbrains/ring-ui-license-checker'
 
-module.exports = (env) => ({
+module.exports = (env: any) => ({
   mode: env && env.development ? 'development' : 'production',
-  entry: path.join(__dirname, 'app/app.js'),
+  entry: path.join(__dirname, 'app/app.tsx'),
+
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'app-bundle.js',
@@ -17,10 +20,10 @@ module.exports = (env) => ({
       env.licenses &&
       new LicenseChecker({
         filename: 'third-party-licenses.txt',
-        format: (params) =>
+        format: (params: any) =>
           params.modules
             .map(
-              (mod) => `${mod.name} (${mod.url})
+              (mod: any) => `${mod.name} (${mod.url})
 ${mod.license.name} (${mod.license.url})`,
             )
             .join('\n\n'),
@@ -44,11 +47,14 @@ ${mod.license.name} (${mod.license.url})`,
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.tsx?$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
-        loader: 'babel-loader',
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 
   devServer: {

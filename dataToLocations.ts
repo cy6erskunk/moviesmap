@@ -1,21 +1,23 @@
 import fs from 'fs'
 
-const data = require('./data.json')
-const geocode = require('./lib/geocode')
-const locations = require('./locations.json')
+import geocode from './lib/geocode'
+// @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
+import data from './data.json'
+// @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
+import locations from './locations.json'
 
-const promises = []
+const promises: any = []
 
-data.forEach((elem) => {
+data.forEach((elem: any) => {
   if (!locations[elem.locations]) {
     process.stdout.write(`requesting location: ${elem.locations}\n`)
 
     const p = geocode(`${elem.locations} San Francisco Bay Area, CA, USA`)
-      .then((res) => {
+      .then((res: any) => {
         locations[elem.locations] = res
         return res
       })
-      .catch((reason) => {
+      .catch((reason: any) => {
         process.stderr.write(`${reason}\n`)
       })
 

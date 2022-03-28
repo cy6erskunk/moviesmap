@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types'
-/* global google */
+/* ts-global google */
 import React, {Component} from 'react'
 
 import constants from '../constants'
 
-function noop() {}
+function noop() {
+  return undefined
+}
 
 const mapStyle = {
   width: '98vw',
@@ -13,16 +14,20 @@ const mapStyle = {
   padding: 0,
 }
 
-class MoviesMap extends Component {
-  static propTypes = {
-    /* { location name => coordinates } */
-    locations: PropTypes.object,
-    movieTitle: PropTypes.string,
-    position: PropTypes.object,
-    loadingLocations: PropTypes.bool,
-    updateMarkers: PropTypes.func,
-  }
+type Position = {
+  lat: number
+  lng: number
+}
 
+type Props = {
+  /* { location name => coordinates } */
+  locations: Record<string, any>
+  movieTitle?: string
+  position: Position
+  loadingLocations: boolean
+  updateMarkers: (google: any, {markers, locations, movieTitle, map, infoWindow}: any) => void
+}
+class MoviesMap extends Component<Props> {
   static defaultProps = {
     /* initial center of the map */
     position: {
@@ -34,7 +39,13 @@ class MoviesMap extends Component {
     updateMarkers: noop,
   }
 
-  constructor(props) {
+  infoWindow: any
+  map: any
+  mapElem: any
+  mapInited: any
+  markers: any
+
+  constructor(props: any) {
     super(props)
 
     this.markers = []
@@ -52,6 +63,7 @@ class MoviesMap extends Component {
     if (typeof google !== 'undefined') {
       this.map = new google.maps.Map(this.mapElem, mapOptions)
       this.infoWindow = new google.maps.InfoWindow()
+      // @ts-expect-error ts-migrate(2551) FIXME: Property 'map' does not exist on type 'Window & ty... Remove this comment to see the full error message
       window.map = this.map
       this.mapInited = true
     }
@@ -71,7 +83,7 @@ class MoviesMap extends Component {
       const bounds = new google.maps.LatLngBounds()
 
       if (this.markers.length) {
-        this.markers.forEach((marker) => {
+        this.markers.forEach((marker: any) => {
           marker.setVisible(locationTitles.includes(marker.getTitle()))
           if (locationTitles.includes(marker.getTitle())) {
             bounds.extend(marker.getPosition())
@@ -90,7 +102,7 @@ class MoviesMap extends Component {
     }
   }
 
-  refDiv(div) {
+  refDiv(div: any) {
     this.mapElem = div
   }
 
