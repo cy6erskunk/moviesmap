@@ -4,7 +4,7 @@ export default async (req: any, res: any) => {
   const movies = await fetch(
     'https://data.sfgov.org/resource/wwmu-gmzc.json?$select=title,locations',
   )
-    .then((response) => response.json())
+    .then((response: any) => response.json())
     .then((data: any) =>
       data
         // filter out movies without locations

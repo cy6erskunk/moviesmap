@@ -6,7 +6,7 @@ on the Google Map.
 ### DEV
     npm install
     npm i -g vercel
-    vercel run
+    vercel dev
 
 ### production
     npm install
