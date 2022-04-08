@@ -4,16 +4,11 @@ on the Google Map.
 
 ## Usage/Development/Deployment
 ### DEV
-    npm install
-    npm i -g vercel
-    vercel dev
 
-### production
-    npm install
-    PORT=80 npm start
+Dev env uses vercel under the hood
 
-## Deployment
-- babel and webpack are installed in production to let build happen - overhead
+    npm install
+    npm start
 
 ## API Key
 - in the main app it is hardcoded into `index.html`

@@ -4,14 +4,13 @@
   "description": "SF movie locations on the map",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "build:dev": "webpack --mode development",
     "build": "webpack",
     "build-n-analyze": "webpack --env.analyze",
     "check-licenses": "webpack --env.licenses",
-    "serve": "webpack-dev-server --progress --mode development",
+    "start": "vercel dev",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
@@ -58,11 +57,11 @@
     "eslint-plugin-react-hooks": "4.4.0",
     "jest": "27.5.1",
     "prettier": "2.6.1",
-    "ts-loader": "^9.2.8",
-    "typescript": "^4.6.3",
+    "ts-loader": "9.2.8",
+    "typescript": "4.6.3",
+    "vercel": "24.0.1",
     "webpack-bundle-analyzer": "4.5.0",
-    "webpack-cli": "4.9.2",
-    "webpack-dev-server": "4.7.4"
+    "webpack-cli": "4.9.2"
   },
   "engines": {
     "node": ">=14"

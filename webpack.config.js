@@ -1,11 +1,9 @@
-import path from 'path'
+const path = require('path')
 
-// @ts-expect-error Could not find a declaration file for module
-import {BundleAnalyzerPlugin as BundleAlalyzer} from 'webpack-bundle-analyzer'
-// @ts-expect-error Could not find a declaration file for module
-import LicenseChecker from '@jetbrains/ring-ui-license-checker'
+const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
 
-module.exports = (env: any) => ({
+module.exports = (env) => ({
   mode: env && env.development ? 'development' : 'production',
   entry: path.join(__dirname, 'app/app.tsx'),
 
@@ -20,10 +18,10 @@ module.exports = (env: any) => ({
       env.licenses &&
       new LicenseChecker({
         filename: 'third-party-licenses.txt',
-        format: (params: any) =>
+        format: (params) =>
           params.modules
             .map(
-              (mod: any) => `${mod.name} (${mod.url})
+              (mod) => `${mod.name} (${mod.url})
 ${mod.license.name} (${mod.license.url})`,
             )
             .join('\n\n'),
