@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, {FormEvent} from 'react'
 
 type MovieTitleProps = {
   title?: string
@@ -22,12 +22,14 @@ type Props = {
   loadingData?: boolean
   className?: string
 }
-const MovieSelector = (props: Props = {
-  titles: [],
-  loadingData: false
-}): JSX.Element => {
+const MovieSelector = (
+  props: Props = {
+    titles: [],
+    loadingData: false,
+  },
+): JSX.Element => {
   const titles = props.titles
-  let titlesList: JSX.Element[] = [];
+  let titlesList: JSX.Element[] = []
 
   const handleChange = (event: FormEvent<HTMLSelectElement>) => {
     props.handleChange && props.handleChange(event.currentTarget.value)
@@ -38,13 +40,9 @@ const MovieSelector = (props: Props = {
       const key = `__id_${index}`
       return <MovieTitleOption key={key} value={title} />
     })
-    titlesList.unshift(
-      <MovieTitleOption key="-1" title="(select title to proceed)" value="" />,
-    )
+    titlesList.unshift(<MovieTitleOption key="-1" title="(select title to proceed)" value="" />)
   } else {
-    titlesList.unshift(
-      <MovieTitleOption key={Math.random()} title="(Loading...)" value="" />,
-    )
+    titlesList.unshift(<MovieTitleOption key={Math.random()} title="(Loading...)" value="" />)
   }
 
   return (
@@ -57,7 +55,6 @@ const MovieSelector = (props: Props = {
       {titlesList}
     </select>
   )
-
 }
 
 export default MovieSelector
