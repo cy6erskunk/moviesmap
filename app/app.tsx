@@ -2,7 +2,6 @@ import './wdyr'
 
 import * as React from 'react'
 import {connect, Provider} from 'react-redux'
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import {render} from 'react-dom'
 import 'core-js/features/promise'
 
