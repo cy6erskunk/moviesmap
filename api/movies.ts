@@ -1,8 +1,8 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 
 export default async (req: any, res: any) => {
   const movies = await fetch(
-    'https://data.sfgov.org/resource/wwmu-gmzc.json?$select=title,locations',
+    'https://data.sfgov.org/resource/wwmu-gmzc.json?$select=title,locations'
   )
     .then((response: any) => response.json())
     .then((data: any) =>
@@ -12,14 +12,14 @@ export default async (req: any, res: any) => {
         // flatten structure to {`title`=>[locationName,...], ...}
         .reduce((prev: any, m: any) => {
           if (!prev[m.title]) {
-            prev[m.title] = []
+            prev[m.title] = [];
           }
 
-          prev[m.title].push(m.locations)
+          prev[m.title].push(m.locations);
 
-          return prev
-        }, {}),
-    )
+          return prev;
+        }, {})
+    );
 
-  return res.json(movies)
-}
+  return res.json(movies);
+};

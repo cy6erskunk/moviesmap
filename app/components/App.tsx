@@ -1,37 +1,42 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react';
 
-import store from '../store'
-import {switchMovie, resetMovie} from '../actions'
-import updateMarkers from '../tools/updateMarkers'
+import store from '../store';
+import { switchMovie, resetMovie } from '../actions';
+import updateMarkers from '../tools/updateMarkers';
 
-import MovieSelector from './Selector'
-import MoviesMap from './MoviesMap'
-import ErrorBubble from './ErrorBubble'
+import MovieSelector from './Selector';
+import MoviesMap from './MoviesMap';
+import ErrorBubble from './ErrorBubble';
 
 type Props = {
-  locations: Record<string, any>
-  movieTitle?: string
-  titles: string[]
-  loadingData?: boolean
-  error?: string
-  loadingLocations?: boolean
-  init: () => void
-}
+  locations: Record<string, any>;
+  movieTitle?: string;
+  titles: string[];
+  loadingData?: boolean;
+  error?: string;
+  loadingLocations?: boolean;
+  init: () => void;
+};
 
 class SomeApp extends Component<Props> {
   constructor(props: Props) {
-    super(props)
-    props.init()
+    super(props);
+    props.init();
   }
 
-  componentDidMount = () => window.addEventListener('popstate', this.popStateHandler)
+  componentDidMount = () =>
+    window.addEventListener('popstate', this.popStateHandler);
 
-  componentWillUnmount = () => window.removeEventListener('popstate', this.popStateHandler)
+  componentWillUnmount = () =>
+    window.removeEventListener('popstate', this.popStateHandler);
 
-  popStateHandler = (event: any) => this.dispatchChange(event.state ? event.state.title : '', true)
+  popStateHandler = (event: any) =>
+    this.dispatchChange(event.state ? event.state.title : '', true);
 
   dispatchChange(title: any, loadingHistory: any) {
-    store.dispatch(title ? switchMovie(title, loadingHistory) : resetMovie(loadingHistory))
+    store.dispatch(
+      title ? switchMovie(title, loadingHistory) : resetMovie(loadingHistory)
+    );
   }
 
   render() {
@@ -52,8 +57,8 @@ class SomeApp extends Component<Props> {
           updateMarkers={updateMarkers}
         />
       </React.StrictMode>
-    )
+    );
   }
 }
 
-export default SomeApp
+export default SomeApp;

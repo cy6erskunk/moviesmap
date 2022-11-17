@@ -1,0 +1,15 @@
+{
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "trailingComma": "none"
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": true
+  }
+}
