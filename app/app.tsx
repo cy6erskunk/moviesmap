@@ -1,13 +1,13 @@
-import './wdyr'
+import './wdyr';
 
-import * as React from 'react'
-import {connect, Provider} from 'react-redux'
-import {render} from 'react-dom'
-import 'core-js/features/promise'
+import * as React from 'react';
+import { connect, Provider } from 'react-redux';
+import { render } from 'react-dom';
+import 'core-js/features/promise';
 
-import SomeApp from './components/App'
-import store from './store'
-import {init} from './actions'
+import SomeApp from './components/App';
+import store from './store';
+import { init } from './actions';
 
 const mapStateToProps = (state: any) => ({
   locations: state.locations,
@@ -15,18 +15,18 @@ const mapStateToProps = (state: any) => ({
   movieTitle: state.title,
   loadingData: state.loadingData,
   loadingLocations: state.loadingLocations,
-  error: state.error,
-})
+  error: state.error
+});
 
 const mapDispatchToProps = {
-  init,
-}
+  init
+};
 
-const SomeAppContainer = connect(mapStateToProps, mapDispatchToProps)(SomeApp)
+const SomeAppContainer = connect(mapStateToProps, mapDispatchToProps)(SomeApp);
 
 render(
   <Provider store={store}>
     <SomeAppContainer />
   </Provider>,
-  document.querySelector('.app-container'),
-)
+  document.querySelector('.app-container')
+);

@@ -1,43 +1,46 @@
-const HTTP_OK = 200
+const HTTP_OK = 200;
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const defaultMapsClient = require('@google/maps').createClient({
-  key: process.env.MAPS_KEY,
-})
+  key: process.env.MAPS_KEY
+});
 
 function geocodeAddress(
   address: any,
-  {mapsClient = defaultMapsClient, responseProcessor = defaultResponseProcessor} = {},
+  {
+    mapsClient = defaultMapsClient,
+    responseProcessor = defaultResponseProcessor
+  } = {}
 ) {
   return new Promise((resolve, reject) => {
     if (!address) {
-      reject(new Error('Empty input'))
+      reject(new Error('Empty input'));
     }
 
     mapsClient.geocode(
       {
         address,
-        key: process.env.MAPS_KEY,
+        key: process.env.MAPS_KEY
       },
       (err: any, response: any) => {
         if (err) {
-          reject(err)
+          reject(err);
         } else if (!response) {
-          reject('Empty response')
+          reject('Empty response');
         } else if (response.status !== HTTP_OK) {
-          reject(`Bad status: ${response.status}`)
+          reject(`Bad status: ${response.status}`);
         } else if (response.json.status !== 'OK') {
-          reject(`Bad json status: ${response.json.status}`)
+          reject(`Bad json status: ${response.json.status}`);
         } else {
           try {
-            resolve(responseProcessor(response.json))
+            resolve(responseProcessor(response.json));
           } catch (e) {
-            reject(e)
+            reject(e);
           }
         }
-      },
-    )
-  })
+      }
+    );
+  });
 }
 /**
  * @type {Object} Point
@@ -71,16 +74,17 @@ function geocodeAddress(
  */
 
 function defaultResponseProcessor(data: any) {
-  return data.results[0].geometry.location
+  return data.results[0].geometry.location;
 }
 
 type MapsClient = {
-  geocode: (input: any, cb: any) => void
-}
+  geocode: (input: any, cb: any) => void;
+};
 
 type Options = {
-  responseProcessor: (data: any) => any
-  mapsClient: MapsClient
-}
+  responseProcessor: (data: any) => any;
+  mapsClient: MapsClient;
+};
 
-export default (input: string, optionsObject?: Options) => geocodeAddress(input, optionsObject)
+export default (input: string, optionsObject?: Options) =>
+  geocodeAddress(input, optionsObject);
