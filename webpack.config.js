@@ -1,4 +1,7 @@
 const path = require('path')
+const webpack = require(
+  "webpack"
+)
 
 const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
@@ -13,6 +16,9 @@ module.exports = (env) => ({
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_GMAPS_API_KEY': JSON.stringify(process.env.REACT_APP_GMAPS_API_KEY),
+    }),
     env && env.analyze && new BundleAlalyzer({analyzerMode: 'static'}),
     env &&
       env.licenses &&
