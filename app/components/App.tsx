@@ -52,14 +52,14 @@ class SomeApp extends Component<Props> {
           loadingData={this.props.loadingData}
         />
         <Wrapper apiKey={`${process.env.REACT_APP_GMAPS_API_KEY}`}>
-         <MoviesMap
-          locations={this.props.locations}
-          movieTitle={this.props.movieTitle}
-          loadingLocations={this.props.loadingLocations}
-          updateMarkers={updateMarkers}
-        />
-  </Wrapper>
-        
+          <MoviesMap
+            locations={this.props.locations}
+            movieTitle={this.props.movieTitle}
+            loadingLocations={this.props.loadingLocations}
+            updateMarkers={updateMarkers}
+          />
+        </Wrapper>
+
       </React.StrictMode>
     );
   }
