@@ -1,10 +1,11 @@
 /* eslint-env jasmine, jest */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Selector from '../app/components/Selector';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Selector handleChange={() => undefined} titles={[]} />, div);
+  const root = createRoot(div);
+  root.render(<Selector handleChange={() => undefined} titles={[]} />);
 });
