@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Wrapper } from "@googlemaps/react-wrapper";
+import { Wrapper } from '@googlemaps/react-wrapper';
 
 import store from '../store';
 import { switchMovie, resetMovie } from '../actions';
@@ -59,7 +59,6 @@ class SomeApp extends Component<Props> {
             updateMarkers={updateMarkers}
           />
         </Wrapper>
-
       </React.StrictMode>
     );
   }
