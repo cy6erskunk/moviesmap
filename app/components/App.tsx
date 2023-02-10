@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Wrapper } from '@googlemaps/react-wrapper';
 
 import store from '../store';
 import { switchMovie, resetMovie } from '../actions';
@@ -50,12 +51,14 @@ class SomeApp extends Component<Props> {
           value={this.props.movieTitle}
           loadingData={this.props.loadingData}
         />
-        <MoviesMap
-          locations={this.props.locations}
-          movieTitle={this.props.movieTitle}
-          loadingLocations={this.props.loadingLocations}
-          updateMarkers={updateMarkers}
-        />
+        <Wrapper apiKey={`${process.env.REACT_APP_GMAPS_API_KEY}`}>
+          <MoviesMap
+            locations={this.props.locations}
+            movieTitle={this.props.movieTitle}
+            loadingLocations={this.props.loadingLocations}
+            updateMarkers={updateMarkers}
+          />
+        </Wrapper>
       </React.StrictMode>
     );
   }

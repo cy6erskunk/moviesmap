@@ -10,6 +10,16 @@ Dev env uses vercel under the hood
     npm install
     npm start
 
+### VS Code configuration
+
+- install [Officical Rome extension](https://marketplace.visualstudio.com/items?itemName=rome.rome)
+- update worksapace `settings.json` file:
+    ```
+    "editor.defaultFormatter": "rome.rome",
+    "editor.formatOnSave": true
+    ```
+
 ## API Key
-- in the main app it is hardcoded into `index.html`
 - unlike `geocode` lib which uses `process.env.MAPS_KEY`
+
+
