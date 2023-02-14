@@ -4,8 +4,8 @@
   "description": "SF movie locations on the map",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watchAll",
+    "test": "jest test/",
+    "test:watch": "jest --watchAll test/",
     "build:dev": "webpack --mode development",
     "test:e2e": "playwright test",
     "build": "webpack",
