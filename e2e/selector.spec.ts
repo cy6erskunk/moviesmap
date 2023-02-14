@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = '/';
 const TITLE = 'SF movie locations on the map';
 const OPTION_ONE = 'A Jitney Elopement';
 const OPTION_TWO = '180';
