@@ -6,7 +6,7 @@ const webpack = require(
 const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = (env) => ({
-  mode: env && env.development ? 'development' : 'production',
+  mode: env?.development ? 'development' : 'production',
   entry: path.join(__dirname, 'app/app.tsx'),
 
   output: {
@@ -18,7 +18,7 @@ module.exports = (env) => ({
     new webpack.DefinePlugin({
       'process.env.REACT_APP_GMAPS_API_KEY': JSON.stringify(process.env.REACT_APP_GMAPS_API_KEY),
     }),
-    env && env.analyze && new BundleAlalyzer({analyzerMode: 'static'})
+    env?.analyze && new BundleAlalyzer({analyzerMode: 'static'})
   ].filter(Boolean),
 
   module: {
