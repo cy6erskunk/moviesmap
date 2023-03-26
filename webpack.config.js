@@ -4,7 +4,6 @@ const webpack = require(
 )
 
 const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const LicenseChecker = require('@jetbrains/ring-ui-license-checker')
 
 module.exports = (env) => ({
   mode: env && env.development ? 'development' : 'production',
