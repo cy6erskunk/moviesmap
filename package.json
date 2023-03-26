@@ -28,7 +28,7 @@
     "react-redux": "8.0.5",
     "redux": "4.2.1",
     "redux-thunk": "2.4.2",
-    "webpack": "5.76.0",
+    "webpack": "5.76.3",
     "whatwg-fetch": "3.6.2"
   },
   "devDependencies": {
