@@ -39,7 +39,7 @@ const reducer = (state = initialState, action: any) => {
           : {
               loadingData: false,
               moviesData: action.data,
-              titles: Object.keys(action.data)
+              titles: Object.keys(action.data).sort()
             }
       );
 
