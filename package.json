@@ -34,7 +34,7 @@
   "devDependencies": {
     "@babel/core": "7.22.1",
     "@babel/preset-env": "7.22.2",
-    "@babel/preset-react": "7.22.0",
+    "@babel/preset-react": "7.22.3",
     "@babel/preset-typescript": "7.21.5",
     "@playwright/test": "^1.30.0",
     "@types/googlemaps": "3.43.3",
