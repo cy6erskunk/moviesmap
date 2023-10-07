@@ -47,7 +47,7 @@
     "deep-freeze": "0.0.1",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
-    "rome": "10.0.1",
+    "@biomejs/biome": "1.0.0",
     "ts-loader": "9.5.0",
     "typescript": "5.2.2",
     "uuid": "9.0.1",
