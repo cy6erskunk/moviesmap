@@ -11,8 +11,8 @@
     "build": "webpack",
     "build-n-analyze": "webpack --env.analyze",
     "start": "vercel dev",
-    "lint": "rome ci api app lib test ",
-    "lint-fix": "rome check --apply-suggested api app lib test && rome format --write api app lib test"
+    "lint": "biome ci api app lib test ",
+    "lint-fix": "biome check --apply-suggested api app lib test && biome format --write api app lib test"
   },
   "author": "Igor Shevchenko",
   "license": "ISC",
