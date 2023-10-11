@@ -15,7 +15,7 @@ const initialState = {
   error: ''
 };
 /* eslint-disable complexity */
-const reducer = (state = initialState, action: any) => {
+const reducer = (state, action: any) => {
   switch (action.type) {
     case constants.REQUEST_MOVIES_DATA:
       return Object.assign({}, clone(state), {

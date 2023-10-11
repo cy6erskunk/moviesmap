@@ -1,13 +1,13 @@
 import './wdyr';
 
-import * as React from 'react';
-import { connect, Provider } from 'react-redux';
-import { render } from 'react-dom';
 import 'core-js/features/promise';
+import * as React from 'react';
+import { render } from 'react-dom';
+import { Provider, connect } from 'react-redux';
 
+import { init } from './actions';
 import SomeApp from './components/App';
 import store from './store';
-import { init } from './actions';
 
 const mapStateToProps = (state: any) => ({
   locations: state.locations,

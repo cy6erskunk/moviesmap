@@ -2,8 +2,8 @@
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'deep... Remove this comment to see the full error message
 import deepFreeze from 'deep-freeze';
 
-import reducer from '../app/reducers/movies';
 import constants from '../app/constants';
+import reducer from '../app/reducers/movies';
 
 describe('reducer', () => {
   beforeEach(() => {
