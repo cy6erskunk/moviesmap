@@ -15,25 +15,23 @@ const initialState = {
   error: ''
 };
 /* eslint-disable complexity */
-const reducer = (state: any, action: any) => {
-  if (!state) {
-    return initialState;
-  }
+const reducer = (state: any, action: Record<string, any>) => {
+  const effectiveState = state || initialState;
   switch (action.type) {
     case constants.REQUEST_MOVIES_DATA:
-      return Object.assign({}, clone(state), {
+      return Object.assign({}, clone(effectiveState), {
         loadingData: true
       });
 
     case constants.REQUEST_LOCATIONS_DATA:
-      return Object.assign({}, clone(state), {
+      return Object.assign({}, clone(effectiveState), {
         loadingLocations: true
       });
 
     case constants.RECEIVE_MOVIES_DATA:
       return Object.assign(
         {},
-        state,
+        effectiveState,
         action.error
           ? {
               error: action.error.toString(),
@@ -49,7 +47,7 @@ const reducer = (state: any, action: any) => {
     case constants.RECEIVE_LOCATIONS_DATA:
       return Object.assign(
         {},
-        state,
+        effectiveState,
         action.error
           ? {
               error: action.error.toString(),
@@ -68,7 +66,7 @@ const reducer = (state: any, action: any) => {
       }
       return Object.assign(
         {},
-        clone(state),
+        clone(effectiveState),
         {
           title: initialState.title
         },
@@ -83,13 +81,13 @@ const reducer = (state: any, action: any) => {
           encodeURIComponent(action.title)
         );
       }
-      return Object.assign({}, clone(state), {
+      return Object.assign({}, clone(effectiveState), {
         title: action.title,
-        moviesData: clone(state.moviesData),
-        locations: (clone(state.moviesData[action.title]) || []).reduce(
+        moviesData: clone(effectiveState.moviesData),
+        locations: (clone(effectiveState.moviesData[action.title]) || []).reduce(
           (prev: any, locationName: any) => {
-            if (typeof state.allLocations[locationName] !== 'undefined') {
-              prev[locationName] = state.allLocations[locationName];
+            if (typeof effectiveState.allLocations[locationName] !== 'undefined') {
+              prev[locationName] = effectiveState.allLocations[locationName];
             }
             return prev;
           },
@@ -102,14 +100,14 @@ const reducer = (state: any, action: any) => {
       if (!action.loadingHistory) {
         history.pushState({ title: '' }, '', '/');
       }
-      return Object.assign({}, clone(state), {
+      return Object.assign({}, clone(effectiveState), {
         title: '',
-        locations: state.allLocations
+        locations: effectiveState.allLocations
       });
     }
 
     default:
-      return state;
+      return effectiveState;
   }
 };
 
