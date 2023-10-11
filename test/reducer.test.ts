@@ -196,7 +196,6 @@ describe('reducer', () => {
 
   test(constants.REQUEST_LOCATIONS_DATA, () => {
     const state = reducer(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ loadingData: false; loadingLoc... Remove this comment to see the full error message
       {
         loadingData: false,
         loadingLocations: false,
@@ -213,7 +212,6 @@ describe('reducer', () => {
 
   test(constants.REQUEST_MOVIES_DATA, () => {
     const state = reducer(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ loadingData: false; loadingLoc... Remove this comment to see the full error message
       {
         loadingData: false,
         loadingLocations: true,

@@ -86,12 +86,9 @@ const reducer = (state: any, action: any) => {
       return Object.assign({}, clone(state), {
         title: action.title,
         moviesData: clone(state.moviesData),
-        // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         locations: (clone(state.moviesData[action.title]) || []).reduce(
           (prev: any, locationName: any) => {
-            // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
             if (typeof state.allLocations[locationName] !== 'undefined') {
-              // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
               prev[locationName] = state.allLocations[locationName];
             }
             return prev;
