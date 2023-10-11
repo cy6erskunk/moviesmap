@@ -84,15 +84,16 @@ const reducer = (state: any, action: Record<string, any>) => {
       return Object.assign({}, clone(effectiveState), {
         title: action.title,
         moviesData: clone(effectiveState.moviesData),
-        locations: (clone(effectiveState.moviesData[action.title]) || []).reduce(
-          (prev: any, locationName: any) => {
-            if (typeof effectiveState.allLocations[locationName] !== 'undefined') {
-              prev[locationName] = effectiveState.allLocations[locationName];
-            }
-            return prev;
-          },
-          {}
-        )
+        locations: (
+          clone(effectiveState.moviesData[action.title]) || []
+        ).reduce((prev: any, locationName: any) => {
+          if (
+            typeof effectiveState.allLocations[locationName] !== 'undefined'
+          ) {
+            prev[locationName] = effectiveState.allLocations[locationName];
+          }
+          return prev;
+        }, {})
       });
     }
 
