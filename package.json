@@ -32,10 +32,10 @@
     "whatwg-fetch": "3.6.19"
   },
   "devDependencies": {
-    "@babel/core": "7.23.0",
-    "@babel/preset-env": "7.22.20",
+    "@babel/core": "7.23.2",
+    "@babel/preset-env": "7.23.2",
     "@babel/preset-react": "7.22.15",
-    "@babel/preset-typescript": "7.23.0",
+    "@babel/preset-typescript": "7.23.2",
     "@playwright/test": "^1.30.0",
     "@types/googlemaps": "3.43.3",
     "@types/jest": "^29.2.3",
