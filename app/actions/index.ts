@@ -1,6 +1,6 @@
 import constants from '../constants';
-import fetchMovies from '../fetch/movies';
 import fetchLocations from '../fetch/locations';
+import fetchMovies from '../fetch/movies';
 
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'title' implicitly has an 'any' type.
 export const switchMovie = (title, loadingHistory) => ({

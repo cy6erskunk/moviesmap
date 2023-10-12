@@ -2,8 +2,8 @@
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'deep... Remove this comment to see the full error message
 import deepFreeze from 'deep-freeze';
 
-import reducer from '../app/reducers/movies';
 import constants from '../app/constants';
+import reducer from '../app/reducers/movies';
 
 describe('reducer', () => {
   beforeEach(() => {
@@ -196,7 +196,6 @@ describe('reducer', () => {
 
   test(constants.REQUEST_LOCATIONS_DATA, () => {
     const state = reducer(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ loadingData: false; loadingLoc... Remove this comment to see the full error message
       {
         loadingData: false,
         loadingLocations: false,
@@ -213,7 +212,6 @@ describe('reducer', () => {
 
   test(constants.REQUEST_MOVIES_DATA, () => {
     const state = reducer(
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ loadingData: false; loadingLoc... Remove this comment to see the full error message
       {
         loadingData: false,
         loadingLocations: true,

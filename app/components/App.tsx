@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
+import React, { Component } from 'react';
 
+import { resetMovie, switchMovie } from '../actions';
 import store from '../store';
-import { switchMovie, resetMovie } from '../actions';
 import updateMarkers from '../tools/updateMarkers';
 
-import MovieSelector from './Selector';
-import MoviesMap from './MoviesMap';
 import ErrorBubble from './ErrorBubble';
+import MoviesMap from './MoviesMap';
+import MovieSelector from './Selector';
 
 type Props = {
   locations: Record<string, any>;
