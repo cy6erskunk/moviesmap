@@ -39,7 +39,7 @@
     "@playwright/test": "^1.30.0",
     "@types/googlemaps": "3.43.3",
     "@types/jest": "^29.2.3",
-    "@types/node-fetch": "2.6.7",
+    "@types/node-fetch": "2.6.8",
     "@types/react-dom": "18.2.14",
     "@welldone-software/why-did-you-render": "7.0.1",
     "babel-jest": "29.7.0",
