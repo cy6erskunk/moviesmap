@@ -52,7 +52,7 @@
     "typescript": "5.2.2",
     "uuid": "9.0.1",
     "vercel": "32.5.5",
-    "webpack-bundle-analyzer": "4.10.0",
+    "webpack-bundle-analyzer": "4.10.1",
     "webpack-cli": "5.1.4"
   },
   "engines": {
