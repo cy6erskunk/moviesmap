@@ -40,7 +40,7 @@
     "@types/googlemaps": "3.43.3",
     "@types/jest": "^29.2.3",
     "@types/node-fetch": "2.6.11",
-    "@types/react-dom": "18.2.18",
+    "@types/react-dom": "18.2.19",
     "@welldone-software/why-did-you-render": "8.0.1",
     "babel-jest": "29.7.0",
     "babel-loader": "9.1.3",
