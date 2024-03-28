@@ -21,7 +21,7 @@
     "@googlemaps/react-wrapper": "1.1.35",
     "clone": "2.1.2",
     "core-js": "3.33.3",
-    "express": "4.18.2",
+    "express": "4.19.2",
     "node-fetch": "2.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
