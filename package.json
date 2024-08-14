@@ -51,7 +51,7 @@
     "ts-loader": "9.5.1",
     "typescript": "5.5.4",
     "uuid": "10.0.0",
-    "vercel": "35.2.4",
+    "vercel": "36.0.0",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4"
   },
