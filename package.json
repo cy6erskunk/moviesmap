@@ -12,7 +12,6 @@
     "build-n-analyze": "rspack build --analyze",
     "start": "vercel dev",
     "lint": "biome ci api app lib test ",
-    "lint:ci": "npx biome ci api app lib test ",
     "lint-fix": "biome check --write api app lib test && biome format --write api app lib test"
   },
   "author": "Igor Shevchenko",

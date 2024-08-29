@@ -27,7 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    # explivitly install @biomejs/biome to have correct architecture
-    - run: npm install @biomejs/biome 
-    - run: npm run lint:ci
+    - run: npm run lint
     - run: npm test
