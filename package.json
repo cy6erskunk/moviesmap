@@ -9,7 +9,7 @@
     "build:dev": "webpack --mode development",
     "test:e2e": "playwright test",
     "build": "rspack build",
-    "build-n-analyze": "webpack --env.analyze",
+    "build-n-analyze": "rspack build --analyze",
     "start": "vercel dev",
     "lint": "biome ci api app lib test ",
     "lint-fix": "biome check --apply api app lib test && biome format --write api app lib test"
@@ -54,7 +54,6 @@
     "typescript": "5.5.4",
     "uuid": "10.0.0",
     "vercel": "37.2.1",
-    "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4"
   },
   "engines": {
