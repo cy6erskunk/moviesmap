@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 const errorStyle: React.CSSProperties = {
   color: 'red',
