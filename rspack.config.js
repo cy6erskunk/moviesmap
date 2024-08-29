@@ -1,8 +1,6 @@
 const path = require('path')
 const rspack = require('@rspack/core')
 
-const BundleAlalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-
 module.exports = (env) => ({
   mode: env?.development ? 'development' : 'production',
   entry: path.join(__dirname, 'app/app.tsx'),
@@ -16,8 +14,7 @@ module.exports = (env) => ({
     new rspack.DefinePlugin({
       'process.env.REACT_APP_GMAPS_API_KEY': JSON.stringify(process.env.REACT_APP_GMAPS_API_KEY),
     }),
-    env?.analyze && new BundleAlalyzer({analyzerMode: 'static'})
-  ].filter(Boolean),
+  ],
 
   module: {
     rules: [
