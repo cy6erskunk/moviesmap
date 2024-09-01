@@ -1,8 +1,9 @@
 {
   "javascript": {
+    "jsxRuntime": "reactClassic",
     "formatter": {
       "quoteStyle": "single",
-      "trailingComma": "none"
+      "trailingCommas": "none"
     }
   },
   "formatter": {
