@@ -1,7 +1,6 @@
 import './wdyr';
 
 import 'core-js/features/promise';
-import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
 

@@ -1,5 +1,4 @@
 /* eslint-env jasmine, jest */
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import MoviesMap from '../app/components/MoviesMap';

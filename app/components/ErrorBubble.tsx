@@ -1,6 +1,6 @@
-import React from 'react';
+import type { CSSProperties } from 'react';
 
-const errorStyle: React.CSSProperties = {
+const errorStyle: CSSProperties = {
   color: 'red',
   position: 'fixed',
   top: '0',

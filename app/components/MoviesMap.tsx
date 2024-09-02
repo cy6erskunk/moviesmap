@@ -1,5 +1,5 @@
 /* ts-global google */
-import React, { Component } from 'react';
+import { Component, Fragment } from 'react';
 
 import constants from '../constants';
 
@@ -112,10 +112,10 @@ class MoviesMap extends Component<Props> {
   render() {
     const LOADING_MESSAGE = 'loadingLocations';
     return (
-      <React.Fragment>
+      <Fragment>
         {this.props.loadingLocations && <div>{LOADING_MESSAGE}</div>}
         <div ref={this.refDiv} style={mapStyle} className="mapContainer" />
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
