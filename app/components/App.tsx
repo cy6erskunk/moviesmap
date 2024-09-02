@@ -1,5 +1,5 @@
 import { Wrapper } from '@googlemaps/react-wrapper';
-import React, { Component } from 'react';
+import { Component, StrictMode } from 'react';
 
 import { resetMovie, switchMovie } from '../actions';
 import store from '../store';
@@ -42,7 +42,7 @@ class SomeApp extends Component<Props> {
 
   render() {
     return (
-      <React.StrictMode>
+      <StrictMode>
         <ErrorBubble message={this.props.error} />
         <MovieSelector
           titles={this.props.titles}
@@ -59,7 +59,7 @@ class SomeApp extends Component<Props> {
             updateMarkers={updateMarkers}
           />
         </Wrapper>
-      </React.StrictMode>
+      </StrictMode>
     );
   }
 }
