@@ -52,7 +52,7 @@
     "ts-loader": "9.5.1",
     "typescript": "5.5.4",
     "uuid": "10.0.0",
-    "vercel": "37.2.1"
+    "vercel": "37.3.0"
   },
   "engines": {
     "node": ">=14"
