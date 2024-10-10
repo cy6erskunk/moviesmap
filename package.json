@@ -37,7 +37,7 @@
     "@babel/preset-typescript": "7.25.7",
     "@biomejs/biome": "1.9.3",
     "@playwright/test": "^1.48.0",
-    "@rspack/cli": "^1.0.0",
+    "@rspack/cli": "^1.0.8",
     "@rspack/core": "^1.0.0",
     "@types/googlemaps": "3.43.3",
     "@types/jest": "^29.2.3",
