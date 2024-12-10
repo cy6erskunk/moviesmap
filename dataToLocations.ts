@@ -30,7 +30,7 @@ data.forEach((elem: any) => {
 Promise.all(promises).then(
   (results) => {
     process.stdout.write(`${results.length} item(s) received\n`)
-    fs.writeFileSync('./locations.json', JSON.stringify(locations))
+    fs.writeFileSync('./locations_data.json', JSON.stringify(locations))
   },
   (reason) => {
     process.stderr.write(`Error: ${reason}\n`)
