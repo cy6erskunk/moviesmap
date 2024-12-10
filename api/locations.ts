@@ -1,5 +1,7 @@
 import fs from 'fs';
+import path from 'path';
 
-const locations = JSON.parse(fs.readFileSync('public/locations.json', 'utf8'));
+const __dirname = new URL('.', import.meta.url).pathname;
+const locations = JSON.parse(fs.readFileSync(path.join(__dirname, 'locations_data.json'), 'utf8'));
 
 export default (req: any, res: any) => res.json(locations);
