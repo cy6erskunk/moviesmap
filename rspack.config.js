@@ -1,7 +1,9 @@
-const path = require('path')
-const rspack = require('@rspack/core')
+import path from 'path';
+import rspack from '@rspack/core';
 
-module.exports = (env) => ({
+const __dirname = new URL('.', import.meta.url).pathname;
+
+export default (env) => ({
   mode: env?.development ? 'development' : 'production',
   entry: path.join(__dirname, 'app/app.tsx'),
 
@@ -33,4 +35,4 @@ module.exports = (env) => ({
     static: path.join(__dirname, 'public'),
     historyApiFallback: true,
   },
-})
+});

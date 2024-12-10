@@ -1,6 +1,7 @@
 {
   "name": "moviesmap",
   "version": "1.0.0",
+  "type": "module",
   "description": "SF movie locations on the map",
   "main": "index.js",
   "scripts": {
