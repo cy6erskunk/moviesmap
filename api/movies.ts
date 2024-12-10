@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 export default async (req: any, res: any) => {
   const movies = await fetch(
     'https://data.sfgov.org/resource/wwmu-gmzc.json?$select=title,locations'
