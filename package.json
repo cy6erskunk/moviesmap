@@ -40,7 +40,7 @@
     "@rspack/core": "^1.1.0",
     "@types/googlemaps": "3.43.3",
     "@types/jest": "^29.5.13",
-    "@types/react-dom": "18.3.3",
+    "@types/react-dom": "18.3.5",
     "@welldone-software/why-did-you-render": "8.0.3",
     "babel-jest": "29.7.0",
     "babel-loader": "9.2.1",
