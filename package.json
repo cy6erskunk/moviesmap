@@ -52,9 +52,6 @@
     "uuid": "11.0.5",
     "vercel": "39.3.0"
   },
-  "engines": {
-    "node": ">=18"
-  },
   "jest": {
     "testEnvironmentOptions": {
       "url": "http://localhost"
