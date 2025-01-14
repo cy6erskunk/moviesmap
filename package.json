@@ -53,7 +53,7 @@
     "vercel": "39.3.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": "23.6.0"
   },
   "jest": {
     "testEnvironmentOptions": {
