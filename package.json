@@ -35,7 +35,7 @@
     "@babel/preset-react": "7.26.3",
     "@babel/preset-typescript": "7.26.0",
     "@biomejs/biome": "1.9.4",
-    "@playwright/test": "1.50.0",
+    "@playwright/test": "1.50.1",
     "@rspack/cli": "1.2.2",
     "@rspack/core": "1.2.2",
     "@types/googlemaps": "3.43.3",
