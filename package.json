@@ -50,7 +50,7 @@
     "ts-loader": "9.5.2",
     "typescript": "5.7.3",
     "uuid": "11.1.0",
-    "vercel": "41.1.4"
+    "vercel": "41.2.0"
   },
   "jest": {
     "testEnvironmentOptions": {
