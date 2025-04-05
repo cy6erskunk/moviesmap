@@ -22,7 +22,7 @@
     "@googlemaps/react-wrapper": "1.2.0",
     "clone": "2.1.2",
     "core-js": "3.41.0",
-    "express": "4.21.2",
+    "express": "5.1.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-redux": "8.1.3",
