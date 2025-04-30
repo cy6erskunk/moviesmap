@@ -41,7 +41,7 @@
     "@types/googlemaps": "3.43.3",
     "@types/jest": "29.5.14",
     "@types/react-dom": "18.3.7",
-    "@welldone-software/why-did-you-render": "8.0.3",
+    "@welldone-software/why-did-you-render": "10.0.1",
     "babel-jest": "29.7.0",
     "babel-loader": "10.0.0",
     "deep-freeze": "0.0.1",
