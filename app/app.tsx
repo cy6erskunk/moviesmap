@@ -1,7 +1,7 @@
 import './wdyr';
 
 import 'core-js/features/promise';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider, connect } from 'react-redux';
 
 import { init } from './actions';
@@ -23,9 +23,11 @@ const mapDispatchToProps = {
 
 const SomeAppContainer = connect(mapStateToProps, mapDispatchToProps)(SomeApp);
 
-render(
+const container = document.querySelector('.app-container');
+if (!container) throw new Error('Could not find app container');
+const root = createRoot(container);
+root.render(
   <Provider store={store}>
     <SomeAppContainer />
-  </Provider>,
-  document.querySelector('.app-container')
+  </Provider>
 );
