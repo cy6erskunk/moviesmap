@@ -1,20 +1,23 @@
-import { applyMiddleware, createStore } from 'redux';
-import { thunk } from 'redux-thunk';
-
+import { configureStore } from '@reduxjs/toolkit';
+import type { Middleware } from '@reduxjs/toolkit';
 import reducer from './reducers/movies';
+import type { MoviesState } from './reducers/movies';
 
-const logMe = (store: any) => (next: any) => (action: any) => {
-  if (typeof action !== 'function') {
-    // eslint-disable-next-line no-console
-    console.log('dispatching:', action, store.getState());
-  }
-  return next(action);
-};
-
-const store = createStore(
+const store = configureStore({
   reducer,
-  // @ts-expect-error ts-migrate(2339) FIXME: Property '__REDUX_DEVTOOLS_EXTENSION__' does not e... Remove this comment to see the full error message
-  window.__REDUX_DEVTOOLS_EXTENSION__?.(),
-  applyMiddleware(thunk, logMe)
-);
+  middleware: (getDefaultMiddleware) => {
+    const logger: Middleware<unknown, MoviesState> =
+      (store) => (next) => (action) => {
+        if (typeof action !== 'function') {
+          console.log('dispatching:', action, store.getState());
+        }
+        return next(action);
+      };
+    return getDefaultMiddleware().concat(logger);
+  }
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
 export default store;

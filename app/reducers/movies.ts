@@ -1,10 +1,81 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'clon... Remove this comment to see the full error message
 import clone from 'clone';
 import 'core-js/modules/es.object.assign';
 
 import constants from '../constants';
 
-const initialState = {
+export interface MoviesData {
+  [key: string]: string[]; // Array of location names for each movie
+}
+
+export interface LocationData {
+  [key: string]: {
+    lat: number;
+    lng: number;
+    // Add other location properties as needed
+  };
+}
+
+export interface MoviesState {
+  title: string;
+  titles: string[];
+  moviesData: MoviesData;
+  allLocations: LocationData;
+  locations: LocationData;
+  loadingData: boolean;
+  loadingLocations: boolean;
+  error: string;
+}
+
+type RequestMoviesAction = {
+  type: typeof constants.REQUEST_MOVIES_DATA;
+};
+
+type ReceiveMoviesAction = {
+  type: typeof constants.RECEIVE_MOVIES_DATA;
+  data?: MoviesData;
+  error?: Error;
+};
+
+type RequestLocationsAction = {
+  type: typeof constants.REQUEST_LOCATIONS_DATA;
+};
+
+type ReceiveLocationsAction = {
+  type: typeof constants.RECEIVE_LOCATIONS_DATA;
+  data?: LocationData;
+  error?: Error;
+};
+
+type InitDataAction = {
+  type: typeof constants.INIT_DATA;
+  data?: {
+    locations?: LocationData;
+    allLocations?: LocationData;
+    [key: string]: any;
+  };
+};
+
+type SwitchMovieAction = {
+  type: typeof constants.SWITCH_MOVIE;
+  title: string;
+  loadingHistory?: boolean;
+};
+
+type ResetMovieAction = {
+  type: typeof constants.RESET_MOVIE;
+  loadingHistory?: boolean;
+};
+
+type MoviesAction =
+  | RequestMoviesAction
+  | ReceiveMoviesAction
+  | RequestLocationsAction
+  | ReceiveLocationsAction
+  | InitDataAction
+  | SwitchMovieAction
+  | ResetMovieAction;
+
+const initialState: MoviesState = {
   title: '',
   titles: [],
   moviesData: {},
@@ -15,7 +86,10 @@ const initialState = {
   error: ''
 };
 /* eslint-disable complexity */
-const reducer = (state: any, action: Record<string, any>) => {
+const reducer = (
+  state: MoviesState | undefined,
+  action: MoviesAction
+): MoviesState => {
   const effectiveState = state || initialState;
   switch (action.type) {
     case constants.REQUEST_MOVIES_DATA:
@@ -28,41 +102,46 @@ const reducer = (state: any, action: Record<string, any>) => {
         loadingLocations: true
       });
 
-    case constants.RECEIVE_MOVIES_DATA:
+    case constants.RECEIVE_MOVIES_DATA: {
+      const receiveMoviesAction = action as ReceiveMoviesAction;
       return Object.assign(
         {},
         effectiveState,
-        action.error
+        receiveMoviesAction.error
           ? {
-              error: action.error.toString(),
+              error: receiveMoviesAction.error.toString(),
               loadingData: false
             }
           : {
               loadingData: false,
-              moviesData: action.data,
-              titles: Object.keys(action.data).sort()
+              moviesData: receiveMoviesAction.data || {},
+              titles: Object.keys(receiveMoviesAction.data || {}).sort()
             }
       );
+    }
 
-    case constants.RECEIVE_LOCATIONS_DATA:
+    case constants.RECEIVE_LOCATIONS_DATA: {
+      const receiveLocationsAction = action as ReceiveLocationsAction;
       return Object.assign(
         {},
         effectiveState,
-        action.error
+        receiveLocationsAction.error
           ? {
-              error: action.error.toString(),
+              error: receiveLocationsAction.error.toString(),
               loadingLocations: false
             }
           : {
               loadingLocations: false,
-              locations: action.data,
-              allLocations: action.data
+              locations: receiveLocationsAction.data || {},
+              allLocations: receiveLocationsAction.data || {}
             }
       );
+    }
 
     case constants.INIT_DATA: {
-      if (action.data?.locations) {
-        action.data.allLocations = clone(action.data.locations);
+      const initDataAction = action as InitDataAction;
+      if (initDataAction.data?.locations) {
+        initDataAction.data.allLocations = clone(initDataAction.data.locations);
       }
       return Object.assign(
         {},
@@ -70,23 +149,25 @@ const reducer = (state: any, action: Record<string, any>) => {
         {
           title: initialState.title
         },
-        action.data
+        initDataAction.data || {}
       );
     }
+
     case constants.SWITCH_MOVIE: {
-      if (!action.loadingHistory) {
+      const switchMovieAction = action as SwitchMovieAction;
+      if (!switchMovieAction.loadingHistory) {
         history.pushState(
-          { title: action.title },
-          action.title,
-          encodeURIComponent(action.title)
+          { title: switchMovieAction.title },
+          switchMovieAction.title,
+          encodeURIComponent(switchMovieAction.title)
         );
       }
       return Object.assign({}, clone(effectiveState), {
-        title: action.title,
+        title: switchMovieAction.title,
         moviesData: clone(effectiveState.moviesData),
         locations: (
-          clone(effectiveState.moviesData[action.title]) || []
-        ).reduce((prev: any, locationName: any) => {
+          clone(effectiveState.moviesData[switchMovieAction.title]) || []
+        ).reduce((prev: LocationData, locationName: string) => {
           if (
             typeof effectiveState.allLocations[locationName] !== 'undefined'
           ) {
@@ -98,7 +179,8 @@ const reducer = (state: any, action: Record<string, any>) => {
     }
 
     case constants.RESET_MOVIE: {
-      if (!action.loadingHistory) {
+      const resetMovieAction = action as ResetMovieAction;
+      if (!resetMovieAction.loadingHistory) {
         history.pushState({ title: '' }, '', '/');
       }
       return Object.assign({}, clone(effectiveState), {
