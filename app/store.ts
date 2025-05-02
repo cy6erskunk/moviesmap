@@ -6,12 +6,13 @@ import type { MoviesState } from './reducers/movies';
 const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => {
-    const logger: Middleware<unknown, MoviesState> = (store) => (next) => (action) => {
-      if (typeof action !== 'function') {
-        console.log('dispatching:', action, store.getState());
-      }
-      return next(action);
-    };
+    const logger: Middleware<unknown, MoviesState> =
+      (store) => (next) => (action) => {
+        if (typeof action !== 'function') {
+          console.log('dispatching:', action, store.getState());
+        }
+        return next(action);
+      };
     return getDefaultMiddleware().concat(logger);
   }
 });

@@ -28,23 +28,23 @@ export interface MoviesState {
 
 type RequestMoviesAction = {
   type: typeof constants.REQUEST_MOVIES_DATA;
-}
+};
 
 type ReceiveMoviesAction = {
   type: typeof constants.RECEIVE_MOVIES_DATA;
   data?: MoviesData;
   error?: Error;
-}
+};
 
 type RequestLocationsAction = {
   type: typeof constants.REQUEST_LOCATIONS_DATA;
-}
+};
 
 type ReceiveLocationsAction = {
   type: typeof constants.RECEIVE_LOCATIONS_DATA;
   data?: LocationData;
   error?: Error;
-}
+};
 
 type InitDataAction = {
   type: typeof constants.INIT_DATA;
@@ -53,23 +53,23 @@ type InitDataAction = {
     allLocations?: LocationData;
     [key: string]: any;
   };
-}
+};
 
 type SwitchMovieAction = {
   type: typeof constants.SWITCH_MOVIE;
   title: string;
   loadingHistory?: boolean;
-}
+};
 
 type ResetMovieAction = {
   type: typeof constants.RESET_MOVIE;
   loadingHistory?: boolean;
-}
+};
 
-type MoviesAction = 
-  | RequestMoviesAction 
-  | ReceiveMoviesAction 
-  | RequestLocationsAction 
+type MoviesAction =
+  | RequestMoviesAction
+  | ReceiveMoviesAction
+  | RequestLocationsAction
   | ReceiveLocationsAction
   | InitDataAction
   | SwitchMovieAction
@@ -86,7 +86,10 @@ const initialState: MoviesState = {
   error: ''
 };
 /* eslint-disable complexity */
-const reducer = (state: MoviesState | undefined, action: MoviesAction): MoviesState => {
+const reducer = (
+  state: MoviesState | undefined,
+  action: MoviesAction
+): MoviesState => {
   const effectiveState = state || initialState;
   switch (action.type) {
     case constants.REQUEST_MOVIES_DATA:
