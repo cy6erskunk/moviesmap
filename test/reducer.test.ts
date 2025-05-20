@@ -1,9 +1,9 @@
 /* eslint-env jest */
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'deep... Remove this comment to see the full error message
 import deepFreeze from 'deep-freeze';
 
 import constants from '../app/constants';
 import reducer from '../app/reducers/movies';
+import type { MoviesAction, MoviesState } from '../app/reducers/movies';
 
 describe('reducer', () => {
   beforeEach(() => {
@@ -18,12 +18,12 @@ describe('reducer', () => {
   it('requires action', () => {
     expect(reducer).toThrow();
     expect(() => {
-      reducer(undefined, {});
+      reducer(undefined, {} as MoviesAction);
     }).not.toThrow();
   });
 
   it('returns default state', () => {
-    const result = reducer(undefined, {});
+    const result = reducer(undefined, {} as MoviesAction);
 
     expect(result).toBeTruthy();
     expect(result.title).toBe('');
@@ -85,14 +85,14 @@ describe('reducer', () => {
   describe('RESET_MOVIE', () => {
     it('returns default state', () => {
       const title = '180';
-      const defaultState = deepFreeze(reducer(undefined, {}));
+      const defaultState = deepFreeze(reducer(undefined, {} as MoviesAction));
       const intermediateState = deepFreeze(
-        reducer(defaultState, {
+        reducer(defaultState as MoviesState, {
           type: constants.SWITCH_MOVIE,
           title
         })
       );
-      const result = reducer(intermediateState, {
+      const result = reducer(intermediateState as MoviesState, {
         type: constants.RESET_MOVIE
       });
 
@@ -100,8 +100,8 @@ describe('reducer', () => {
     });
 
     it('updates browser history by default', () => {
-      const defaultState = deepFreeze(reducer(undefined, {}));
-      reducer(defaultState, { type: constants.RESET_MOVIE });
+      const defaultState = deepFreeze(reducer(undefined, {} as MoviesAction));
+      reducer(defaultState as MoviesState, { type: constants.RESET_MOVIE });
 
       expect(history.pushState).toHaveBeenLastCalledWith(
         { title: '' },
@@ -111,8 +111,8 @@ describe('reducer', () => {
     });
 
     it('does not call history.pushState when loading history', () => {
-      const defaultState = deepFreeze(reducer(undefined, {}));
-      reducer(defaultState, {
+      const defaultState = deepFreeze(reducer(undefined, {} as MoviesAction));
+      reducer(defaultState as MoviesState, {
         type: constants.RESET_MOVIE,
         loadingHistory: true
       });
@@ -125,7 +125,7 @@ describe('reducer', () => {
     const errorMsg = 'something error-like';
     const state = reducer(undefined, {
       type: constants.RECEIVE_MOVIES_DATA,
-      error: errorMsg
+      error: Error(errorMsg)
     });
     const result = reducer(state, { type: constants.INIT_DATA });
     expect(result.error).toEqual(errorMsg);
@@ -200,7 +200,7 @@ describe('reducer', () => {
         loadingData: false,
         loadingLocations: false,
         error: ''
-      },
+      } as MoviesState,
       { type: constants.REQUEST_LOCATIONS_DATA }
     );
     expect(state).toEqual({
@@ -216,7 +216,7 @@ describe('reducer', () => {
         loadingData: false,
         loadingLocations: true,
         error: ''
-      },
+      } as MoviesState,
       { type: constants.REQUEST_MOVIES_DATA }
     );
     expect(state).toEqual({
