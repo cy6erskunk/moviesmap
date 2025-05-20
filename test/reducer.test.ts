@@ -11,8 +11,7 @@ describe('reducer', () => {
   });
 
   afterEach(() => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockReset' does not exist on type '(data... Remove this comment to see the full error message
-    history.pushState.mockReset();
+    (history.pushState as jest.Mock).mockReset();
   });
 
   it('requires action', () => {

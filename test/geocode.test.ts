@@ -1,6 +1,5 @@
 import 'core-js/modules/es.object.assign';
 /* eslint-env jasmine, jest */
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'deep... Remove this comment to see the full error message
 import deepFreeze from 'deep-freeze';
 
 import geocode from '../lib/geocode';
