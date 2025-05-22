@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react';
+import type { FormEvent, JSX } from 'react';
 
 type MovieTitleProps = {
   title?: string;

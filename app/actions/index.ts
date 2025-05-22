@@ -2,14 +2,13 @@ import constants from '../constants';
 import fetchLocations from '../fetch/locations';
 import fetchMovies from '../fetch/movies';
 
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'title' implicitly has an 'any' type.
-export const switchMovie = (title, loadingHistory) => ({
+export const switchMovie = (title: string, loadingHistory?: boolean) => ({
   type: constants.SWITCH_MOVIE,
   title,
   loadingHistory
 });
 
-export const resetMovie = (loadingHistory: any) => ({
+export const resetMovie = (loadingHistory?: boolean) => ({
   type: constants.RESET_MOVIE,
   loadingHistory
 });
@@ -35,7 +34,6 @@ export const init = () => (dispatch: any) => {
     dispatch(fetchLocationsData()),
     dispatch(fetchMoviesData())
   ]).then(() => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     dispatch(resetMovie());
   });
 };

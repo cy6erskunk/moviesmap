@@ -66,7 +66,7 @@ type ResetMovieAction = {
   loadingHistory?: boolean;
 };
 
-type MoviesAction =
+export type MoviesAction =
   | RequestMoviesAction
   | ReceiveMoviesAction
   | RequestLocationsAction
