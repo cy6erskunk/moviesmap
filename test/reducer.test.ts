@@ -121,10 +121,11 @@ describe('reducer', () => {
   });
 
   it('does not reset error', () => {
-    const errorMsg = 'something error-like';
+    const error = Error('something error-like');
+    const errorMsg = error.toString();
     const state = reducer(undefined, {
       type: constants.RECEIVE_MOVIES_DATA,
-      error: Error(errorMsg)
+      error: error
     });
     const result = reducer(state, { type: constants.INIT_DATA });
     expect(result.error).toEqual(errorMsg);
