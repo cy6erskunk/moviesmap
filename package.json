@@ -43,7 +43,7 @@
     "@types/deep-freeze": "0.1.5",
     "@types/googlemaps": "3.43.3",
     "@types/jest": "29.5.14",
-    "@types/react-dom": "19.1.5",
+    "@types/react-dom": "19.1.6",
     "@welldone-software/why-did-you-render": "10.0.1",
     "babel-jest": "29.7.0",
     "babel-loader": "10.0.0",
