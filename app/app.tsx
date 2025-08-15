@@ -2,7 +2,7 @@ import './wdyr';
 
 import 'core-js/features/promise';
 import { createRoot } from 'react-dom/client';
-import { Provider, connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 
 import { init } from './actions';
 import SomeApp from './components/App';
