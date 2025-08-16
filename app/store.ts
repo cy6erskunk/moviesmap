@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
 import type { Middleware } from '@reduxjs/toolkit';
-import reducer from './reducers/movies';
+import { configureStore } from '@reduxjs/toolkit';
 import type { MoviesState } from './reducers/movies';
+import reducer from './reducers/movies';
 
 const store = configureStore({
   reducer,

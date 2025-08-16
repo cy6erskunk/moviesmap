@@ -2,8 +2,8 @@
 import deepFreeze from 'deep-freeze';
 
 import constants from '../app/constants';
-import reducer from '../app/reducers/movies';
 import type { MoviesAction, MoviesState } from '../app/reducers/movies';
+import reducer from '../app/reducers/movies';
 
 describe('reducer', () => {
   beforeEach(() => {

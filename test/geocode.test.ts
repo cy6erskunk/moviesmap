@@ -40,7 +40,7 @@ describe('geocode', () => {
   it('uses custom geocoder when provided', () => {
     const options = {
       mapsClient: {
-        geocode: jest.fn((input: any, cb: any) => {
+        geocode: jest.fn((_input: any, cb: any) => {
           cb(null, dummyResponse);
         })
       },
@@ -57,7 +57,7 @@ describe('geocode', () => {
     const dummyError = 'dummy error';
     const options = {
       mapsClient: {
-        geocode: (input: any, cb: any) => cb(dummyError, undefined)
+        geocode: (_input: any, cb: any) => cb(dummyError, undefined)
       },
       responseProcessor: (response: any) => response.json
     };
@@ -70,7 +70,7 @@ describe('geocode', () => {
   it('fails on empty response', () => {
     const options = {
       mapsClient: {
-        geocode: (input: any, cb: any) => cb(null, undefined)
+        geocode: (_input: any, cb: any) => cb(null, undefined)
       },
       responseProcessor: (response: any) => response.json
     };
@@ -87,7 +87,7 @@ describe('geocode', () => {
 
     const options = {
       mapsClient: {
-        geocode: (input: any, cb: any) => cb(null, anotherDummyResponse)
+        geocode: (_input: any, cb: any) => cb(null, anotherDummyResponse)
       },
       responseProcessor: (response: any) => response.json
     };
@@ -104,7 +104,7 @@ describe('geocode', () => {
 
     const options = {
       mapsClient: {
-        geocode: (input: any, cb: any) => cb(null, anotherDummyResponse)
+        geocode: (_input: any, cb: any) => cb(null, anotherDummyResponse)
       },
       responseProcessor: (response: any) => response.json
     };
@@ -120,7 +120,7 @@ describe('geocode', () => {
     const processorMock = jest.fn();
     const options = {
       mapsClient: {
-        geocode: jest.fn((input: any, cb: any) => {
+        geocode: jest.fn((_input: any, cb: any) => {
           cb(null, dummyResponse);
         })
       },

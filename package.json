@@ -12,8 +12,8 @@
     "build": "rspack build",
     "build-n-analyze": "rspack build --analyze",
     "start": "vercel dev",
-    "lint": "biome ci api app lib test ",
-    "lint-fix": "biome check --write api app lib test && biome format --write api app lib test"
+    "lint": "npx @biomejs/biome check api app lib test ",
+    "lint-fix": "npx @biomejs/biome check --write api app lib test"
   },
   "author": "Igor Shevchenko",
   "license": "ISC",
@@ -35,7 +35,7 @@
     "@babel/preset-env": "7.28.3",
     "@babel/preset-react": "7.27.1",
     "@babel/preset-typescript": "7.27.1",
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.2.0",
     "@playwright/test": "1.54.2",
     "@rspack/cli": "1.4.11",
     "@rspack/core": "1.4.11",

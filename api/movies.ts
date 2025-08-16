@@ -1,4 +1,4 @@
-export default async (req: any, res: any) => {
+export default async (_req: any, res: any) => {
   const movies = await fetch(
     'https://data.sfgov.org/resource/wwmu-gmzc.json?$select=title,locations'
   )
