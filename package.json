@@ -52,7 +52,7 @@
     "jest-environment-jsdom": "30.1.2",
     "ts-loader": "9.5.4",
     "typescript": "5.9.2",
-    "uuid": "11.1.0",
+    "uuid": "12.0.0",
     "vercel": "44.7.3"
   },
   "jest": {
