@@ -59,6 +59,9 @@
     "testEnvironmentOptions": {
       "url": "http://localhost"
     },
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "transformIgnorePatterns": [
+      "node_modules/(?!uuid)"
+    ]
   }
 }
