@@ -1,13 +1,11 @@
 /* eslint-env jasmine, jest */
 import updateMarkers from '../app/tools/updateMarkers';
 
-const noop = () => ({});
-
 const STUB = {
   locations: {},
   markers: [
     {
-      setMap: noop
+      map: null
     }
   ]
 };

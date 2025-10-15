@@ -3,22 +3,21 @@ export default (
   { markers, locations, movieTitle, map, infoWindow }: any
 ) => {
   markers.forEach((m: any, i: any, array: any) => {
-    m.setMap(null);
+    m.map = null;
     array[i] = null;
   });
   // markers = []
   const newMarkers = Object.keys(locations).map(
     (locationKey) =>
-      new google.maps.Marker({
+      new google.maps.marker.AdvancedMarkerElement({
         position: locations[locationKey],
         map,
-        title: locationKey,
-        something: movieTitle
+        title: locationKey
       })
   );
 
   newMarkers.forEach((marker) => {
-    google.maps.event.addListener(marker, 'click', () => {
+    marker.addListener('click', () => {
       infoWindow.setContent(`<h2>${marker.title}</h2><p>${movieTitle}</p>`);
       infoWindow.open(map, marker);
     });
