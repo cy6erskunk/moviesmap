@@ -51,7 +51,10 @@ class SomeApp extends Component<Props> {
           value={this.props.movieTitle}
           loadingData={this.props.loadingData}
         />
-        <Wrapper apiKey={`${process.env.REACT_APP_GMAPS_API_KEY}`}>
+        <Wrapper
+          apiKey={`${process.env.REACT_APP_GMAPS_API_KEY}`}
+          libraries={['marker']}
+        >
           <MoviesMap
             locations={this.props.locations}
             movieTitle={this.props.movieTitle}

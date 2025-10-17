@@ -60,7 +60,8 @@ class MoviesMap extends Component<Props> {
   componentDidMount() {
     const mapOptions = {
       zoom: 10,
-      center: this.props.position
+      center: this.props.position,
+      mapId: 'DEMO_MAP_ID' // Required for AdvancedMarkerElement
     };
 
     if (typeof google !== 'undefined') {
@@ -87,9 +88,14 @@ class MoviesMap extends Component<Props> {
 
       if (this.markers.length) {
         this.markers.forEach((marker: any) => {
-          marker.setVisible(locationTitles.includes(marker.getTitle()));
-          if (locationTitles.includes(marker.getTitle())) {
-            bounds.extend(marker.getPosition());
+          const markerTitle = marker.title;
+          const shouldShow = locationTitles.includes(markerTitle);
+
+          // AdvancedMarkerElement uses map property to show/hide
+          marker.map = shouldShow ? this.map : null;
+
+          if (shouldShow) {
+            bounds.extend(marker.position);
           }
         });
 
