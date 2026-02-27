@@ -35,7 +35,7 @@
     "@babel/preset-env": "7.29.0",
     "@babel/preset-react": "7.28.5",
     "@babel/preset-typescript": "7.28.5",
-    "@biomejs/biome": "2.4.2",
+    "@biomejs/biome": "2.4.3",
     "@playwright/test": "1.58.2",
     "@rspack/cli": "1.7.6",
     "@rspack/core": "1.7.6",
