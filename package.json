@@ -50,7 +50,7 @@
     "deep-freeze": "0.0.1",
     "jest": "30.3.0",
     "jest-environment-jsdom": "30.3.0",
-    "ts-loader": "9.5.4",
+    "ts-loader": "9.5.7",
     "typescript": "5.9.3",
     "uuid": "13.0.0",
     "vercel": "48.12.1"
